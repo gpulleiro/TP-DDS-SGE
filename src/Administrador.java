@@ -8,11 +8,12 @@ public class Administrador extends Usuario {
 	//constructor
 	
 	public Administrador(String nombre, String apellido, String domicilio, Calendar fechaAlta, String usuario,
-			String contraseña,int ID) {
-		super(nombre, apellido, domicilio, fechaAlta, usuario, contraseña);
+			String contrasenia,int ID) {
+		super(nombre, apellido, domicilio, fechaAlta, usuario, contrasenia);
 	
 		this.ID = ID;
 			}
+
 	
 	//getters-setters
 	

@@ -9,19 +9,19 @@ public abstract class Usuario {
 	protected String domicilio;
 	protected static Calendar fechaAlta = new GregorianCalendar();
 	protected String usuario;
-	protected String contraseña;
+	protected String contrasenia;
 	
 	//constructor
 
 	public Usuario(String nombre, String apellido, String domicilio, Calendar fechaAlta, String usuario,
-			String contraseña) {
+			String contrasenia) {
 
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.domicilio = domicilio;
 		Usuario.fechaAlta = fechaAlta;
 		this.usuario = usuario;
-		this.contraseña = contraseña;
+		this.contrasenia = contrasenia;
 	}
 	
 	//getters-setters
@@ -66,12 +66,12 @@ public abstract class Usuario {
 		this.usuario = usuario;
 	}
 
-	public String getContraseña() {
-		return contraseña;
+	public String getContrasenia() {
+		return contrasenia;
 	}
 
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setContrasenia(String contrasenia) {
+		this.contrasenia = contrasenia;
 	}	
 
 	//metodos

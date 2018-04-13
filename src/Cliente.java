@@ -11,11 +11,11 @@ public class Cliente extends Usuario {
 
 	//constructor
 	
-	public Cliente(String nombre, String apellido, String domicilio, Calendar fechaAlta, String usuario, String contraseña,
+	public Cliente(String nombre, String apellido, String domicilio, Calendar fechaAlta, String usuario, String contraseï¿½a,
 			String tipoDocumento, int numeroDocumento, int telefono, Object categoria,
-			ArrayList<Dispositivo> dispositivo) {
+			ArrayList<Dispositivo> dispositivo){
 		
-		super(nombre, apellido, domicilio, fechaAlta, usuario, contraseña);
+		super(nombre, apellido, domicilio, fechaAlta, usuario, contrasenia);
 		
 		this.tipoDocumento = tipoDocumento;
 		this.numeroDocumento = numeroDocumento;
