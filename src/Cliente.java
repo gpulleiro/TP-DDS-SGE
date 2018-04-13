@@ -11,7 +11,7 @@ public class Cliente extends Usuario {
 
 	//constructor
 	
-	public Cliente(String nombre, String apellido, String domicilio, Calendar fechaAlta, String usuario, String contrase�a,
+	public Cliente(String nombre, String apellido, String domicilio, Calendar fechaAlta, String usuario, String contrasenia,
 			String tipoDocumento, int numeroDocumento, int telefono, Object categoria,
 			ArrayList<Dispositivo> dispositivo){
 		
