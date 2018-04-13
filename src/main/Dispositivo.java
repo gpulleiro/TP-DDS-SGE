@@ -1,3 +1,5 @@
+package main;
+
 public class Dispositivo {
 
 	private String nombre;
