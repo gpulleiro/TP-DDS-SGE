@@ -1,0 +1,5 @@
+{
+	"nombre": "licuadora",
+	"consumo": 20,
+	"estado": true
+}

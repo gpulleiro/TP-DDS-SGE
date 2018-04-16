@@ -74,17 +74,16 @@ public class Cliente extends Usuario {
 	//preguntar si alguno de sus dispositivos esta encendido quiere decir si alguno
 	//de la lista esta encendido.. o algun objeto en particular de la lista ??
 	
-	
-//	public boolean algunDispositivoEncendido(){
-//		
-//		boolean estado = false;
-//		
-//		
-//		
-//		
-//		return estado;
-//		
-//	}
+	public boolean algunDispositivoEncendido(){
+		boolean estado = false;
+		for (Dispositivo obj: dispositivos){
+			if(obj.isEstado() == true){
+				estado = true;
+				break;
+			}
+		}
+		return estado;
+	}
 	
 	//cantidad de dispositivos encendidos
 	public int cantDispositivosEncendidos(){
