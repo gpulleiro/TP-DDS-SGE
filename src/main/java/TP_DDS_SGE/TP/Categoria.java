@@ -1,4 +1,4 @@
-package main;
+package TP_DDS_SGE.TP;
 
 
 public class Categoria {
