@@ -1,7 +1,7 @@
 package TP_DDS_SGE.TP;
 
 import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Calendar;
 
 public class Cliente extends Usuario {
@@ -89,10 +89,10 @@ public class Cliente extends Usuario {
 		return estado;
 	}
 	
-//	public boolean algunDispositivoEncendido2(){
-//	
-//		return (this.dispositivos.any(dispositivo->dispositivo.isEstado()));
-//	}
+	public boolean algunDispositivoEncendido2(){
+	
+		return (( this.dispositivos).any(dispositivo->dispositivo.isEstado()));
+	}
 	
 	//cantidad de dispositivos encendidos
 	public int cantDispositivosEncendidos(){
