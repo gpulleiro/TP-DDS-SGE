@@ -105,6 +105,11 @@ public class Cliente extends Usuario {
 		return contador;
 	}
 	
+	public long cantDispositivosEncendidos2(){
+		
+		return ((this.dispositivos.stream().filter(dispositivo->dispositivo.isEstado()).count()));
+		}
+	
 	//cantidad de dispositivos apagados 
 	public int cantDispositivosApagados(){
 		int contador = 0;
@@ -114,6 +119,11 @@ public class Cliente extends Usuario {
 			}
 		}
 		return contador;
+	}
+	
+	public long cantDispositivosApagados2(){
+		
+		return ((this.dispositivos.stream().filter(dispositivo->!(dispositivo.isEstado())).count()));
 	}
 	
 	//cantidad de dispositivos
