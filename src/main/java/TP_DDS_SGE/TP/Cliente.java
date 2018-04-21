@@ -91,7 +91,7 @@ public class Cliente extends Usuario {
 	
 	public boolean algunDispositivoEncendido2(){
 	
-		return (( this.dispositivos).any(dispositivo->dispositivo.isEstado()));
+		return (this.dispositivos.stream().anyMatch(dispositivo->dispositivo.isEstado())); 
 	}
 	
 	//cantidad de dispositivos encendidos
