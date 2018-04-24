@@ -1,0 +1,54 @@
+[
+	{
+		"nombre": "mauricio",
+		"apellido": "duportal",
+		"domicilio": "Calle falsa 123",
+		"usuario": "mauri",
+		"contrasenia": "123456",
+		"dispositivos":[
+							{
+								"nombre": "licuadora",
+								"consumo": 20,
+								"estado": true
+							},
+							{
+								"nombre": "heladera",
+								"consumo": 80,
+								"estado": true
+							},
+							{
+								"nombre": "microondas",
+								"consumo": 20,
+								"estado": false
+							}
+	
+						]
+			
+	},
+	{
+		"nombre": "gaston",
+		"apellido": "pulleiro",
+		"domicilio": "Calle falsa 321",
+		"usuario": "gpulleiro",
+		"contrasenia": "123456",
+		"dispositivos":[
+							{
+								"nombre": "SmartTV",
+								"consumo": 20,
+								"estado": true
+							},
+							{
+								"nombre": "Aire Acondicionado",
+								"consumo": 180,
+								"estado": true
+							},
+							{
+								"nombre": "Lavavajillas",
+								"consumo": 90,
+								"estado": false
+							}
+	
+						]
+			
+	}
+]
