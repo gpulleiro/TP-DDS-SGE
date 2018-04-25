@@ -9,13 +9,13 @@ public class Cliente extends Usuario {
 	private String tipoDocumento;
 	private int numeroDocumento;
 	private int telefono;
-	private Object categoria;
+	private Categoria categoria;
 	private ArrayList <Dispositivo> dispositivos;
 
 	//constructor
 	
 	public Cliente(String nombre, String apellido, String domicilio, Calendar fechaAlta, String usuario, String contrasenia,
-			String tipoDocumento, int numeroDocumento, int telefono, Object categoria,
+			String tipoDocumento, int numeroDocumento, int telefono, Categoria categoria,
 			ArrayList<Dispositivo> dispositivo){
 		
 		super(nombre, apellido, domicilio, fechaAlta, usuario, contrasenia);
@@ -57,7 +57,7 @@ public class Cliente extends Usuario {
 		return categoria;
 	}
 
-	public void setCategoria(Object categoria) {
+	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
 
