@@ -30,33 +30,34 @@ public class RepositorioUsuarios {
 	
 	// metodos
 	
-	public static void importarJSON (String json) throws FileNotFoundException {
+	public static ArrayList<Cliente> importarJSON (String json) throws FileNotFoundException {
 		
 		Type tipoListaCliente = new TypeToken<ArrayList<Cliente>>(){}.getType();
 		BufferedReader bufferedReader = new BufferedReader(new FileReader(json));
 		Gson gson = new Gson();
 		ArrayList<Cliente> listaClientes = gson.fromJson(bufferedReader, tipoListaCliente);
 		
+		return listaClientes;
 		//para comprobar que importo correctamente
-		Cliente cli;
-		Dispositivo dis;
-		
-		Iterator itercli = listaClientes.iterator();
-		
-		while(itercli.hasNext()){
-			cli = (Cliente)itercli.next();
-			
-			System.out.println("nombre: " + cli.getNombre() +" -apellido: " + cli.getApellido() +" -domicilio: " + cli.getDomicilio() +" -usuario: " + cli.getUsuario()+ " -contrasenia: " + cli.getContrasenia() + "\n");
-			
-			Iterator iterdis = cli.getDispositivos().iterator();
-			
-			while(iterdis.hasNext()){
-				dis = (Dispositivo)iterdis.next();
-				
-				System.out.println("nombre dis: "+dis.getNombre()+ " -consumo dis: "+ dis.getConsumo() + " -estado dis: " + dis.isEstado() + "\n");
-				
-			}
-		}
+//		Cliente cli;
+//		Dispositivo dis;
+//		
+//		Iterator itercli = listaClientes.iterator();
+//		
+//		while(itercli.hasNext()){
+//			cli = (Cliente)itercli.next();
+//			
+//			System.out.println("nombre: " + cli.getNombre() +" -apellido: " + cli.getApellido() +" -domicilio: " + cli.getDomicilio() +" -usuario: " + cli.getUsuario()+ " -contrasenia: " + cli.getContrasenia() + "\n");
+//			
+//			Iterator iterdis = cli.getDispositivos().iterator();
+//			
+//			while(iterdis.hasNext()){
+//				dis = (Dispositivo)iterdis.next();
+//				
+//				System.out.println("nombre dis: "+dis.getNombre()+ " -consumo dis: "+ dis.getConsumo() + " -estado dis: " + dis.isEstado() + "\n");
+//				
+//			}
+//		}
 	}
 	
 }
