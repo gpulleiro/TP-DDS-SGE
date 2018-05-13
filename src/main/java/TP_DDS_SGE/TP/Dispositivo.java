@@ -3,15 +3,14 @@ package TP_DDS_SGE.TP;
 public class Dispositivo {
 
 	private String nombre;
-	private int consumo;
-	private boolean estado;
-
+	private Tipo tipo;
+	
 	//constructor
 	
-	public Dispositivo(String nombre, int consumo, boolean estado) {
+	public Dispositivo(String nombre, int consumo, Estado estado, Tipo tipo) {
+		super();
 		this.nombre = nombre;
-		this.consumo = consumo;
-		this.estado = estado;
+		this.tipo = tipo;
 	}
 
 	//getters-setters
@@ -24,20 +23,12 @@ public class Dispositivo {
 		this.nombre = nombre;
 	}
 
-	public int getConsumo() {
-		return consumo;
+	public Tipo getTipo() {
+		return tipo;
 	}
 
-	public void setConsumo(int consumo) {
-		this.consumo = consumo;
-	}
-
-	public boolean isEstado() {
-		return estado;
-	}
-
-	public void setEstado(boolean estado) {
-		this.estado = estado;
+	public void setTipo(Tipo tipo) {
+		this.tipo = tipo;
 	}
 	
 	//metodos
