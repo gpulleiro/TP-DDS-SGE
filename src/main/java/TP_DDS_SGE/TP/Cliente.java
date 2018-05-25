@@ -11,12 +11,13 @@ public class Cliente extends Usuario {
 	private int telefono;
 	private Categoria categoria;
 	private ArrayList <Dispositivo> dispositivos;
-
+	private int puntos;
+	
 	//constructor
 	
-	public Cliente(String nombre, String apellido, String domicilio, Calendar fechaAlta, String usuario, String contrasenia,
-			String tipoDocumento, int numeroDocumento, int telefono, Categoria categoria,
-			ArrayList<Dispositivo> dispositivo){
+	public Cliente(String nombre, String apellido, String domicilio, Calendar fechaAlta, String usuario,
+			String contrasenia, String tipoDocumento, int numeroDocumento, int telefono, Categoria categoria,
+			ArrayList<Dispositivo> dispositivos, int puntos) {
 		
 		super(nombre, apellido, domicilio, fechaAlta, usuario, contrasenia);
 		
@@ -24,11 +25,18 @@ public class Cliente extends Usuario {
 		this.numeroDocumento = numeroDocumento;
 		this.telefono = telefono;
 		this.categoria = categoria;
-		this.dispositivos = dispositivo;
+		this.dispositivos = dispositivos;
+		this.puntos = puntos;
 	}
 
+	public Cliente() {
+		super();
+	}
+	
 	//getters-setters
 	
+
+
 	public String getTipoDocumento() {
 		return tipoDocumento;
 	}
@@ -73,62 +81,85 @@ public class Cliente extends Usuario {
 		this.dispositivos.add(unDispositivo);
 	}
 	
+	public int getPuntos() {
+		return puntos;
+	}
+	
+	public void setPuntos(int puntos) {
+		this.puntos = puntos;
+	}
+	
 	//metodos
 	
 	//preguntar si alguno de sus dispositivos esta encendido quiere decir si alguno
 	//de la lista esta encendido.. o algun objeto en particular de la lista ??
 	
-	public boolean algunDispositivoEncendido(){
-		boolean estado = false;
-		for (Dispositivo obj: dispositivos){
-			if(obj.isEstado() == true){
-				estado = true;
-				break;
-			}
-		}
-		return estado;
-	}
-	
-	public boolean algunDispositivoEncendido2(){
-	
-		return (this.dispositivos.stream().anyMatch(dispositivo->dispositivo.isEstado())); 
-	}
-	
-	//cantidad de dispositivos encendidos
-	public int cantDispositivosEncendidos(){
-		int contador = 0;
-		for (Dispositivo obj : dispositivos){
-			if(obj.isEstado()== true){
-				contador++;	
-			}
-		}
-		return contador;
-	}
-	
-	public long cantDispositivosEncendidos2(){
-		
-		return ((this.dispositivos.stream().filter(dispositivo->dispositivo.isEstado()).count()));
-		}
-	
-	//cantidad de dispositivos apagados 
-	public int cantDispositivosApagados(){
-		int contador = 0;
-		for (Dispositivo obj : dispositivos){
-			if(obj.isEstado()== false){
-				contador++;	
-			}
-		}
-		return contador;
-	}
-	
-	public long cantDispositivosApagados2(){
-		
-		return ((this.dispositivos.stream().filter(dispositivo->!(dispositivo.isEstado())).count()));
-	}
+//
+//
+//	public boolean algunDispositivoEncendido(){
+//		boolean estado = false;
+//		for (Dispositivo obj: dispositivos){
+//			if(obj.isEstado() == true){
+//				estado = true;
+//				break;
+//			}
+//		}
+//		return estado;
+//	}
+//	
+//	public boolean algunDispositivoEncendido2(){
+//	
+//		return (this.dispositivos.stream().anyMatch(dispositivo->dispositivo.isEstado())); 
+//	}
+//	
+//	//cantidad de dispositivos encendidos
+//	public int cantDispositivosEncendidos(){
+//		int contador = 0;
+//		for (Dispositivo obj : dispositivos){
+//			if(obj.isEstado()== true){
+//				contador++;	
+//			}
+//		}
+//		return contador;
+//	}
+//	
+//	public long cantDispositivosEncendidos2(){
+//		
+//		return ((this.dispositivos.stream().filter(dispositivo->dispositivo.isEstado()).count()));
+//		}
+//	
+//	//cantidad de dispositivos apagados 
+//	public int cantDispositivosApagados(){
+//		int contador = 0;
+//		for (Dispositivo obj : dispositivos){
+//			if(obj.isEstado()== false){
+//				contador++;	
+//			}
+//		}
+//		return contador;
+//	}
+//	
+//	public long cantDispositivosApagados2(){
+//		
+//		return ((this.dispositivos.stream().filter(dispositivo->!(dispositivo.isEstado())).count()));
+//	}
 	
 	//cantidad de dispositivos
 	public int cantDispositivos(){
+		
 		return dispositivos.size();
+	
 	}
+
+	//convertir un dispositivo a inteligente
+	public void convertirDispositivo(Dispositivo dis) {
+		
+		dis = new Inteligente(dis.getNombre(),dis.getConsumoFijo(),'I',"apagado");
+		
+		this.puntos = this.getPuntos() + 10;
+		
+	}
+
+	
 }
 

@@ -1,31 +1,18 @@
 package TP_DDS_SGE.TP;
 
-public class Estandar extends Tipo {
+public class Estandar extends Dispositivo {
 	
-	private float consumoFijo;
 	private int cantHoras;
 	
 	
 	//constructor
 	
-	public Estandar(float consumoFijo, int cantHoras) {
-		super();
-		this.consumoFijo = consumoFijo;
+	public Estandar(String nombre, char tipo, float consumoFijo, int cantHoras) {
+		super(nombre, consumoFijo, tipo);
 		this.cantHoras = cantHoras;
 	}
 
-	
 	//Getters and Setters
-	
-	public float getConsumoFijo() {
-		return consumoFijo;
-	}
-
-
-	public void setConsumoFijo(float consumoFijo) {
-		this.consumoFijo = consumoFijo;
-	}
-
 
 	public int getCantHoras() {
 		return cantHoras;
@@ -37,5 +24,10 @@ public class Estandar extends Tipo {
 	}
 
 	//Metodos
-	
+	public float consumo(){
+		
+		float consumoTotal = (this.getConsumoFijo() * this.getCantHoras());
+		
+		return consumoTotal;
+	}
 }
