@@ -1,14 +1,14 @@
 package TP_DDS_SGE.TP;
 
-public class Estandar extends Dispositivo {
+public class Estandar extends Tipo {
 	
 	private int cantHoras;
 	
 	
 	//constructor
 	
-	public Estandar(String nombre, char tipo, float consumoFijo, int cantHoras) {
-		super(nombre, consumoFijo, tipo);
+	public Estandar(String nombre, float consumoFijo, int cantHoras) {
+		super(nombre, consumoFijo);
 		this.cantHoras = cantHoras;
 	}
 

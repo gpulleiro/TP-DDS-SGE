@@ -2,14 +2,14 @@ package TP_DDS_SGE.TP;
 
 import java.io.IOException;
 
-public class Inteligente extends Dispositivo {
+public class Inteligente extends Tipo {
 	
 	private String estado;
 
 	//constructor
 	
-	public Inteligente(String nombre, float consumoFijo, char tipo, String estado) {
-		super(nombre, consumoFijo, tipo);
+	public Inteligente(String nombre, float consumoFijo, String estado) {
+		super(nombre, consumoFijo);
 		this.estado = estado;
 	}
 	

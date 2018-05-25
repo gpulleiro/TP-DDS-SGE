@@ -1,0 +1,3 @@
+[23/5/2018 20:53:16 licuadora encendido]
+[23/5/2018 20:53:16 licuadora ahorro]
+[23/5/2018 20:53:16 licuadora apagado]
