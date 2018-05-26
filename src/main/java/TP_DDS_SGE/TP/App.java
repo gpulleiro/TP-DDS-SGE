@@ -10,23 +10,19 @@ public class App {
 		RepositorioUsuarios.importarJSON("jsonList.txt");
 		
 		// prueba generar log
+		Cliente pepe = new Cliente();
 		
-		Inteligente licuadora = new Inteligente("licuadora",20,'I',"apagado");
+		Dispositivo licuadora = new Dispositivo("licuadora",20,new Estandar(3));
+		
+		//pepe.convertirDispositivo(licuadora);
+
 		try {
 			licuadora.encender();
 			licuadora.ahorro();
 			licuadora.apagar();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}	
+		}
 	
-//		Estandar lavarropas = new Estandar("lavarropas",'E',30,3);
-//		
-//		Cliente pepe = new Cliente();
-//		
-//		pepe.convertirDispositivo(lavarropas);
-//		
-//		//lavarropas.encender();
-//	
 	}
 }

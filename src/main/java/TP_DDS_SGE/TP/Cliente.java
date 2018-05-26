@@ -154,8 +154,7 @@ public class Cliente extends Usuario {
 	//convertir un dispositivo a inteligente
 	public void convertirDispositivo(Dispositivo dis) {
 		
-		dis = new Inteligente(dis.getNombre(),dis.getConsumoFijo(),'I',"apagado");
-		
+		dis.setTipo(new Inteligente("apagado"));
 		this.puntos = this.getPuntos() + 10;
 		
 	}

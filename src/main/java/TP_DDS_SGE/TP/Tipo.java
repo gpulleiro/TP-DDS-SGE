@@ -1,40 +1,22 @@
 package TP_DDS_SGE.TP;
 
-public class Tipo {
+public interface Tipo {
 	
-	private String nombre;
-	private float consumoFijo;
+	//public abstract float consumo();
 	
-	//constructor
-	public Tipo(String nombre, float consumoFijo) {
-		super();
-		this.nombre = nombre;
-		this.consumoFijo = consumoFijo;
-	}
+	public abstract boolean estasEncendido();
 	
-	//getter and setters
+	public abstract boolean estasApagado();
 	
-	public String getNombre() {
-		return nombre;
-	}
+	public abstract boolean estasAhorro();
 	
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	
-	public float getConsumoFijo() {
-		return consumoFijo;
-	}
-	
-	public void setConsumoFijo(float consumoFijo) {
-		this.consumoFijo = consumoFijo;
-	}
-	
-	//metodos
-	public float consumo(){
+	public abstract void encender();
 		
-	return consumo();
+	public abstract void apagar();
 	
-	};	
-
+	public abstract void ahorro();
+	
+	// opcion 2
+	
+	public abstract void cambiarEstado(String estado);
 }

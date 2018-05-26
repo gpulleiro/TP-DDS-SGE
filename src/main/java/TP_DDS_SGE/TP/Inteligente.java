@@ -2,33 +2,29 @@ package TP_DDS_SGE.TP;
 
 import java.io.IOException;
 
-public class Inteligente extends Tipo {
+public class Inteligente implements Tipo {
 	
 	private String estado;
-
-	//constructor
 	
-	public Inteligente(String nombre, float consumoFijo, String estado) {
-		super(nombre, consumoFijo);
+	//constructor	
+	public Inteligente(String estado) {
+		super();
 		this.estado = estado;
 	}
-	
-	//Getters and Setters
-
+		
+	//setters and getters
 	public String getEstado() {
 		return estado;
 	}
-	
 
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	
-	
+
 	//metodos
-	
-	public boolean estasEncendido(){
-		
+	@Override
+	public boolean estasEncendido() {
+
 		boolean encendido = false;
 		
 		if(this.getEstado() == "encendido"){
@@ -38,8 +34,9 @@ public class Inteligente extends Tipo {
 		
 		return encendido;
 	}
-	
-	public boolean estasApagado(){
+
+	@Override
+	public boolean estasApagado() {
 		
 		boolean apagado = false;
 		
@@ -48,11 +45,12 @@ public class Inteligente extends Tipo {
 			apagado = true; 
 		}
 		
-		return apagado;
+		return apagado;	
 	}
+
+	@Override
+	public boolean estasAhorro() {
 	
-	public boolean estasAhorro(){
-		
 		boolean ahorro = false;
 		
 		if(this.getEstado() == "ahorro"){
@@ -60,15 +58,11 @@ public class Inteligente extends Tipo {
 			ahorro = true; 
 		}
 		
-		return ahorro;
+		return ahorro;		
 	}
-	
-	//cuando se cambia el estado de un dispositivo hay que generar un log (puede ser un json)
-	//que persista todos los cambios de estado, para luego cuando haya que calcular su consumo
-	//poder determinar que que si estuvo apagado el consumo sea = 0 por ejemplo
-	
-	
-	public void encender() throws IOException{
+
+	@Override
+	public void encender() {
 		
 		if(this.getEstado() == "encendido"){}
 		else{
@@ -76,10 +70,16 @@ public class Inteligente extends Tipo {
 			
 			this.setEstado("encendido");
 			
-			log.generarLog(this.getNombre(), this.getEstado());
+			try {
+				log.generarLog(Dispositivo.nombre, this.getEstado());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
-	public void apagar() throws IOException{
+
+	@Override
+	public void apagar() {
 		
 		if(this.getEstado() == "apagado"){}
 		else{
@@ -87,10 +87,17 @@ public class Inteligente extends Tipo {
 		
 		this.setEstado("apagado");
 		
-		log.generarLog(this.getNombre(), this.getEstado());
+		try {
+			log.generarLog(Dispositivo.nombre, this.getEstado());
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+		}
+		
 	}
-	public void ahorro() throws IOException{
+
+	@Override
+	public void ahorro() {
 		
 		if(this.getEstado() == "ahorro"){}
 		else{
@@ -98,21 +105,30 @@ public class Inteligente extends Tipo {
 		
 		this.setEstado("ahorro");
 		
-		log.generarLog(this.getNombre(), this.getEstado());
+		try {
+			log.generarLog(Dispositivo.nombre , this.getEstado());
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+		}
+		
 	}
-	
-	// opcion 2
-	
-	public void cambiarEstado(String estado) throws IOException{
+
+	@Override
+	public void cambiarEstado(String estado) {
+		
 		if(this.getEstado() == estado){}
 		else{
 			Log log = Log.getSingletonInstance("log");
 			
 			this.setEstado(estado);
 			
-			log.generarLog(this.getNombre(), this.getEstado());
+			try {
+				log.generarLog(Dispositivo.nombre, this.getEstado());
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
+			}	
 	}
+	
 }
-
