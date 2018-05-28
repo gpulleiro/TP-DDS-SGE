@@ -11,12 +11,27 @@ public class Estandar implements Tipo {
 	}
 
 	//getters and setters
+	@Override
 	public int getCantHoras() {
 		return cantHoras;
 	}
 	
+	@Override
 	public void setCantHoras(int cantHoras) {
 		this.cantHoras = cantHoras;
+	}
+	
+	@Override
+	public String getEstado() {
+		
+		System.out.println("los dispositivos estandar no poseen estado");
+		
+		return "";
+	}
+	
+	@Override
+	public void setEstado(String estado) {
+		
 	}
 	
 	//metodos

@@ -41,6 +41,16 @@ public class Dispositivo {
 		this.tipo = tipo;
 	}
 	
+	public String getEstado(){
+		return this.tipo.getEstado();
+	};
+	
+	public void setEstado(String estado){
+		this.tipo.setEstado(estado);
+	};
+
+	
+	
 	//al utilizar el patron state, los metodos de la clase dispositivo lo que hacen es decirle al tipo que invoque el metodo y dependiendo de que tipo sea
 	//inteligente o estandar va a realizar una accion u otra
 	
@@ -81,6 +91,9 @@ public class Dispositivo {
 
 		this.getTipo().cambiarEstado(estado);
 	}
+	
+	
+	
 }
 
 

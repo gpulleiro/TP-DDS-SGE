@@ -1,6 +1,7 @@
 package TP_DDS_SGE.TP;
 
 import java.io.IOException;
+import java.util.Calendar;
 
 public class Inteligente implements Tipo {
 	
@@ -13,14 +14,30 @@ public class Inteligente implements Tipo {
 	}
 		
 	//setters and getters
+	@Override
 	public String getEstado() {
 		return estado;
 	}
-
+	@Override
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 
+	@Override
+	public int getCantHoras() {
+		
+		System.out.println("los dispositivos inteligentes no poseen una cantidad de horas de consumo estimativo");
+		
+		return 0;
+	}
+	
+	@Override
+	public void setCantHoras(int cantHoras) {
+		
+	}
+	
+	
+	
 	//metodos
 	@Override
 	public boolean estasEncendido() {
@@ -65,13 +82,14 @@ public class Inteligente implements Tipo {
 	public void encender() {
 		
 		if(this.getEstado() == "encendido"){}
-		else{
-			Log log = Log.getSingletonInstance("log");
+			else{
 			
+			Calendar fechaActual = Calendar.getInstance();
 			this.setEstado("encendido");
+			Log log = new Log(fechaActual.getTime(),Dispositivo.nombre, this.getEstado());
 			
 			try {
-				log.generarLog(Dispositivo.nombre, this.getEstado());
+				Repositorio.generarLog(log);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -82,36 +100,34 @@ public class Inteligente implements Tipo {
 	public void apagar() {
 		
 		if(this.getEstado() == "apagado"){}
-		else{
-		Log log = Log.getSingletonInstance("log");
-		
-		this.setEstado("apagado");
-		
-		try {
-			log.generarLog(Dispositivo.nombre, this.getEstado());
-		} catch (IOException e) {
-			e.printStackTrace();
+			else{
+				
+			Calendar fechaActual = Calendar.getInstance();
+			this.setEstado("apagado");
+			Log log = new Log(fechaActual.getTime(),Dispositivo.nombre, this.getEstado());
+			try {
+				Repositorio.generarLog(log);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
-		}
-		
 	}
 
 	@Override
 	public void ahorro() {
 		
 		if(this.getEstado() == "ahorro"){}
-		else{
-		Log log = Log.getSingletonInstance("log");
-		
-		this.setEstado("ahorro");
-		
-		try {
-			log.generarLog(Dispositivo.nombre , this.getEstado());
-		} catch (IOException e) {
-			e.printStackTrace();
+			else{
+				
+			Calendar fechaActual = Calendar.getInstance();
+			this.setEstado("ahorro");
+			Log log = new Log(fechaActual.getTime(),Dispositivo.nombre, this.getEstado());
+			try {
+				Repositorio.generarLog(log);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
-		}
-		
 	}
 
 	@Override
@@ -119,16 +135,25 @@ public class Inteligente implements Tipo {
 		
 		if(this.getEstado() == estado){}
 		else{
-			Log log = Log.getSingletonInstance("log");
 			
+			Calendar fechaActual = Calendar.getInstance();
 			this.setEstado(estado);
-			
+			Log log = new Log(fechaActual.getTime(),Dispositivo.nombre, estado);
 			try {
-				log.generarLog(Dispositivo.nombre, this.getEstado());
+				Repositorio.generarLog(log);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			}	
+		}	
+	}
+	
+	
+	//falta terminar
+	public float consumoUltimasHoras(int horas){
+		
+		float consumo = 0;
+		
+		return consumo;
 	}
 	
 }

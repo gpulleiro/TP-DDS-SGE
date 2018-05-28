@@ -3,6 +3,13 @@ package TP_DDS_SGE.TP;
 public interface Tipo {
 	
 	//public abstract float consumo();
+	public abstract String getEstado();
+	
+	public abstract void setEstado(String estado);
+
+	public abstract int getCantHoras();
+	
+	public abstract void setCantHoras(int cantHoras);
 	
 	public abstract boolean estasEncendido();
 	
@@ -19,4 +26,5 @@ public interface Tipo {
 	// opcion 2
 	
 	public abstract void cambiarEstado(String estado);
+	
 }
