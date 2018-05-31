@@ -36,11 +36,13 @@ public class Estandar implements Tipo {
 	
 	//metodos
 	
-//	@Override
-//	public float consumo() {
-//		// TODO Auto-generated method stub
-//		return 0;
-//	}
+	@Override
+	public float consumo() {
+		
+		float consumo = Dispositivo.consumoFijo * this.getCantHoras();
+		
+		return consumo;
+	}
 
 	@SuppressWarnings("null")
 	@Override
@@ -90,6 +92,18 @@ public class Estandar implements Tipo {
 	public void cambiarEstado(String estado) {
 		
 		System.out.println("este dispositivo es estandar, no puede cambiar de estado");
+	}
+
+	@Override
+	public double consumoUltimasHoras(int horas) {
+		System.out.println("este dispositivo es estandar, no puede obtener el consumo en las ultimas horas");
+		return 0;
+	}
+
+	@Override
+	public double consumoPeriodo(String fecha1, String fecha2) {
+		System.out.println("este dispositivo es estandar, no puede obtener el consumo en el periodo solicitado");
+		return 0;
 	}
 
 }

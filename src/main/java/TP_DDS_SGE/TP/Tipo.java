@@ -2,7 +2,8 @@ package TP_DDS_SGE.TP;
 
 public interface Tipo {
 	
-	//public abstract float consumo();
+	public abstract float consumo();
+	
 	public abstract String getEstado();
 	
 	public abstract void setEstado(String estado);
@@ -27,4 +28,8 @@ public interface Tipo {
 	
 	public abstract void cambiarEstado(String estado);
 	
+	public abstract double consumoUltimasHoras(int horas);
+	
+	public abstract double consumoPeriodo(String fecha1, String fecha2);
+
 }

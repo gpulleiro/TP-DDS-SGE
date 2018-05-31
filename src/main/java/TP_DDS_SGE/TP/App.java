@@ -18,18 +18,23 @@ public class App {
 		// prueba generar log
 		Cliente pepe = new Cliente();
 		
-		Dispositivo licuadora = new Dispositivo("licuadora",20,new Estandar(3));
+	//	Dispositivo licuadora = new Dispositivo("licuadora",20,new Estandar(3));
+		Dispositivo licuadora = new Dispositivo("licuadora",20,new Inteligente("encendido"));
 		
-		pepe.convertirDispositivo(licuadora);
+//		pepe.convertirDispositivo(licuadora);
 
-		try {
-			licuadora.encender();
-			licuadora.ahorro();
-			licuadora.apagar();
-			licuadora.apagar();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	
+//		try {
+//			licuadora.encender();
+//			licuadora.ahorro();
+//			licuadora.apagar();
+//			licuadora.apagar();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+		
+//		double consumo = licuadora.consumoUltimasHoras(8);
+		double consumo = licuadora.consumoPeriodo("29/05/2018 02:30:00","29/05/2018 11:00:00");
+		
+		System.out.println("el consumo fue: " + consumo +" Kw/H");
 	}
 }

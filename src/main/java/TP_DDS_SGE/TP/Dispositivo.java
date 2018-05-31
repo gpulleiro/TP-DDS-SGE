@@ -92,8 +92,27 @@ public class Dispositivo {
 		this.getTipo().cambiarEstado(estado);
 	}
 	
+	public double consumoUltimasHoras(int horas){
+		
+		double consumo = this.getTipo().consumoUltimasHoras(horas);
+		
+		return consumo;
+	}
 	
+	public double consumoPeriodo(String fecha1, String fecha2){
+		
+		double consumo = this.getTipo().consumoPeriodo(fecha1, fecha2);
+		
+		return consumo;
+	}
 	
+	public float consumo(){
+		
+		float consumo = this.getTipo().consumo();
+		
+		return consumo;
+		
+	}
 }
 
 

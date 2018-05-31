@@ -64,7 +64,7 @@ public class Repositorio {
 
 		FileWriter archivo = new FileWriter(new File(dir+"\\"+"log.txt"),false);
 		
-		Gson gson = new GsonBuilder().setDateFormat("dd/MM/yy HH:mm:ss").create();
+		Gson gson = new GsonBuilder().setDateFormat("dd/MM/yyyy HH:mm:ss").create();
 		
 		Repositorio.log.add(log);
 		
