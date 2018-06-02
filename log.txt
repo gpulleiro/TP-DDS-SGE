@@ -1,3 +1,1 @@
-[23/5/2018 20:53:16 licuadora encendido]
-[23/5/2018 20:53:16 licuadora ahorro]
-[23/5/2018 20:53:16 licuadora apagado]
+[{"fecha":"29/05/2018 02:00:00","nombre":"licuadora","estado":"encendido"},{"fecha":"29/05/2018 04:00:00","nombre":"licuadora","estado":"ahorro"},{"fecha":"29/05/2018 09:00:00","nombre":"licuadora","estado":"encendido"}]

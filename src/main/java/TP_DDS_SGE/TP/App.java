@@ -7,26 +7,34 @@ public class App {
 	
 	public static void main( String[] args ) throws FileNotFoundException{
 		
-		RepositorioUsuarios.importarJSON("jsonList.txt");
+		try {
+			Repositorio.importarClientes("clientes.txt");
+			Repositorio.importarLog("log.txt");
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
 		
 		// prueba generar log
+		Cliente pepe = new Cliente();
 		
-		Inteligente licuadora = new Inteligente("licuadora",20,'I',"apagado");
-		try {
-			licuadora.encender();
-			licuadora.ahorro();
-			licuadora.apagar();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}	
-	
-//		Estandar lavarropas = new Estandar("lavarropas",'E',30,3);
-//		
-//		Cliente pepe = new Cliente();
-//		
-//		pepe.convertirDispositivo(lavarropas);
-//		
-//		//lavarropas.encender();
-//	
+	//	Dispositivo licuadora = new Dispositivo("licuadora",20,new Estandar(3));
+		Dispositivo licuadora = new Dispositivo("licuadora",20,new Inteligente("encendido"));
+		
+//		pepe.convertirDispositivo(licuadora);
+
+//		try {
+//			licuadora.encender();
+//			licuadora.ahorro();
+//			licuadora.apagar();
+//			licuadora.apagar();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+		
+//		double consumo = licuadora.consumoUltimasHoras(8);
+		double consumo = licuadora.consumoPeriodo("29/05/2018 02:30:00","29/05/2018 11:00:00");
+		
+		System.out.println("el consumo fue: " + consumo +" Kw/H");
 	}
 }

@@ -1,8 +1,9 @@
 package TP_DDS_SGE.TP;
 
+import java.io.IOException;
 import java.util.ArrayList;
-
 import java.util.Calendar;
+import java.util.Iterator;
 
 public class Cliente extends Usuario {
 
@@ -91,59 +92,38 @@ public class Cliente extends Usuario {
 	
 	//metodos
 	
-	//preguntar si alguno de sus dispositivos esta encendido quiere decir si alguno
-	//de la lista esta encendido.. o algun objeto en particular de la lista ??
+	public boolean algunDispositivoEncendido(){
+		boolean estado = false;
+		for (Dispositivo obj: dispositivos){
+			if(obj.getEstado() == "encendido"){
+				estado = true;
+				break;
+			}
+		}
+		return estado;
+	}
 	
-//
-//
-//	public boolean algunDispositivoEncendido(){
-//		boolean estado = false;
-//		for (Dispositivo obj: dispositivos){
-//			if(obj.isEstado() == true){
-//				estado = true;
-//				break;
-//			}
-//		}
-//		return estado;
-//	}
-//	
-//	public boolean algunDispositivoEncendido2(){
-//	
-//		return (this.dispositivos.stream().anyMatch(dispositivo->dispositivo.isEstado())); 
-//	}
-//	
-//	//cantidad de dispositivos encendidos
-//	public int cantDispositivosEncendidos(){
-//		int contador = 0;
-//		for (Dispositivo obj : dispositivos){
-//			if(obj.isEstado()== true){
-//				contador++;	
-//			}
-//		}
-//		return contador;
-//	}
-//	
-//	public long cantDispositivosEncendidos2(){
-//		
-//		return ((this.dispositivos.stream().filter(dispositivo->dispositivo.isEstado()).count()));
-//		}
-//	
-//	//cantidad de dispositivos apagados 
-//	public int cantDispositivosApagados(){
-//		int contador = 0;
-//		for (Dispositivo obj : dispositivos){
-//			if(obj.isEstado()== false){
-//				contador++;	
-//			}
-//		}
-//		return contador;
-//	}
-//	
-//	public long cantDispositivosApagados2(){
-//		
-//		return ((this.dispositivos.stream().filter(dispositivo->!(dispositivo.isEstado())).count()));
-//	}
+	//cantidad de dispositivos encendidos
+	public int cantDispositivosEncendidos(){
+		int contador = 0;
+		for (Dispositivo obj : dispositivos){
+			if(obj.getEstado() == "encendido"){
+				contador++;	
+			}
+		}
+		return contador;
+	}
 	
+	//cantidad de dispositivos apagados 
+	public int cantDispositivosApagados(){
+		int contador = 0;
+		for (Dispositivo obj : dispositivos){
+			if(obj.getEstado() == "apagado"){
+				contador++;	
+			}
+		}
+		return contador;
+	}	
 	//cantidad de dispositivos
 	public int cantDispositivos(){
 		
@@ -154,12 +134,45 @@ public class Cliente extends Usuario {
 	//convertir un dispositivo a inteligente
 	public void convertirDispositivo(Dispositivo dis) {
 		
-		dis = new Inteligente(dis.getNombre(),dis.getConsumoFijo(),'I',"apagado");
+		dis.setTipo(new Inteligente("apagado"));
 		
 		this.puntos = this.getPuntos() + 10;
-		
 	}
 
+	//registrar un dispositivo inteligente
 	
+	public void registrarDispositivo(String nombre, float consumo) throws IOException{
+		
+		boolean existe = false;
+		
+		Dispositivo dis;
+				
+		Iterator iterDis = Repositorio.clientes.iterator();
+		
+		//me fijo si existe el dispositivo en la lista de dispositivos para no agregar uno que ya exista
+		while(iterDis.hasNext()){
+
+			dis = (Dispositivo)iterDis.next();
+				
+			if(dis.getNombre() == nombre && dis.getConsumoFijo() == consumo){
+				
+				System.out.println("este dispositivo ya esta registrado");
+				
+				existe = true;
+				
+				break;
+				
+			}		
+		}
+		
+		if (existe = false){ 
+		
+			Dispositivo dispositivoNuevo = new Dispositivo(nombre,consumo,new Inteligente("apagado"));
+			
+			Repositorio.generarDispositivos(dispositivoNuevo);
+			
+			this.puntos = this.puntos + 15;
+		}	
+	}
 }
 

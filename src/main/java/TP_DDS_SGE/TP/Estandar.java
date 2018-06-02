@@ -1,33 +1,109 @@
 package TP_DDS_SGE.TP;
 
-public class Estandar extends Tipo {
+public class Estandar implements Tipo {
 	
 	private int cantHoras;
 	
-	
 	//constructor
-	
-	public Estandar(String nombre, float consumoFijo, int cantHoras) {
-		super(nombre, consumoFijo);
+	public Estandar(int cantHoras) {
+		super();
 		this.cantHoras = cantHoras;
 	}
 
-	//Getters and Setters
-
+	//getters and setters
+	@Override
 	public int getCantHoras() {
 		return cantHoras;
 	}
-
-
+	
+	@Override
 	public void setCantHoras(int cantHoras) {
 		this.cantHoras = cantHoras;
 	}
-
-	//Metodos
-	public float consumo(){
+	
+	@Override
+	public String getEstado() {
 		
-		float consumoTotal = (this.getConsumoFijo() * this.getCantHoras());
+		System.out.println("los dispositivos estandar no poseen estado");
 		
-		return consumoTotal;
+		return "";
 	}
+	
+	@Override
+	public void setEstado(String estado) {
+		
+	}
+	
+	//metodos
+	
+	@Override
+	public float consumo() {
+		
+		float consumo = Dispositivo.consumoFijo * this.getCantHoras();
+		
+		return consumo;
+	}
+
+	@SuppressWarnings("null")
+	@Override
+	public boolean estasEncendido() {
+		
+		System.out.println("este dispositivo es estandar, no puede saber su estado");
+		
+		return (Boolean) null;
+	}
+	@SuppressWarnings("null")
+	@Override
+	public boolean estasApagado() {
+		
+		System.out.println("este dispositivo es estandar, no puede saber su estado");
+		
+		return (Boolean) null;
+	}
+	
+	@SuppressWarnings("null")
+	@Override
+	public boolean estasAhorro() {
+		
+		System.out.println("este dispositivo es estandar, no puede saber su estado");
+		
+		return (Boolean) null;
+	}
+
+	@Override
+	public void encender() {
+		
+		System.out.println("este dispositivo es estandar, no se puede encender");		
+	}
+
+	@Override
+	public void apagar() {
+		
+		System.out.println("este dispositivo es estandar, no se puede apagar");
+	}
+
+	@Override
+	public void ahorro() {
+		
+		System.out.println("este dispositivo es estandar, no se puede poner en modo ahorro");
+	}
+
+	@Override
+	public void cambiarEstado(String estado) {
+		
+		System.out.println("este dispositivo es estandar, no puede cambiar de estado");
+	}
+
+	@Override
+	public double consumoUltimasHoras(int horas) {
+		System.out.println("este dispositivo es estandar, no puede obtener el consumo en las ultimas horas");
+		return 0;
+	}
+
+	@Override
+	public double consumoPeriodo(String fecha1, String fecha2) {
+		System.out.println("este dispositivo es estandar, no puede obtener el consumo en el periodo solicitado");
+		return 0;
+	}
+
 }
