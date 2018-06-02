@@ -4,9 +4,9 @@ import java.io.IOException;
 
 public class ActuadorApagar {
 
-	public void actuar(Inteligente dis) throws IOException{
+	public void actuar(Dispositivo dis) throws IOException{
 		
-		dis.apagar();
+		dis.getTipo().apagar();
 		
 	}
 	

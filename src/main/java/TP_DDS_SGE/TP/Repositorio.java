@@ -15,7 +15,7 @@ import com.google.gson.reflect.TypeToken;
 
 public class Repositorio {
 	
-	static String dir = "C:\\Users\\Gaston Adm\\Github TP DDS\\TP-DDS-SGE";
+	static String dir = "C:\\TP-DDS-SGE";
 	static ArrayList<Cliente> clientes;
 	static ArrayList<Dispositivo> dispositivos;
 	static ArrayList<Log> log;

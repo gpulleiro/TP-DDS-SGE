@@ -19,11 +19,10 @@ public class Inteligente implements Tipo {
 	}
 		
 	//setters and getters
-	@Override
 	public String getEstado() {
 		return estado;
 	}
-	@Override
+		
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
@@ -101,7 +100,6 @@ public class Inteligente implements Tipo {
 		}
 	}
 
-	@Override
 	public void apagar() {
 		
 		if(this.getEstado() == "apagado"){}

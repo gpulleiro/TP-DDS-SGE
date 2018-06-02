@@ -30,7 +30,7 @@ public class ReglaDeMovimiento implements Observer {
 		//metodo update
 	public void update() throws IOException {
 	for(SensorDeMovimiento sen:sensores)
-		{for(Inteligente dis:sen.getDispositivos())
+		{for(Dispositivo dis:sen.getDispositivos())
 			{if(sen.isMovimiento() == false){this.getActuador().actuar(dis);};
 		}
 	}

@@ -7,23 +7,18 @@ public class PruebaSensores {
 
 	public static void main(String[] args) throws IOException {
 		
-		Inteligente luz = new Inteligente("luz",20,"encendido");
-		Inteligente luz1 = new Inteligente("luz",20,"encendido");
-		Inteligente luz2 = new Inteligente("luz",20,"encendido");
+		Dispositivo luz = new Dispositivo("luz",20,new Inteligente("encendido"));
 		
 		SensorDeMovimiento sensorLuces = new SensorDeMovimiento();
 		ReglaDeMovimiento sinMovimientoApagar = new ReglaDeMovimiento();
 		ActuadorApagar apagar = new ActuadorApagar();
 		
 		sensorLuces.agregarDispositivo(luz);
-		sensorLuces.agregarDispositivo(luz1);
 		sinMovimientoApagar.agregarSensor(sensorLuces); 
 		sinMovimientoApagar.setActuador(apagar);
 		
 		sensorLuces.realizarMedicion();
 		
-		luz.imprimirEstado();
-		luz1.imprimirEstado();
-		luz2.imprimirEstado();
+		//luz.getTipo().imprimirEstado();
 	}
 }

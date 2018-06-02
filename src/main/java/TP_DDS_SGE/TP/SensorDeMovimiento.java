@@ -6,12 +6,12 @@ import java.util.ArrayList;
 public class SensorDeMovimiento implements Observable {
 
 	private ArrayList<Observer>observadores;
-	private ArrayList<Inteligente>dispositivos;
+	private ArrayList<Dispositivo>dispositivos;
 	private boolean movimiento;
 	
 	public SensorDeMovimiento(){
 		observadores = new ArrayList<Observer>();
-		dispositivos = new ArrayList<Inteligente>();
+		dispositivos = new ArrayList<Dispositivo>();
 		}
 	
 	//metodos del patron Observer
@@ -30,12 +30,12 @@ public class SensorDeMovimiento implements Observable {
 		this.movimiento = movimiento;
 	}
 
-	public ArrayList<Inteligente> getDispositivos() {
+	public ArrayList<Dispositivo> getDispositivos() {
 		return dispositivos;
 	}
 
 	//agrega un dispositivo a la lista de dispositivos del sensor
-	public void agregarDispositivo(Inteligente dis){dispositivos.add(dis);};
+	public void agregarDispositivo(Dispositivo dis){dispositivos.add(dis);};
 		
 	//hago que al medir el movimiento devuelva falso
 	public void realizarMedicion() throws IOException{
