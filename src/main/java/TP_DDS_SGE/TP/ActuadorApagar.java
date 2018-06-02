@@ -6,7 +6,7 @@ public class ActuadorApagar {
 
 	public void actuar(Dispositivo dis) throws IOException{
 		
-		dis.getTipo().apagar();
+		dis.apagar();
 		
 	}
 	

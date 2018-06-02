@@ -1,1 +1,0 @@
-[{"fecha":"29/05/2018 02:00:00","nombre":"licuadora","estado":"encendido"},{"fecha":"29/05/2018 04:00:00","nombre":"licuadora","estado":"ahorro"},{"fecha":"29/05/2018 09:00:00","nombre":"licuadora","estado":"encendido"}]

@@ -9,6 +9,7 @@ public class PruebaSensores {
 		
 		Dispositivo luz = new Dispositivo("luz",20,new Inteligente("encendido"));
 		
+
 		SensorDeMovimiento sensorLuces = new SensorDeMovimiento();
 		ReglaDeMovimiento sinMovimientoApagar = new ReglaDeMovimiento();
 		ActuadorApagar apagar = new ActuadorApagar();
@@ -18,7 +19,7 @@ public class PruebaSensores {
 		sinMovimientoApagar.setActuador(apagar);
 		
 		sensorLuces.realizarMedicion();
-		
+//		
 		//luz.getTipo().imprimirEstado();
 	}
 }
