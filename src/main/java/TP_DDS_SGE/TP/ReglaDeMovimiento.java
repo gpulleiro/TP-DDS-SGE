@@ -6,7 +6,8 @@ import java.util.ArrayList;
 public class ReglaDeMovimiento implements Observer {
 
 	private ArrayList<SensorDeMovimiento>sensores;
-	private ActuadorApagar actuador;
+	private Actuador actuador;
+	private double flag;
 	
 	public ReglaDeMovimiento(){
 		sensores = new ArrayList<SensorDeMovimiento>();
@@ -19,11 +20,11 @@ public class ReglaDeMovimiento implements Observer {
 	}
 	
 //getters y setters	
-	public ActuadorApagar getActuador() {
+	public Actuador getActuador() {
 		return actuador;
 	}
 
-	public void setActuador(ActuadorApagar actuador) {
+	public void setActuador(Actuador actuador) {
 		this.actuador = actuador;
 	}
 		
@@ -31,7 +32,7 @@ public class ReglaDeMovimiento implements Observer {
 	public void update() throws IOException {
 	for(SensorDeMovimiento sen:sensores)
 		{for(Dispositivo dis:sen.getDispositivos())
-			{if(sen.isMovimiento() == false){this.getActuador().actuar(dis);};
+			{if(sen.getMagnitud() < 1){this.getActuador().apagar(dis);};
 		}
 	}
 }}
