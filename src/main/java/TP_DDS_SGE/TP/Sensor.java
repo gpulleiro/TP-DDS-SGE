@@ -57,7 +57,7 @@ public abstract class Sensor implements Observable{
 
 	//agrega un dispositivo a la lista de dispositivos del sensor
 	public void agregarDispositivo(Dispositivo dis){dispositivos.add(dis);};
-		
+	
 	//hago que al medir el movimiento devuelva falso
 	public void realizarMedicion() throws IOException{
 //	this.setMovimiento(false);
