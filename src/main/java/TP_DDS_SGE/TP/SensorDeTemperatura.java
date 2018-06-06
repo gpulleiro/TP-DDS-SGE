@@ -4,11 +4,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Timer;
 
-public class SensorDeMovimiento extends Sensor {
+public class SensorDeTemperatura extends Sensor {
 
 	
 	
-	public SensorDeMovimiento() {
+	public SensorDeTemperatura() {
 		observadores = new ArrayList<Observer>();
 		dispositivos = new ArrayList<Dispositivo>();
 	}
@@ -28,7 +28,8 @@ public class SensorDeMovimiento extends Sensor {
 	//hago que al medir el movimiento devuelva falso
 	@Override
 	public void realizarMedicion() throws IOException{
-	super.setMagnitud(0); //la magnitud 0 significa que no se esta moviendo
+	super.setMagnitud(15); //la magnitud 0 significa que no se esta moviendo
 	notificar();
 }
 }
+
