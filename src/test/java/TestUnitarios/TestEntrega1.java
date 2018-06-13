@@ -12,11 +12,39 @@ import Dispositivo.Dispositivo;
 import Dispositivo.Estandar;
 import Dispositivo.Inteligente;
 import Observer.Regla;
+import Repositorio.Repositorio;
 import Sensores.SensorDeMovimiento;
 import Usuarios.Cliente;
 
 public class TestEntrega1 {
+	
 
+@Test
+public void elConsumoEnElPeriodoFue110KW() throws IOException{
+	
+	Repositorio.importarLog();
+	
+	Dispositivo licuadora = new Dispositivo("licuadora",20,new Inteligente("apagado"));
+	
+	double consumo = licuadora.consumoPeriodo("06/06/2018 02:30:00", "06/06/2018 11:00:00");
+	
+	assertTrue(consumo == 110);
+	
+}
+
+@Test
+public void elConsumoEnLasUltimas3HorasFue60KW() throws IOException{
+	
+	Repositorio.importarLog();
+	
+	Dispositivo licuadora = new Dispositivo("licuadora",20,new Inteligente("encendido"));
+	
+	double consumo = licuadora.consumoUltimasHoras(3);
+	
+	assertTrue(consumo == 60);
+	
+}
+	
 @Test
 public void estaEncendidoDispositivoInteligente() {
 Dispositivo licuadora = new Dispositivo("licuadora",20,new Inteligente("encendido"));
@@ -98,6 +126,9 @@ assertTrue(luz.getTipo().estasApagado());
 assertTrue(luz1.getTipo().estasApagado());
 assertTrue(luz2.getTipo().estasApagado());
 assertEquals("apagado",luz3.getTipo().getEstado());
+
 }
+
+
 }
 

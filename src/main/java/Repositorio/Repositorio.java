@@ -63,7 +63,7 @@ public class Repositorio {
 	}
 	
 	//importar los archivos 
-	public static void importarLog () throws IOException {
+	public static void importarLog() throws IOException {
 		
 		String json = dir+"\\"+"log.txt";
 		
@@ -78,7 +78,7 @@ public class Repositorio {
 	}
 	
 	
-	public static void importarClientes () throws IOException {
+	public static void importarClientes() throws IOException {
 
 		String json = dir+"\\"+"clientes.txt";
 		
@@ -91,7 +91,7 @@ public class Repositorio {
 		Repositorio.setClientes(gson.fromJson(bufferedReader, tipoListaCliente));
 	}
 	
-	public static void importarDispositivos () throws IOException {
+	public static void importarDispositivos() throws IOException {
 		
 		String json = dir+"\\"+"dispositivos.txt";
 		

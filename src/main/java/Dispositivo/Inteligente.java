@@ -227,12 +227,26 @@ public class Inteligente implements Tipo {
 				
 				fechaActual.setTime(new Date());
 				
-				long dif = fechaActual.getTimeInMillis() - fechaComparacion.getTimeInMillis();
+				long dif = fechaActual.getTimeInMillis() - fechaInicio.getTimeInMillis();
 				
 				dif = dif/(1000*60*60);
 				
 				consumoTotal = consumoTotal + this.consumoInteligente(log.getEstado(), dif);
 				
+			}
+			else{if(i == listaLog.size()-1){
+				
+				Calendar fechaActual = Calendar.getInstance();
+				
+				fechaActual.setTime(new Date());
+				
+				long dif = fechaActual.getTimeInMillis() - fechaInicio.getTimeInMillis();
+				
+				dif = dif/(1000*60*60);
+				
+				consumoTotal = consumoTotal + this.consumoInteligente(log.getEstado(), dif);
+				
+				}
 			}
 		}	
 		return consumoTotal;

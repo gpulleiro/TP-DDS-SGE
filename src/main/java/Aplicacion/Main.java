@@ -5,33 +5,33 @@ import java.io.IOException;
 import java.util.Iterator;
 
 import Dispositivo.Dispositivo;
+import Dispositivo.Inteligente;
 import Repositorio.Log;
 import Repositorio.Repositorio;
 import Usuarios.Cliente;
 
 public class Main {
 	
-	public static void main( String[] args ) throws FileNotFoundException{
-		
-		try {
-			Repositorio.importarDispositivos();
+	public static void main( String[] args ) throws IOException{
+	
 			Repositorio.importarLog();
+			Repositorio.importarDispositivos();
 			Repositorio.importarClientes();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		
 		//para comprovar que importo correctamente
-		Dispositivo dis;
-			
-		Iterator iterdis = Repositorio.getDispositivos().iterator();
-			
-			while(iterdis.hasNext()){
-				dis = (Dispositivo)iterdis.next();
-				
-				System.out.println("nombre dis: "+dis.getNombre()+ " consumo dis: "+ dis.getConsumoFijo() + "\n");
-		
-
-			}		
+//		Dispositivo dis;
+//			
+//		Iterator<Dispositivo> iterdis = Repositorio.getDispositivos().iterator();
+//			
+//			while(iterdis.hasNext()){
+//				dis = (Dispositivo)iterdis.next();
+//				
+//				String nombre = dis.getNombre();
+//							
+//				System.out.println("nombre dis: "+nombre+ "\n");
+//				
+//			}		
+//	
+//			System.out.println(Repositorio.getDispositivos().size());
 	}
 }

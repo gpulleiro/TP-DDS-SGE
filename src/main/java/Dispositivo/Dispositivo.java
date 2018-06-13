@@ -15,7 +15,7 @@ public class Dispositivo {
 		Dispositivo.consumoFijo = consumoFijo;
 		this.tipo = tipo;
 	}
-	
+		
 	//getters and setters
 	public String getNombre() {
 		return nombre;
