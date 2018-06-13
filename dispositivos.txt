@@ -1,5 +1,10 @@
+[
 {
 	"nombre": "licuadora",
-	"consumo": 20,
-	"estado": true
+	"consumoFijo": 20
+},
+{
+	"nombre": "computadora",
+	"consumoFijo": 50
 }
+]

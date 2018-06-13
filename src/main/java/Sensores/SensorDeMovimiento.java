@@ -1,8 +1,12 @@
-package TP_DDS_SGE.TP;
+package Sensores;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Timer;
+
+import Dispositivo.Dispositivo;
+import Observer.Observer;
+import Observer.Sensor;
 
 public class SensorDeMovimiento extends Sensor {
 
@@ -14,16 +18,6 @@ public class SensorDeMovimiento extends Sensor {
 	}
 
 	//metodos del patron Observer
-	//getters y setters
-
-//	public boolean isMovimiento() {
-//		return movimiento;
-//	}
-//
-//	public void setMovimiento(boolean movimiento) {
-//		this.movimiento = movimiento;
-//	}
-	
 		
 	//hago que al medir el movimiento devuelva falso
 	@Override

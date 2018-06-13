@@ -1,18 +1,15 @@
-package TP_DDS_SGE.TP;
+package Observer;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-public abstract class Sensor implements Observable{
+import Dispositivo.Dispositivo;
+
+public abstract class Sensor implements Subject{
 	
 	protected ArrayList<Observer>observadores;
 	protected ArrayList<Dispositivo>dispositivos;
 	private double magnitud;
-	
-//	public Sensor(){
-//		observadores = new ArrayList<Observer>();
-//		dispositivos = new ArrayList<Dispositivo>();
-//		}
 	
 	//metodos del patron Observer
 	public void agregarObservador(Observer obs) {observadores.add(obs);};
@@ -20,15 +17,6 @@ public abstract class Sensor implements Observable{
 	public void notificar() throws IOException {
 		for(Observer obs:observadores) {obs.update();}
 	}
-	//getters y setters
-
-//	public boolean isMovimiento() {
-//		return movimiento;
-//	}
-//
-//	public void setMovimiento(boolean movimiento) {
-//		this.movimiento = movimiento;
-//	}
 
 	public ArrayList<Dispositivo> getDispositivos() {
 		return dispositivos;

@@ -1,4 +1,4 @@
-package TP_DDS_SGE.TP;
+package Usuarios;
 
 
 public class Categoria {
@@ -55,30 +55,3 @@ public class Categoria {
 	//metodos	
 	
 }
-
-
-
-//public class Categoria {
-//
-//	private String nombre;
-//	private int consumoMaximo;
-//	private int consumoMaximo;
-//	private int cargoFijo;
-//	private int cargoVariable;
-//
-//	//constructor
-//	
-//	public Categoria(String nombre, int cargoFijo, int cargoVariable, int consumoMaximo, int consumoMinimo) {
-//	
-//		this.nombre = nombre;
-//		this.cargoFijo = cargoFijo;
-//		this.cargoVariable = cargoVariable;
-//		this.consumoMaximo = consumoMaximo;
-//	    this.consumoMinimo = consumoMinimo;
-//	
-//	}
-//
-//} la idea del consumo maximo y minimo es para que a la hora de asignar una categoria a un cliente
-//  no se pueda asignarle cualquier categoria, imaginense que se agregan dispositivos al cliente, se
-//  rompe todo  
-//  

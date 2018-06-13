@@ -1,6 +1,8 @@
-package TP_DDS_SGE.TP;
+package Acciones;
 
 import java.io.IOException;
+
+import Dispositivo.Dispositivo;
 
 public interface Actuador {
 

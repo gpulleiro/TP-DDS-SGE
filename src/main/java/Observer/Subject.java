@@ -1,8 +1,8 @@
-package TP_DDS_SGE.TP;
+package Observer;
 
 import java.io.IOException;
 
-public interface Observable {
+public interface Subject {
 
 	public void notificar() throws IOException;
 	

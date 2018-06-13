@@ -1,9 +1,13 @@
-package TP_DDS_SGE.TP;
+package Usuarios;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
+
+import Dispositivo.Dispositivo;
+import Dispositivo.Inteligente;
+import Repositorio.Repositorio;
 
 public class Cliente extends Usuario {
 
@@ -34,6 +38,12 @@ public class Cliente extends Usuario {
 		super();
 	}
 	
+	
+	public Cliente(ArrayList<Dispositivo> dispositivos) {
+		super();
+		this.dispositivos = dispositivos;
+	}
+
 	//getters-setters
 	
 
@@ -169,7 +179,7 @@ public class Cliente extends Usuario {
 		
 			Dispositivo dispositivoNuevo = new Dispositivo(nombre,consumo,new Inteligente("apagado"));
 			
-			Repositorio.generarDispositivos(dispositivoNuevo);
+			Repositorio.getDispositivos().add(dispositivoNuevo);
 			
 			this.puntos = this.puntos + 15;
 		}	

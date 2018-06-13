@@ -1,4 +1,4 @@
-package TP_DDS_SGE.TP;
+package Dispositivo;
 
 public class Estandar implements Tipo {
 	

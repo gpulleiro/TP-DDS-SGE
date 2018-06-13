@@ -1,4 +1,4 @@
-package TP_DDS_SGE.TP;
+package Observer;
 
 import java.io.IOException;
 

@@ -1,9 +1,8 @@
-package TP_DDS_SGE.TP;
+package Acciones;
 
 import java.io.IOException;
 
-import TP_DDS_SGE.TP.Actuador;
-import TP_DDS_SGE.TP.Dispositivo;
+import Dispositivo.Dispositivo;
 
 public class AccionApagar implements Actuador {
 

@@ -1,4 +1,4 @@
-package TP_DDS_SGE.TP;
+package Dispositivo;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
+
+import Repositorio.Log;
+import Repositorio.Repositorio;
 
 public class Inteligente implements Tipo {
 	
@@ -89,16 +92,7 @@ public class Inteligente implements Tipo {
 		
 		if(this.getEstado() == "encendido"){}
 			else{
-			
-			Calendar fechaActual = Calendar.getInstance();
 			this.setEstado("encendido");
-			Log log = new Log(fechaActual.getTime(),Dispositivo.nombre, this.getEstado());
-			
-			try {
-				Repositorio.generarLog(log);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
 		}
 	}
 
@@ -107,15 +101,7 @@ public class Inteligente implements Tipo {
 		
 		if(this.getEstado() == "apagado"){}
 			else{
-				
-			Calendar fechaActual = Calendar.getInstance();
 			this.setEstado("apagado");
-			Log log = new Log(fechaActual.getTime(),Dispositivo.nombre, this.getEstado());
-			try {
-				Repositorio.generarLog(log);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
 		}
 	}
 
@@ -124,15 +110,7 @@ public class Inteligente implements Tipo {
 		
 		if(this.getEstado() == "ahorro"){}
 			else{
-				
-			Calendar fechaActual = Calendar.getInstance();
 			this.setEstado("ahorro");
-			Log log = new Log(fechaActual.getTime(),Dispositivo.nombre, this.getEstado());
-			try {
-				Repositorio.generarLog(log);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
 		}
 	}
 
@@ -141,15 +119,7 @@ public class Inteligente implements Tipo {
 		
 		if(this.getEstado() == estado){}
 		else{
-			
-			Calendar fechaActual = Calendar.getInstance();
 			this.setEstado(estado);
-			Log log = new Log(fechaActual.getTime(),Dispositivo.nombre, estado);
-			try {
-				Repositorio.generarLog(log);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
 		}	
 	}
 	

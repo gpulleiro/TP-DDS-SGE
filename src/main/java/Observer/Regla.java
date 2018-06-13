@@ -1,7 +1,10 @@
-package TP_DDS_SGE.TP;
+package Observer;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
+import Acciones.Actuador;
+import Dispositivo.Dispositivo;
 
 public class Regla implements Observer {
 
