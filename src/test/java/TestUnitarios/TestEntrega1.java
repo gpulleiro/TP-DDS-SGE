@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.junit.Test;
 
@@ -18,7 +19,6 @@ import Usuarios.Cliente;
 
 public class TestEntrega1 {
 	
-
 @Test
 public void elConsumoEnElPeriodoFue110KW() throws IOException{
 	

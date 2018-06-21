@@ -17,21 +17,6 @@ public class Main {
 			Repositorio.importarLog();
 			Repositorio.importarDispositivos();
 			Repositorio.importarClientes();
-		
-		//para comprovar que importo correctamente
-//		Dispositivo dis;
-//			
-//		Iterator<Dispositivo> iterdis = Repositorio.getDispositivos().iterator();
-//			
-//			while(iterdis.hasNext()){
-//				dis = (Dispositivo)iterdis.next();
-//				
-//				String nombre = dis.getNombre();
-//							
-//				System.out.println("nombre dis: "+nombre+ "\n");
-//				
-//			}		
-//	
-//			System.out.println(Repositorio.getDispositivos().size());
+
 	}
 }
