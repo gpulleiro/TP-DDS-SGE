@@ -7,3 +7,5 @@
 	"nombre": "computadora",
 	"consumoFijo": 50
 }]
+
+probando branch entrega 2
