@@ -123,7 +123,7 @@ public class Inteligente implements Tipo {
 		}	
 	}
 	
-	public double consumoInteligente(String estado, long horas){
+	public double consumoInteligente(float consumoFijo, String estado, long horas){
 
 		double consumoTotal = 0;
 		
@@ -131,7 +131,7 @@ public class Inteligente implements Tipo {
 			
 		case "encendido":
 			
-			consumoTotal = Dispositivo.consumoFijo * horas;
+			consumoTotal = consumoFijo * horas;
 		
 			break;
 			
@@ -143,7 +143,7 @@ public class Inteligente implements Tipo {
 			
 		case "ahorro":
 			
-			consumoTotal = (Dispositivo.consumoFijo * horas) * 0.5;
+			consumoTotal = (consumoFijo * horas) * 0.5;
 			
 			break;
 			
@@ -154,7 +154,7 @@ public class Inteligente implements Tipo {
 	}
 	
 	@Override
-	public float consumo(){
+	public float consumo(float conosumoFijo){
 		
 		System.out.println("este dispositivo es inteligente, debe especificar el consumo en un determinado rango horario o una cantidad de horas hacia atras");
 		
@@ -163,7 +163,7 @@ public class Inteligente implements Tipo {
 	
 	
 	@Override
-	public double consumoUltimasHoras(int horas){
+	public double consumoUltimasHoras(Dispositivo unDispo, int horas){
 
 		double consumoTotal = 0;
 		
@@ -173,13 +173,13 @@ public class Inteligente implements Tipo {
 		
 		Log log;
 		
-		Iterator iLog = Repositorio.log.iterator();
+		Iterator iLog = Repositorio.getInstance().getLog().iterator();
 		
 		while(iLog.hasNext()){
 		
 			log = (Log)iLog.next();
 		
-			if(Dispositivo.nombre.equals(log.getNombre())){
+			if(unDispo.getNombre().equals(log.getNombre())){
 				
 				listaLog.add(log);
 			}
@@ -218,7 +218,7 @@ public class Inteligente implements Tipo {
 					//paso de milisegundos a horas
 					dif = dif/(1000*60*60);
 					
-					consumoTotal = consumoTotal + this.consumoInteligente(log.getEstado(), dif);
+					consumoTotal = consumoTotal + this.consumoInteligente(unDispo.getConsumoFijo(), log.getEstado(), dif);
 				}
 				
 				//sino se resta con la fecha actual ya que estamos en el ultimo registro del log, y no hay un siguiente
@@ -231,7 +231,7 @@ public class Inteligente implements Tipo {
 				
 				dif = dif/(1000*60*60);
 				
-				consumoTotal = consumoTotal + this.consumoInteligente(log.getEstado(), dif);
+				consumoTotal = consumoTotal + this.consumoInteligente(unDispo.getConsumoFijo(),log.getEstado(), dif);
 				
 			}
 			else{if(i == listaLog.size()-1){
@@ -244,7 +244,7 @@ public class Inteligente implements Tipo {
 				
 				dif = dif/(1000*60*60);
 				
-				consumoTotal = consumoTotal + this.consumoInteligente(log.getEstado(), dif);
+				consumoTotal = consumoTotal + this.consumoInteligente(unDispo.getConsumoFijo(),log.getEstado(), dif);
 				
 				}
 			}
@@ -252,7 +252,7 @@ public class Inteligente implements Tipo {
 		return consumoTotal;
 	}
 	
-	public double consumoPeriodo(String fecha1, String fecha2){
+ 	public double consumoPeriodo(Dispositivo unDispo, String fecha1, String fecha2){
 		
 		double consumoTotal = 0;
 	
@@ -276,13 +276,13 @@ public class Inteligente implements Tipo {
 		
 		Log log;
 		
-		Iterator iLog = Repositorio.log.iterator();
+		Iterator iLog = Repositorio.getInstance().getLog().iterator();
 		
 		while(iLog.hasNext()){
 		
 			log = (Log)iLog.next();
 		
-			if(Dispositivo.nombre.equals(log.getNombre())){
+			if(unDispo.getNombre().equals(log.getNombre())){
 				
 				listaLog.add(log);
 			}
@@ -308,7 +308,7 @@ public class Inteligente implements Tipo {
 					
 				fechaInicio.setTime(log.getFecha());;
 					
-				consumoTotal = consumoTotal + this.consumoInteligente(estadoAnterior, dif);
+				consumoTotal = consumoTotal + this.consumoInteligente(unDispo.getConsumoFijo(), estadoAnterior, dif);
 				
 			}  //pregunto si la fecha fin es menor que la fecha de comparacion para asi poder cambiar la condicion de calculo
 				else{ if(fechaComparacion.getTimeInMillis() > fechaFin.getTimeInMillis()){
@@ -321,7 +321,7 @@ public class Inteligente implements Tipo {
 						
 						String estadoAnterior = listaLog.get(i-1).getEstado();
 						
-						consumoTotal = consumoTotal + this.consumoInteligente(estadoAnterior, dif);
+						consumoTotal = consumoTotal + this.consumoInteligente(unDispo.getConsumoFijo(), estadoAnterior, dif);
 						
 						break;
 				}
@@ -335,11 +335,17 @@ public class Inteligente implements Tipo {
 				
 				dif = dif/(1000*60*60);
 				
-				consumoTotal = consumoTotal + this.consumoInteligente(log.getEstado(), dif);
+				consumoTotal = consumoTotal + this.consumoInteligente(unDispo.getConsumoFijo(), log.getEstado(), dif);
 				
 			}		
 		}
 			
 	return consumoTotal;
+	}
+
+	@Override
+	public String obtenerFlag() {
+		// TODO Auto-generated method stub
+		return "I";
 	}
 }

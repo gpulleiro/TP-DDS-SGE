@@ -4,15 +4,14 @@ import java.io.IOException;
 
 public class Dispositivo {
 	
-	static String nombre;
-	static float consumoFijo;
+	private String nombre;
+	private float consumoFijo;
 	private Tipo tipo;
 	
 	//constructor
 	public Dispositivo(String nombre, float consumoFijo, Tipo tipo) {
-		super();
-		Dispositivo.nombre = nombre;
-		Dispositivo.consumoFijo = consumoFijo;
+		this.nombre = nombre;
+		this.consumoFijo = consumoFijo;
 		this.tipo = tipo;
 	}
 		
@@ -22,7 +21,7 @@ public class Dispositivo {
 	}
 		
 	public void setNombre(String nombre) {
-		Dispositivo.nombre = nombre;
+		this.nombre = nombre;
 	}
 		
 	public float getConsumoFijo() {
@@ -30,7 +29,7 @@ public class Dispositivo {
 	}
 		
 	public void setConsumoFijo(float consumoFijo) {
-		Dispositivo.consumoFijo = consumoFijo;
+		this.consumoFijo = consumoFijo;
 	}
 		
 	public Tipo getTipo() {
@@ -94,23 +93,21 @@ public class Dispositivo {
 	
 	public double consumoUltimasHoras(int horas){
 		
-		double consumo = this.getTipo().consumoUltimasHoras(horas);
+		double consumo = this.getTipo().consumoUltimasHoras(this, horas);
 		
 		return consumo;
 	}
 	
 	public double consumoPeriodo(String fecha1, String fecha2){
 		
-		double consumo = this.getTipo().consumoPeriodo(fecha1, fecha2);
+		double consumo = this.getTipo().consumoPeriodo(this, fecha1, fecha2);
 		
 		return consumo;
 	}
 	
 	public float consumo(){
 		
-		float consumo = this.getTipo().consumo();
-		
-		return consumo;
+		return this.getTipo().consumo(this.consumoFijo);
 		
 	}
 }

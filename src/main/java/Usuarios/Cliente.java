@@ -1,13 +1,17 @@
 package Usuarios;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 
 import Dispositivo.Dispositivo;
 import Dispositivo.Inteligente;
 import Repositorio.Repositorio;
+import TipoDato.Coordenadas;
 
 public class Cliente extends Usuario {
 
@@ -17,10 +21,11 @@ public class Cliente extends Usuario {
 	private Categoria categoria;
 	private ArrayList <Dispositivo> dispositivos;
 	private int puntos;
+	private Coordenadas coordenadas;
 	
 	//constructor
 	
-	public Cliente(String nombre, String apellido, String domicilio, Calendar fechaAlta, String usuario,
+	public Cliente(String nombre, String apellido, String domicilio, String fechaAlta, String usuario,
 			String contrasenia, String tipoDocumento, int numeroDocumento, int telefono, Categoria categoria,
 			ArrayList<Dispositivo> dispositivos, int puntos) {
 		
@@ -38,16 +43,12 @@ public class Cliente extends Usuario {
 		super();
 	}
 	
-	
-	public Cliente(ArrayList<Dispositivo> dispositivos) {
-		super();
-		this.dispositivos = dispositivos;
+	public Cliente(ArrayList<Dispositivo> dispositivos2) {
+		// TODO Auto-generated constructor stub
 	}
 
+
 	//getters-setters
-	
-
-
 	public String getTipoDocumento() {
 		return tipoDocumento;
 	}
@@ -70,6 +71,14 @@ public class Cliente extends Usuario {
 
 	public void setTelefono(int telefono) {
 		this.telefono = telefono;
+	}
+
+	public Coordenadas getCoordenadas() {
+		return coordenadas;
+	}
+
+	public void setCoordenadas(Coordenadas coordenadas) {
+		this.coordenadas = coordenadas;
 	}
 
 	public Object getCategoria() {
@@ -157,7 +166,7 @@ public class Cliente extends Usuario {
 		
 		Dispositivo dis;
 				
-		Iterator iterDis = Repositorio.clientes.iterator();
+		Iterator iterDis = Repositorio.getInstance().getClientes().iterator();
 		
 		//me fijo si existe el dispositivo en la lista de dispositivos para no agregar uno que ya exista
 		while(iterDis.hasNext()){
@@ -179,10 +188,44 @@ public class Cliente extends Usuario {
 		
 			Dispositivo dispositivoNuevo = new Dispositivo(nombre,consumo,new Inteligente("apagado"));
 			
-			Repositorio.getDispositivos().add(dispositivoNuevo);
+			Repositorio.getInstance().getDispositivos().add(dispositivoNuevo);
 			
 			this.puntos = this.puntos + 15;
 		}	
+	}
+	
+	public double consumo(String fecha) throws ParseException{
+		
+		double consumoTotal = 0;
+		
+		Calendar fechaActual = Calendar.getInstance();
+		Calendar fechaInicio = Calendar.getInstance();
+		
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		
+		fechaInicio.setTime(formato.parse(fecha));
+			
+		fechaActual.setTime(new Date());
+		
+		long dif = fechaActual.getTimeInMillis() - fechaInicio.getTimeInMillis();
+		
+		//diferencia en dias 
+		dif = dif/(1000*60*60*24);
+		
+		String fechaFin = fechaActual.toString();
+		
+		for (Dispositivo obj: dispositivos){
+			
+			if(obj.getTipo().obtenerFlag().equals("I")){
+				
+				consumoTotal = consumoTotal + obj.consumoPeriodo(fecha, fechaFin);
+			} if (obj.getTipo().obtenerFlag().equals("E")){
+				
+				consumoTotal = consumoTotal + (obj.consumo()*dif);
+			}
+		}
+		
+		return consumoTotal;
 	}
 }
 

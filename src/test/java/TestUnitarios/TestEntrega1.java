@@ -22,7 +22,8 @@ public class TestEntrega1 {
 @Test
 public void elConsumoEnElPeriodoFue110KW() throws IOException{
 	
-	Repositorio.importarLog();
+	Repositorio repo = Repositorio.getInstance();
+	repo.importarLog();
 	
 	Dispositivo licuadora = new Dispositivo("licuadora",20,new Inteligente("apagado"));
 	
@@ -35,7 +36,8 @@ public void elConsumoEnElPeriodoFue110KW() throws IOException{
 @Test
 public void elConsumoEnLasUltimas3HorasFue60KW() throws IOException{
 	
-	Repositorio.importarLog();
+	Repositorio repo = Repositorio.getInstance();
+	repo.importarLog();
 	
 	Dispositivo licuadora = new Dispositivo("licuadora",20,new Inteligente("encendido"));
 	

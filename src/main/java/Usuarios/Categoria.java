@@ -4,22 +4,20 @@ package Usuarios;
 public class Categoria {
 
 	private String nombre;
-	private int consumo;
-	private int cargoFijo;
-	private int cargoVariable;
-
+	private float consumo;
+	private float cargoFijo;
+	private float cargoVariable;
+	
 	//constructor
-	
-	public Categoria(String nombre, int cargoFijo, int cargoVariable, int consumo) {
-	
+	public Categoria(String nombre, float consumo, float cargoFijo, float cargoVariable) {
+		super();
 		this.nombre = nombre;
+		this.consumo = consumo;
 		this.cargoFijo = cargoFijo;
 		this.cargoVariable = cargoVariable;
-		this.consumo = consumo;
 	}
-	
-	//getters-setters
 
+	//getters and setters
 	public String getNombre() {
 		return nombre;
 	}
@@ -28,29 +26,31 @@ public class Categoria {
 		this.nombre = nombre;
 	}
 
-	public int getCargoFijo() {
-		return cargoFijo;
-	}
-
-	public void setCargoFijo(int cargoFijo) {
-		this.cargoFijo = cargoFijo;
-	}
-
-	public int getCargoVariable() {
-		return cargoVariable;
-	}
-
-	public void setCargoVariable(int cargoVariable) {
-		this.cargoVariable = cargoVariable;
-	}
-
-	public int getConsumo() {
+	public float getConsumo() {
 		return consumo;
 	}
 
-	public void setConsumo(int consumo) {
+	public void setConsumo(float consumo) {
 		this.consumo = consumo;
 	}
+
+	public float getCargoFijo() {
+		return cargoFijo;
+	}
+
+	public void setCargoFijo(float cargoFijo) {
+		this.cargoFijo = cargoFijo;
+	}
+
+	public float getCargoVariable() {
+		return cargoVariable;
+	}
+
+	public void setCargoVariable(float cargoVariable) {
+		this.cargoVariable = cargoVariable;
+	}
+	
+	
 	
 	//metodos	
 	

@@ -2,28 +2,28 @@ package TestUnitarios;
 
 import static org.junit.Assert.*;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import com.google.maps.errors.ApiException;
+
 import Dispositivo.Dispositivo;
 import Dispositivo.Inteligente;
 import Repositorio.Repositorio;
-import Usuarios.Categoria;
 import Usuarios.Cliente;
 
 public class TestEntrega0 {
 
 	@Test
-	public void cantidadDeClientesEsIgualA2() throws IOException {
+	public void cantidadDeClientesEsIgualA2() throws IOException, ApiException, InterruptedException {
 		
-		Repositorio.importarClientes();
+		Repositorio repo = Repositorio.getInstance();
+		repo.importarClientes();
 		
-		assertEquals(2,Repositorio.getClientes().size());
+		assertEquals(2,repo.getClientes().size());
 		
 	}
 

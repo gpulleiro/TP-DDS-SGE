@@ -1,11 +1,16 @@
 [
 {
 	"nombre": "licuadora",
-	"consumoFijo": 20
+	"consumoFijo": 20,
+	"flag": "I",
+	"estado": "encendido",
+	"cantHoras": 0
 },
 {
 	"nombre": "computadora",
-	"consumoFijo": 50
-}]
-
-probando branch entrega 2
+	"consumoFijo": 50,
+	"flag": "E",
+	"estado": "",
+	"cantHoras": 3
+}
+]

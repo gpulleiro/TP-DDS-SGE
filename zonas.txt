@@ -1,0 +1,32 @@
+[
+{
+	"id": 1,
+	"nombre": “Almagro-Boedo”,
+	"coordenadas":
+		{
+			"latitud": -34.618680,
+			"longitud": -58.15423
+		},
+	"radio": 300
+},
+{
+	"id": 2,
+	"nombre": “Lanus”,
+	"coordenadas":
+		{
+			"latitud": -20.618680,
+			"longitud": -5.415423
+		},
+	"radio": 200
+},
+{
+	"id": 3,
+	"nombre": “Avellaneda”,
+	"coordenadas":
+		{
+			"latitud": -10.618680,
+			"longitud": -20.415423
+		},
+	"radio": 100
+}
+] 

@@ -3,18 +3,51 @@
 	"nombre": "mauricio",
 	"apellido": "duportal",
 	"domicilio": "Calle falsa 123",
+	"fechaAlta": "19/08/2018",
 	"usuario": "mauri",
 	"contrasenia": "123456",
+	"tipoDocumento": "DNI",
+	"numeroDocumento":35287364,
+	"telefono": 48972378,
+	"categoria":
+		{
+			"nombre": "R1",
+			"cargoFijo": 18.76,
+			"cargoVariable":0.644,
+			"consumo": 150
+		},
 	"dispositivos":[],
-	"puntos": 10		
+	"puntos": 10,
+	"coordenadas":
+		{
+			"latitud": null,
+			"longitud": null
+		}	
 },
 {
 	"nombre": "gaston",
 	"apellido": "pulleiro",
 	"domicilio": "Calle falsa 321",
+	"fechaAlta": "04/08/2018",
 	"usuario": "gpulleiro",
 	"contrasenia": "123456",
+	"tipoDocumento": "DNI",
+	"numeroDocumento":35287364,
+	"telefono": 48972378,
+	"categoria":
+		{
+			"nombre": "R1",
+			"cargoFijo": 18.76,
+			"cargoVariable":0.644,
+			"consumo": 150
+		},
 	"dispositivos":[],
-	"puntos": 20
+	"puntos": 20,
+	"coordenadas":
+		{
+			"latitud": null,
+			"longitud": null
+		}
+
 }
 ]

@@ -37,9 +37,9 @@ public class Estandar implements Tipo {
 	//metodos
 	
 	@Override
-	public float consumo() {
+	public float consumo(float consumoFijo) {
 		
-		float consumo = Dispositivo.consumoFijo * this.getCantHoras();
+		float consumo = consumoFijo * this.getCantHoras();
 		
 		return consumo;
 	}
@@ -95,15 +95,21 @@ public class Estandar implements Tipo {
 	}
 
 	@Override
-	public double consumoUltimasHoras(int horas) {
+	public double consumoUltimasHoras(Dispositivo unDispo, int horas) {
 		System.out.println("este dispositivo es estandar, no puede obtener el consumo en las ultimas horas");
 		return 0;
 	}
 
 	@Override
-	public double consumoPeriodo(String fecha1, String fecha2) {
+	public double consumoPeriodo(Dispositivo unDispo, String fecha1, String fecha2) {
 		System.out.println("este dispositivo es estandar, no puede obtener el consumo en el periodo solicitado");
 		return 0;
+	}
+
+	@Override
+	public String obtenerFlag() {
+		// TODO Auto-generated method stub
+		return "E";
 	}
 
 }

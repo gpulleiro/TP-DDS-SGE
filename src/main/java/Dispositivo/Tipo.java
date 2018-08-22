@@ -2,7 +2,7 @@ package Dispositivo;
 
 public interface Tipo {
 	
-	public abstract float consumo();
+	public abstract float consumo(float consumoFijo);
 	
 	public abstract String getEstado();
 	
@@ -28,8 +28,11 @@ public interface Tipo {
 	
 	public abstract void cambiarEstado(String estado);
 	
-	public abstract double consumoUltimasHoras(int horas);
+	public abstract double consumoUltimasHoras(Dispositivo unDispo, int horas);
 	
-	public abstract double consumoPeriodo(String fecha1, String fecha2);
+	public abstract double consumoPeriodo(Dispositivo unDispositivo, String fecha1, String fecha2);
+
+	public abstract String obtenerFlag();
+
 
 }

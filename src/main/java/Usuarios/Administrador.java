@@ -1,6 +1,9 @@
 package Usuarios;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class Administrador extends Usuario {
@@ -9,7 +12,7 @@ public class Administrador extends Usuario {
 
 	//constructor
 	
-	public Administrador(String nombre, String apellido, String domicilio, Calendar fechaAlta, String usuario,
+	public Administrador(String nombre, String apellido, String domicilio, String fechaAlta, String usuario,
 			String contrasenia,int ID) {
 		super(nombre, apellido, domicilio, fechaAlta, usuario, contrasenia);
 	
@@ -31,12 +34,17 @@ public class Administrador extends Usuario {
 	//metodos
 	
 	//cantidad de meses
-	public static int cantidadMeses(){	
-		Calendar hoy = new GregorianCalendar();
-		int difAnio = hoy.get(Calendar.YEAR)- fechaAlta.get(Calendar.YEAR);
-		int difMes = difAnio * 12 + hoy.get(Calendar.MONTH)- fechaAlta.get(Calendar.MONTH);
+	public long cantidadMeses() throws ParseException{
 		
-		return difMes;
+		Calendar fechaInicio = Calendar.getInstance();
+		Calendar hoy = Calendar.getInstance();
+		hoy.setTime(new Date());
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+		fechaInicio.setTime(formato.parse(this.fechaAlta));
+		long meses = (hoy.getTimeInMillis() - fechaInicio.getTimeInMillis());
+		meses = meses/(1000*60*60);
+		
+		return meses;
 	}
 	
 }

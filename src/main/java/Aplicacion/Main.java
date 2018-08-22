@@ -1,22 +1,31 @@
 package Aplicacion;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Iterator;
 
-import Dispositivo.Dispositivo;
-import Dispositivo.Inteligente;
-import Repositorio.Log;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.maps.GeoApiContext;
+import com.google.maps.GeocodingApi;
+import com.google.maps.errors.ApiException;
+import com.google.maps.model.GeocodingResult;
+
 import Repositorio.Repositorio;
 import Usuarios.Cliente;
 
 public class Main {
 	
-	public static void main( String[] args ) throws IOException{
-	
-			Repositorio.importarLog();
-			Repositorio.importarDispositivos();
-			Repositorio.importarClientes();
-
+	public static void main( String[] args ) throws IOException, ApiException, InterruptedException{
+			Repositorio repositorio = Repositorio.getInstance();
+			repositorio.importarLog();
+			repositorio.importarDispositivosMan();
+			repositorio.importarZona();
+			repositorio.importarTransformadores();
+			repositorio.importarClientes();
+		
+			
+			System.out.println(repositorio.getClientes());
+			System.out.println(repositorio.getZonas());			
+			
+			
 	}
 }

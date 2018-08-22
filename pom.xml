@@ -25,6 +25,16 @@
 			<artifactId>gson</artifactId>
 			<version>2.2.2</version>
 	</dependency>
+	<dependency>
+			<groupId>com.google.maps</groupId>
+			<artifactId>google-maps-services</artifactId>
+			<version>0.2.10</version>
+	</dependency>
+	<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-nop</artifactId>
+			<version>1.7.25</version>
+	</dependency>
   </dependencies>
   <artifactId>TP-DDS-SGE</artifactId>
 </project>
