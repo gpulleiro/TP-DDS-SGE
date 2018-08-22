@@ -2,7 +2,7 @@
 {
 	"nombre": "mauricio",
 	"apellido": "duportal",
-	"domicilio": "Paseo Colon 350",
+	"domicilio": "teniente general Peron 850",
 	"fechaAlta": "19/08/2018",
 	"usuario": "mauri",
 	"contrasenia": "123456",
@@ -27,7 +27,7 @@
 {
 	"nombre": "gaston",
 	"apellido": "pulleiro",
-	"domicilio": "Corrientes 650",
+	"domicilio": "Av. Corrientes 1225",
 	"fechaAlta": "04/08/2018",
 	"usuario": "gpulleiro",
 	"contrasenia": "123456",

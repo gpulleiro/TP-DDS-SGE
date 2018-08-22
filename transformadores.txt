@@ -3,8 +3,8 @@
 	"id": 1,
 	"coordenadas":
 		{
-		"latitud": -34.198273, 
-		"longitud": -58.094842
+		"latitud": -34.6041238, 
+		"longitud": -58.385562
 		}, 
 	"zona": 1
 },
@@ -12,8 +12,8 @@
 	"id": 2,
 	"coordenadas":
 		{
-		"latitud": -34.023912, 
-		"longitud": -58.652372
+		"latitud": -34.605343, 
+		"longitud": -58.387077
 		},
 	"zona": 1
 },
@@ -21,17 +21,17 @@
 	"id": 3,
 	"coordenadas":
 		{
-		"latitud": -20.874343, 
-		"longitud": -5.568093
+		"latitud": -34.606155, 
+		"longitud": -58.385060
 		},
-	"zona": 2
+	"zona": 1
 },
 {
 	"id": 4,
 	"coordenadas":
 		{
-		"latitud": -20.978434, 
-		"longitud": -5.560965
+		"latitud": -34.601281, 
+		"longitud": -58.379395
 		}, 
 	"zona": 2
 },
@@ -39,8 +39,8 @@
 	"id": 5,
 	"coordenadas":
 		{
-		"latitud": -10.762123, 
-		"longitud": -20.906543
+		"latitud": -34.605731, 
+		"longitud": -58.379395
 		}, 
 	"zona": 3
 }
