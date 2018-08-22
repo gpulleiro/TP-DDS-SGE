@@ -1,31 +1,24 @@
 package Aplicacion;
 
 import java.io.IOException;
+import java.text.ParseException;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.maps.GeoApiContext;
-import com.google.maps.GeocodingApi;
 import com.google.maps.errors.ApiException;
-import com.google.maps.model.GeocodingResult;
 
+import Dispositivo.Dispositivo;
+import Dispositivo.Estandar;
 import Repositorio.Repositorio;
-import Usuarios.Cliente;
 
 public class Main {
 	
-	public static void main( String[] args ) throws IOException, ApiException, InterruptedException{
+	public static void main( String[] args ) throws IOException, ApiException, InterruptedException, ParseException{
+			
 			Repositorio repositorio = Repositorio.getInstance();
 			repositorio.importarLog();
 			repositorio.importarDispositivos();
 			repositorio.importarZona();
 			repositorio.importarTransformadores();
 			repositorio.importarClientes();
-		
-			
-			System.out.println(repositorio.getClientes());
-			System.out.println(repositorio.getZonas());			
-			
-			
+	
 	}
 }

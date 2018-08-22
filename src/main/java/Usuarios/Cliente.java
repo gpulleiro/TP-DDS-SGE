@@ -41,6 +41,7 @@ public class Cliente extends Usuario {
 
 	public Cliente() {
 		super();
+		this.dispositivos = new ArrayList<Dispositivo>();
 	}
 	
 	public Cliente(ArrayList<Dispositivo> dispositivos2) {

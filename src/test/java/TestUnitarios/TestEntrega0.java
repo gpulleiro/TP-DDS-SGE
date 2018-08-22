@@ -27,9 +27,7 @@ public class TestEntrega0 {
 		
 	}
 
-	ArrayList<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
-	
-	Cliente cliente = new Cliente(dispositivos);
+	Cliente cliente = new Cliente();
 	
 	@Before
 	public void clienteNuevo() {
