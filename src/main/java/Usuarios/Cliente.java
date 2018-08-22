@@ -8,9 +8,16 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 
+import org.apache.commons.math3.linear.ArrayRealVector;
+import org.apache.commons.math3.linear.RealVector;
+import org.apache.commons.math3.optim.PointValuePair;
+import org.apache.commons.math3.optim.linear.Relationship;
+import org.apache.commons.math3.optim.nonlinear.scalar.GoalType;
+
 import Dispositivo.Dispositivo;
 import Dispositivo.Inteligente;
 import Repositorio.Repositorio;
+import Simplex.SimplexFacade;
 import TipoDato.Coordenadas;
 
 public class Cliente extends Usuario {
@@ -227,6 +234,37 @@ public class Cliente extends Usuario {
 		}
 		
 		return consumoTotal;
+	}
+	
+public void mejorCombinacionDispositivos(){
+		
+		SimplexFacade simplex1 = new SimplexFacade(GoalType.MAXIMIZE,true);
+		int i=0;
+		RealVector vectorDeCoeficientes = new ArrayRealVector(20);
+		
+		//por cada dispositivo creo las restricciones y tomo el consumo fijo en un vector
+		for (Dispositivo dis:this.dispositivos){
+			RealVector vectorDeVariables = new ArrayRealVector(20);
+			vectorDeVariables.setEntry(i, 1);
+			vectorDeCoeficientes.setEntry(i, dis.getConsumoFijo());
+			simplex1.agregarRestriccion(Relationship.GEQ, Dispositivo.getMinimoHoras(), vectorDeVariables);
+			simplex1.agregarRestriccion(Relationship.LEQ, Dispositivo.getMaximoHoras(), vectorDeVariables);
+			i++;
+		}
+		//agrego la restricción general
+		simplex1.agregarRestriccion(Relationship.LEQ, 440640, vectorDeCoeficientes);
+		//creo la función economica
+		simplex1.crearFuncionEconomica(vectorDeCoeficientes);
+	
+		//resuelvo y muestro los resultados
+		PointValuePair solucion = simplex1.resolver();
+	
+		int tamanioLista = this.dispositivos.size();
+		for(i=0;i<tamanioLista;i++){
+		
+		System.out.printf(" x%d: %f", i, solucion.getPoint()[i]);
+		}
+		System.out.printf(" total: %f", solucion.getValue());
 	}
 }
 
