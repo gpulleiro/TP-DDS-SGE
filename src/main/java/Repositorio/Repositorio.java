@@ -25,6 +25,7 @@ import Dispositivo.Dispositivo;
 import Dispositivo.Estandar;
 import Dispositivo.Inteligente;
 import Dispositivo.Tipo;
+import Helpers.FuncionesHelper;
 import TipoDato.Coordenadas;
 import Usuarios.Cliente;
 import ZonaGeografica.Transformador;
@@ -139,10 +140,8 @@ public class Repositorio {
 		//
 		
 		//mapeo de propiedades del gson
-		for(Cliente cli: this.clientes){
-			
-			Coordenadas coord = this.obtenerCoordenadas(cli.getDomicilio());
-			cli.setCoordenadas(coord);
+		for(Cliente cli: this.clientes){			
+			cli.setCoordenadas(this.obtenerCoordenadas(cli.getDomicilio()));
 			
 			this.asignarTransformador(cli);
 		}
@@ -156,8 +155,8 @@ public class Repositorio {
 		GeocodingResult[] result = GeocodingApi.geocode(context,domicilio).await();
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		
-		String latitudString = gson.toJson(result[0].geometry.location.lat);// no le gusta el 0 en el array
-		String longitudString = gson.toJson(result[0].geometry.location.lng);// no le gusta el 0 en el array
+		String latitudString = gson.toJson(result[0].geometry.location.lat);
+		String longitudString = gson.toJson(result[0].geometry.location.lng);
 		
 		double latitud = Double.parseDouble(latitudString);
 		double longitud = Double.parseDouble(longitudString);
@@ -168,10 +167,10 @@ public class Repositorio {
 	}
 
 
-	private void asignarTransformador(Cliente cli) {
+	private void asignarTransformador(Cliente cliente) {
 		
-		double cliLat = cli.getCoordenadas().getLatitud();
-		double cliLong = cli.getCoordenadas().getLongitud();
+		double cliLat = cliente.getCoordenadas().getLatitud();
+		double cliLong = cliente.getCoordenadas().getLongitud();
 		Transformador transformador = new Transformador();
 		double distanciaMinima = 0;
 		
@@ -179,11 +178,10 @@ public class Repositorio {
 			
 			for(Transformador tra: zona.getTransformadores() ){
 				
-				double latitud = cliLat - tra.getCoordenadas().getLatitud();
-				double longitud = cliLong - tra.getCoordenadas().getLongitud();
-				double distancia = Math.sqrt(latitud * latitud + longitud * longitud);
 				
-				if (distancia < distanciaMinima){
+				double distancia = FuncionesHelper.calcularDistancia(cliente.getCoordenadas(), tra.getCoordenadas());
+				
+				if (distancia < distanciaMinima || distanciaMinima == 0){
 					
 					distanciaMinima = distancia;
 					transformador = tra;
@@ -191,12 +189,12 @@ public class Repositorio {
 			}
 		}
 		
-		transformador.getClientes().add(cli);
+		transformador.getClientes().add(cliente);
 		
 	}
 
 
-	public  void importarDispositivosMan() throws IOException {
+	public  void importarDispositivos() throws IOException {
 		
 		String json = this.dir +"\\"+"dispositivos.txt";
 		this.setDispositivos(new ArrayList<Dispositivo>());
@@ -207,13 +205,15 @@ public class Repositorio {
 			String nombre = unDispo.get("nombre").getAsString();
 			float consumoFijo = unDispo.get("consumoFijo").getAsFloat();
 			Tipo unTipo = null;
+			int minimoHoras = unDispo.get("minimoHoras").getAsInt();
+			int maximoHoras = unDispo.get("maximoHoras").getAsInt();
 			String flag = unDispo.get("flag").getAsString();
 			if (flag.equals("I")){
 				 unTipo= new Inteligente(unDispo.get("estado").getAsString());	
 			}else if(flag.equals("E")){
 				 unTipo = new Estandar(unDispo.get("cantHoras").getAsInt()); 				
 			}
-			Dispositivo unDispositivo = new Dispositivo(nombre, consumoFijo, unTipo);
+			Dispositivo unDispositivo = new Dispositivo(nombre, consumoFijo, minimoHoras, maximoHoras, unTipo);
 			this.getDispositivos().add(unDispositivo);
 		}
 	}

@@ -6,15 +6,24 @@ public class Dispositivo {
 	
 	private String nombre;
 	private float consumoFijo;
+	private int minimoHoras; 
+	private int maximoHoras; 
 	private Tipo tipo;
 	
 	//constructor
+	public Dispositivo(String nombre, float consumoFijo,int minimoHoras, int maximoHoras, Tipo tipo) {
+		this.nombre = nombre;
+		this.consumoFijo = consumoFijo;
+		this.tipo = tipo;
+		this.minimoHoras = minimoHoras;
+		this.maximoHoras = maximoHoras;
+	}
+	
 	public Dispositivo(String nombre, float consumoFijo, Tipo tipo) {
 		this.nombre = nombre;
 		this.consumoFijo = consumoFijo;
 		this.tipo = tipo;
-	}
-		
+	}	
 	//getters and setters
 	public String getNombre() {
 		return nombre;
@@ -24,6 +33,22 @@ public class Dispositivo {
 		this.nombre = nombre;
 	}
 		
+	public int getMinimoHoras() {
+		return minimoHoras;
+	}
+
+	public void setMinimoHoras(int minimoHoras) {
+		this.minimoHoras = minimoHoras;
+	}
+
+	public int getMaximoHoras() {
+		return maximoHoras;
+	}
+
+	public void setMaximoHoras(int maximoHoras) {
+		this.maximoHoras = maximoHoras;
+	}
+
 	public float getConsumoFijo() {
 		return consumoFijo;
 	}

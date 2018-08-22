@@ -2,7 +2,7 @@
 {
 	"nombre": "mauricio",
 	"apellido": "duportal",
-	"domicilio": "Calle falsa 123",
+	"domicilio": "Paseo Colon 350",
 	"fechaAlta": "19/08/2018",
 	"usuario": "mauri",
 	"contrasenia": "123456",
@@ -27,7 +27,7 @@
 {
 	"nombre": "gaston",
 	"apellido": "pulleiro",
-	"domicilio": "Calle falsa 321",
+	"domicilio": "Corrientes 650",
 	"fechaAlta": "04/08/2018",
 	"usuario": "gpulleiro",
 	"contrasenia": "123456",

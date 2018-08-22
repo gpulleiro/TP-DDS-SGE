@@ -17,7 +17,7 @@ public class Main {
 	public static void main( String[] args ) throws IOException, ApiException, InterruptedException{
 			Repositorio repositorio = Repositorio.getInstance();
 			repositorio.importarLog();
-			repositorio.importarDispositivosMan();
+			repositorio.importarDispositivos();
 			repositorio.importarZona();
 			repositorio.importarTransformadores();
 			repositorio.importarClientes();

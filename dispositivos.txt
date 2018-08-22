@@ -1,16 +1,20 @@
 [
 {
-	"nombre": "licuadora",
+	"nombre": "lampara",
 	"consumoFijo": 20,
 	"flag": "I",
 	"estado": "encendido",
-	"cantHoras": 0
+	"cantHoras": 0,
+	"minimoHoras": 90,
+	"maximoHoras": 360 
 },
 {
 	"nombre": "computadora",
 	"consumoFijo": 50,
 	"flag": "E",
 	"estado": "",
-	"cantHoras": 3
+	"cantHoras": 3,
+	"minimoHoras": 60,
+	"maximoHoras": 360
 }
 ]
