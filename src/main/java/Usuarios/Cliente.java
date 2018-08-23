@@ -239,12 +239,13 @@ public class Cliente extends Usuario {
 public void mejorCombinacionDispositivos(){
 		
 		SimplexFacade simplex1 = new SimplexFacade(GoalType.MAXIMIZE,true);
+		int tamanioLista = this.dispositivos.size();
 		int i=0;
-		RealVector vectorDeCoeficientes = new ArrayRealVector(20);
+		RealVector vectorDeCoeficientes = new ArrayRealVector(tamanioLista);
 		
 		//por cada dispositivo creo las restricciones y tomo el consumo fijo en un vector
 		for (Dispositivo dis:this.dispositivos){
-			RealVector vectorDeVariables = new ArrayRealVector(20);
+			RealVector vectorDeVariables = new ArrayRealVector(tamanioLista);
 			vectorDeVariables.setEntry(i, 1);
 			vectorDeCoeficientes.setEntry(i, dis.getConsumoFijo());
 			simplex1.agregarRestriccion(Relationship.GEQ, Dispositivo.getMinimoHoras(), vectorDeVariables);
@@ -259,7 +260,6 @@ public void mejorCombinacionDispositivos(){
 		//resuelvo y muestro los resultados
 		PointValuePair solucion = simplex1.resolver();
 	
-		int tamanioLista = this.dispositivos.size();
 		for(i=0;i<tamanioLista;i++){
 		
 		System.out.printf(" x%d: %f", i, solucion.getPoint()[i]);

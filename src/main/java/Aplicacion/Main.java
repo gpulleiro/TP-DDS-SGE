@@ -4,7 +4,10 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 
+import com.google.maps.GeoApiContext;
+import com.google.maps.GeocodingApi;
 import com.google.maps.errors.ApiException;
+import com.google.maps.model.GeocodingResult;
 
 import Dispositivo.Dispositivo;
 import Dispositivo.Estandar;
@@ -23,10 +26,19 @@ public class Main {
 			repositorio.importarTransformadores();
 			repositorio.importarClientes();
 
-			for(Zona zona: repositorio.getZonas()){
-				
-				System.out.println(zona.consumo("10/04/2018 00:00:00"));
-			}
+			String domicilio = "corrientes 1300";
+			GeoApiContext context = new GeoApiContext.Builder().apiKey("AIzaSyCK3gGazusuz7AM73gd0kdI3gitoMF_5Yk").build();
+			GeocodingResult[] result = GeocodingApi.geocode(context,domicilio).await();
+			
+			System.out.println(result[0].toString());
+			
+			
+			//System.out.println(repositorio.getDispositivos());
+			
+//			Cliente pepe = new Cliente();
+//			pepe.setDispositivos(repositorio.getDispositivos());
+//			
+//			pepe.mejorCombinacionDispositivos();
 			
 //			System.out.println(repositorio.getClientes());
 //			System.out.println(repositorio.getZonas());			

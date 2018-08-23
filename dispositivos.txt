@@ -1,20 +1,218 @@
 [
 {
-	"nombre": "lampara",
-	"consumoFijo": 20,
+	"nombre": "Aire acondicionado 3500 frigorias",
+	"consumoFijo": 1.613,
 	"flag": "I",
-	"estado": "encendido",
+	"estado": "apagado",
 	"cantHoras": 0,
 	"minimoHoras": 90,
 	"maximoHoras": 360 
 },
 {
-	"nombre": "computadora",
-	"consumoFijo": 50,
+	"nombre": "Aire acondicionado 2200 frigorias",
+	"consumoFijo": 1.013,
+	"flag": "I",
+	"estado": "apagado",
+	"cantHoras": 0,
+	"minimoHoras": 90,
+	"maximoHoras": 360 
+},
+{
+	"nombre": "Televisor color de tubo fluorecente de 21",
+	"consumoFijo": 0.075,
+	"flag": "E",
+	"estado": "",
+	"cantHoras": 2,
+	"minimoHoras": 90,
+	"maximoHoras": 360 
+},
+{
+	"nombre": "Televisor color de tubo fluorecente de 29 a 34",
+	"consumoFijo": 0.175,
 	"flag": "E",
 	"estado": "",
 	"cantHoras": 3,
+	"minimoHoras": 90,
+	"maximoHoras": 360 
+},
+{
+	"nombre": "Televisor LCD 40",
+	"consumoFijo": 0.18,
+	"flag": "E",
+	"estado": " ",
+	"cantHoras": 4,
+	"minimoHoras": 90,
+	"maximoHoras": 360 
+},
+{
+	"nombre": "Televisor LED 24",
+	"consumoFijo": 0.04,
+	"flag": "I",
+	"estado": "apagado",
+	"cantHoras": 0,
+	"minimoHoras": 90,
+	"maximoHoras": 360 
+},
+{
+	"nombre": "Televisor LED 32",
+	"consumoFijo": 0.055,
+	"flag": "I",
+	"estado": "apagado",
+	"cantHoras": 0,
+	"minimoHoras": 90,
+	"maximoHoras": 360 
+},
+{
+	"nombre": "Televisor LED 40",
+	"consumoFijo": 0.08,
+	"flag": "I",
+	"estado": "apagado",
+	"cantHoras": 0,
+	"minimoHoras": 90,
+	"maximoHoras": 360 
+},
+{
+	"nombre": "Heladera con freezer",
+	"consumoFijo": 0.09,
+	"flag": "I",
+	"estado": "apagado",
+	"cantHoras": 0,
+	"minimoHoras": 90,
+	"maximoHoras": 360 
+},
+{
+	"nombre": "Heladera sin freezer",
+	"consumoFijo": 0.075,
+	"flag": "I",
+	"estado": "apagado",
+	"cantHoras": 0,
+	"minimoHoras": 90,
+	"maximoHoras": 360 
+},
+{
+	"nombre": "Lavarropas automatico de 5kg con calentamiento de agua",
+	"consumoFijo": 0.875,
+	"flag": "E",
+	"estado": "",
+	"cantHoras": 2,
+	"minimoHoras": 6,
+	"maximoHoras": 30 
+},
+{
+	"nombre": "Lavarropas automatico de 5kg",
+	"consumoFijo": 0.175,
+	"flag": "I",
+	"estado": "apagado",
+	"cantHoras": 0,
+	"minimoHoras": 6,
+	"maximoHoras": 30 
+},
+{
+	"nombre": "Lavarropas semiautomatico de 5kg",
+	"consumoFijo": 0.1275,
+	"flag": "E",
+	"estado": "",
+	"cantHoras": 2,
+	"minimoHoras": 6,
+	"maximoHoras": 30 
+},
+{
+	"nombre": "Ventilador de pie",
+	"consumoFijo": 0.09,
+	"flag": "E",
+	"estado": "",
+	"cantHoras": 2,
+	"minimoHoras": 120,
+	"maximoHoras": 360 
+},
+{
+	"nombre": "Ventilador de techo",
+	"consumoFijo": 0.06,
+	"flag": "I",
+	"estado": "apagado",
+	"cantHoras": 0,
+	"minimoHoras": 120,
+	"maximoHoras": 360 
+},
+{
+	"nombre": "Lampara halogenas de 40w ",
+	"consumoFijo": 0.04,
+	"flag": "I",
+	"estado": "apagado",
+	"cantHoras": 0,
+	"minimoHoras": 90,
+	"maximoHoras": 360 
+},
+{
+	"nombre": "Lampara halogenas de 60w ",
+	"consumoFijo": 0.06,
+	"flag": "I",
+	"estado": "apagado",
+	"cantHoras": 0,
+	"minimoHoras": 90,
+	"maximoHoras": 360 
+},
+{
+	"nombre": "Lampara halogenas de 100w ",
+	"consumoFijo": 0.015,
+	"flag": "I",
+	"estado": "apagado",
+	"cantHoras": 0,
+	"minimoHoras": 90,
+	"maximoHoras": 360 
+},
+{
+	"nombre": "Lampara 11w ",
+	"consumoFijo": 0.011,
+	"flag": "I",
+	"estado": "apagado",
+	"cantHoras": 0,
+	"minimoHoras": 90,
+	"maximoHoras": 360 
+},
+{
+	"nombre": "Lampara 15w ",
+	"consumoFijo": 0.015,
+	"flag": "I",
+	"estado": "apagado",
+	"cantHoras": 0,
+	"minimoHoras": 90,
+	"maximoHoras": 360 
+},
+{
+	"nombre": "Lampara 20w ",
+	"consumoFijo": 0.02,
+	"flag": "I",
+	"estado": "apagado",
+	"cantHoras": 0,
+	"minimoHoras": 90,
+	"maximoHoras": 360 
+},
+{
+	"nombre": "PC de escritorio",
+	"consumoFijo": 0.4,
+	"flag": "I",
+	"estado": "apagado",
+	"cantHoras": 0,
 	"minimoHoras": 60,
-	"maximoHoras": 360
+	"maximoHoras": 360 
+},
+{
+	"nombre": "Microondas convencional",
+	"consumoFijo": 0.64,
+	"flag": "E",
+	"estado": "",
+	"cantHoras": 3,
+	"minimoHoras": 3,
+	"maximoHoras": 15 
+},
+{
+	"nombre": "Plancha a vapor",
+	"consumoFijo": 0.75,
+	"flag": "E",
+	"estado": "",
+	"cantHoras": 4,
+	"minimoHoras": 3,
+	"maximoHoras": 30 
 }
 ]
