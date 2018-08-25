@@ -2,43 +2,46 @@ package Aplicacion;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.ArrayList;
 
-import com.google.maps.GeoApiContext;
-import com.google.maps.GeocodingApi;
-import com.google.maps.errors.ApiException;
-import com.google.maps.model.GeocodingResult;
 
-import Dispositivo.Dispositivo;
-import Dispositivo.Estandar;
+//import com.google.maps.GeoApiContext;
+//import com.google.maps.GeocodingApi;
+//import com.google.maps.errors.ApiException;
+//import com.google.maps.model.GeocodingResult;
+
+
+
+
 import Repositorio.Repositorio;
+import Simplex.CombinacionDispositivos;
 import Usuarios.Cliente;
-import ZonaGeografica.Zona;
 
 public class Main {
 	
-	public static void main( String[] args ) throws IOException, ApiException, InterruptedException, ParseException{
-
+//	public static void main( String[] args ) throws IOException, ApiException, InterruptedException, ParseException{
+		public static void main( String[] args ) throws IOException, InterruptedException, ParseException{
+		
 			Repositorio repositorio = Repositorio.getInstance();
-			repositorio.importarLog();
+//			repositorio.importarLog();
 			repositorio.importarDispositivos();
-			repositorio.importarZona();
-			repositorio.importarTransformadores();
-			repositorio.importarClientes();
-
-			String domicilio = "corrientes 1300";
-			GeoApiContext context = new GeoApiContext.Builder().apiKey("AIzaSyCK3gGazusuz7AM73gd0kdI3gitoMF_5Yk").build();
-			GeocodingResult[] result = GeocodingApi.geocode(context,domicilio).await();
-			
-			System.out.println(result[0].toString());
-			
-			
-			//System.out.println(repositorio.getDispositivos());
-			
-//			Cliente pepe = new Cliente();
-//			pepe.setDispositivos(repositorio.getDispositivos());
+//			repositorio.importarZona();
+//			repositorio.importarTransformadores();
+//			repositorio.importarClientes();
+//
+//			String domicilio = "corrientes 1300";
+//			GeoApiContext context = new GeoApiContext.Builder().apiKey("AIzaSyCK3gGazusuz7AM73gd0kdI3gitoMF_5Yk").build();
+//			GeocodingResult[] result = GeocodingApi.geocode(context,domicilio).await();
 //			
-//			pepe.mejorCombinacionDispositivos();
+//			System.out.println(result[0].toString());
+			
+			
+						
+			Cliente pepe = new Cliente();
+			pepe.setDispositivos(repositorio.getDispositivos());
+			
+//			System.out.println(pepe.getDispositivos().get(3).getMaximoHoras());
+						
+			pepe.mejorCombinacionDispositivos(pepe.getDispositivos());
 			
 //			System.out.println(repositorio.getClientes());
 //			System.out.println(repositorio.getZonas());			

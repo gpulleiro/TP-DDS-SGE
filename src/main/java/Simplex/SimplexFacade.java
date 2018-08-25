@@ -29,12 +29,12 @@ public class SimplexFacade {
 		this.simplex = new SimplexSolver();
 	}
 	
-	public void crearFuncionEconomica(RealVector coeficientes) {
+	public void crearFuncionEconomica(double[] coeficientes) {
 		this.funcionEconomica = new LinearObjectiveFunction(coeficientes, 0);
 	}
 	
-	public void agregarRestriccion(Relationship unComparador, double valorAcomprar, RealVector coeficientes) {
-		this.restricciones.add(new LinearConstraint(coeficientes,unComparador, valorAcomprar));
+	public void agregarRestriccion(Relationship unComparador, double valorAcomprar, double[] variables) {
+		this.restricciones.add(new LinearConstraint(variables,unComparador, valorAcomprar));
 	}
 	
 	public PointValuePair resolver() throws TooManyIterationsException{

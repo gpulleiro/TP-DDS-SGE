@@ -6,8 +6,8 @@ public class Dispositivo {
 	
 	private String nombre;
 	private float consumoFijo;
-	private static double minimoHoras; 
-	private static double maximoHoras; 
+	private double minimoHoras; 
+	private double maximoHoras; 
 	private Tipo tipo;
 	
 	//constructor
@@ -33,7 +33,7 @@ public class Dispositivo {
 		this.nombre = nombre;
 	}
 		
-	public static double getMinimoHoras() {
+	public double getMinimoHoras() {
 		return minimoHoras;
 	}
 
@@ -41,7 +41,7 @@ public class Dispositivo {
 		this.minimoHoras = minimoHoras;
 	}
 
-	public static double getMaximoHoras() {
+	public double getMaximoHoras() {
 		return maximoHoras;
 	}
 

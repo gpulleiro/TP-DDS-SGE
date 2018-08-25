@@ -236,26 +236,28 @@ public class Cliente extends Usuario {
 		return consumoTotal;
 	}
 	
-public void mejorCombinacionDispositivos(){
-		
+
+	public void mejorCombinacionDispositivos(ArrayList<Dispositivo> dispositivos){
 		SimplexFacade simplex1 = new SimplexFacade(GoalType.MAXIMIZE,true);
-		int tamanioLista = this.dispositivos.size();
+		int tamanioLista = dispositivos.size();
 		int i=0;
-		RealVector vectorDeCoeficientes = new ArrayRealVector(tamanioLista);
+		double[] coeficientes = new double[tamanioLista];
 		
 		//por cada dispositivo creo las restricciones y tomo el consumo fijo en un vector
-		for (Dispositivo dis:this.dispositivos){
-			RealVector vectorDeVariables = new ArrayRealVector(tamanioLista);
-			vectorDeVariables.setEntry(i, 1);
-			vectorDeCoeficientes.setEntry(i, dis.getConsumoFijo());
-			simplex1.agregarRestriccion(Relationship.GEQ, Dispositivo.getMinimoHoras(), vectorDeVariables);
-			simplex1.agregarRestriccion(Relationship.LEQ, Dispositivo.getMaximoHoras(), vectorDeVariables);
+		for (Dispositivo dis:dispositivos){
+			double[] variables = new double[tamanioLista];
+			variables[i]=1;
+			coeficientes[i]=dis.getConsumoFijo();
+			double min = dispositivos.get(i).getMinimoHoras();
+			double max = dispositivos.get(i).getMaximoHoras();
+			simplex1.agregarRestriccion(Relationship.GEQ, min, variables);
+			simplex1.agregarRestriccion(Relationship.LEQ, max, variables);
 			i++;
 		}
 		//agrego la restricción general
-		simplex1.agregarRestriccion(Relationship.LEQ, 440640, vectorDeCoeficientes);
+		simplex1.agregarRestriccion(Relationship.LEQ, 620, coeficientes);
 		//creo la función economica
-		simplex1.crearFuncionEconomica(vectorDeCoeficientes);
+		simplex1.crearFuncionEconomica(coeficientes);
 	
 		//resuelvo y muestro los resultados
 		PointValuePair solucion = simplex1.resolver();
@@ -266,5 +268,7 @@ public void mejorCombinacionDispositivos(){
 		}
 		System.out.printf(" total: %f", solucion.getValue());
 	}
+	
+	
 }
 
