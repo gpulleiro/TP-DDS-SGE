@@ -18,6 +18,7 @@ import Dispositivo.Dispositivo;
 import Dispositivo.Inteligente;
 import Repositorio.Repositorio;
 import Simplex.SimplexFacade;
+import Simplex.SimplexMaximizacionAdapter;
 import TipoDato.Coordenadas;
 
 public class Cliente extends Usuario {
@@ -237,36 +238,10 @@ public class Cliente extends Usuario {
 	}
 	
 
-	public void mejorCombinacionDispositivos(ArrayList<Dispositivo> dispositivos){
-		SimplexFacade simplex1 = new SimplexFacade(GoalType.MAXIMIZE,true);
-		int tamanioLista = dispositivos.size();
-		int i=0;
-		double[] coeficientes = new double[tamanioLista];
-		
-		//por cada dispositivo creo las restricciones y tomo el consumo fijo en un vector
-		for (Dispositivo dis:dispositivos){
-			double[] variables = new double[tamanioLista];
-			variables[i]=1;
-			coeficientes[i]=dis.getConsumoFijo();
-			double min = dispositivos.get(i).getMinimoHoras();
-			double max = dispositivos.get(i).getMaximoHoras();
-			simplex1.agregarRestriccion(Relationship.GEQ, min, variables);
-			simplex1.agregarRestriccion(Relationship.LEQ, max, variables);
-			i++;
-		}
-		//agrego la restricción general
-		simplex1.agregarRestriccion(Relationship.LEQ, 620, coeficientes);
-		//creo la función economica
-		simplex1.crearFuncionEconomica(coeficientes);
-	
-		//resuelvo y muestro los resultados
-		PointValuePair solucion = simplex1.resolver();
-	
-		for(i=0;i<tamanioLista;i++){
-		
-		System.out.printf(" x%d: %f", i, solucion.getPoint()[i]);
-		}
-		System.out.printf(" total: %f", solucion.getValue());
+	public void mejorCombinacionDispositivos(){
+		//se crea instancia del simplexMaximacion y se le delega la responsabilidad del calculo
+		SimplexMaximizacionAdapter simplex = new SimplexMaximizacionAdapter();
+		simplex.realizarCombinacionMaximizacion(this.getDispositivos());
 	}
 	
 	
