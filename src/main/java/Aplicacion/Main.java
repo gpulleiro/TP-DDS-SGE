@@ -2,7 +2,12 @@ package Aplicacion;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
+import Dispositivo.Dispositivo;
+import Dispositivo.Estandar;
 
 //import com.google.maps.GeoApiContext;
 //import com.google.maps.GeocodingApi;
@@ -13,7 +18,7 @@ import java.text.ParseException;
 
 
 import Repositorio.Repositorio;
-import Simplex.CombinacionDispositivos;
+import Simplex.TimerSimplex;
 import Usuarios.Cliente;
 
 public class Main {
@@ -38,10 +43,18 @@ public class Main {
 						
 			Cliente pepe = new Cliente();
 			pepe.setDispositivos(repositorio.getDispositivos());
+									
+			pepe.mejorCombinacionDispositivos();
 			
-//			System.out.println(pepe.getDispositivos().get(3).getMaximoHoras());
-						
-			pepe.mejorCombinacionDispositivos(pepe.getDispositivos());
+//Se ejecuta timer del simplex			
+			TimerSimplex.ejecutarTimerCombinacionDispositivosCliente(pepe,10);
+
+//Se agrega dispositivo mientras se ejecuta el simplex			
+			Dispositivo aireAcondicionado = new Dispositivo("AA de 3500 frigorias",(float) 1.613 ,90,360,new Estandar(10));
+			
+			pepe.aniadirDispositivo(aireAcondicionado);
+			
+			
 			
 //			System.out.println(repositorio.getClientes());
 //			System.out.println(repositorio.getZonas());			
