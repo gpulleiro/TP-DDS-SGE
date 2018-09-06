@@ -2,9 +2,8 @@ package Aplicacion;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+
+import com.google.maps.errors.ApiException;
 
 import Dispositivo.Dispositivo;
 import Dispositivo.Estandar;
@@ -24,21 +23,14 @@ import Usuarios.Cliente;
 public class Main {
 	
 //	public static void main( String[] args ) throws IOException, ApiException, InterruptedException, ParseException{
-		public static void main( String[] args ) throws IOException, InterruptedException, ParseException{
+		public static void main( String[] args ) throws IOException, InterruptedException, ParseException, ApiException{
 		
 			Repositorio repositorio = Repositorio.getInstance();
-//			repositorio.importarLog();
+			repositorio.importarLog();
 			repositorio.importarDispositivos();
-//			repositorio.importarZona();
-//			repositorio.importarTransformadores();
-//			repositorio.importarClientes();
-//
-//			String domicilio = "corrientes 1300";
-//			GeoApiContext context = new GeoApiContext.Builder().apiKey("AIzaSyCK3gGazusuz7AM73gd0kdI3gitoMF_5Yk").build();
-//			GeocodingResult[] result = GeocodingApi.geocode(context,domicilio).await();
-//			
-//			System.out.println(result[0].toString());
-			
+			repositorio.importarZona();
+			repositorio.importarTransformadores();
+			repositorio.importarClientes();			
 			
 						
 			Cliente pepe = new Cliente();

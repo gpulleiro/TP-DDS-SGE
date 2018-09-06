@@ -141,55 +141,10 @@ public class Repositorio {
 		
 		//mapeo de propiedades del gson
 		for(Cliente cli: this.clientes){			
-			cli.setCoordenadas(this.obtenerCoordenadas(cli.getDomicilio()));
+			cli.setCoordenadas(FuncionesHelper.obtenerCoordenadas(cli.getDomicilio()));
 			
-			this.asignarTransformador(cli);
+			FuncionesHelper.asignarTransformador(cli);
 		}
-		
-	}
-	
-
-	private Coordenadas obtenerCoordenadas(String domicilio) throws ApiException, InterruptedException, IOException {
-		
-		GeoApiContext context = new GeoApiContext.Builder().apiKey("AIzaSyCK3gGazusuz7AM73gd0kdI3gitoMF_5Yk").build();
-		GeocodingResult[] result = GeocodingApi.geocode(context,domicilio).await();
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		
-		String latitudString = gson.toJson(result[0].geometry.location.lat);
-		String longitudString = gson.toJson(result[0].geometry.location.lng);
-		
-		double latitud = Double.parseDouble(latitudString);
-		double longitud = Double.parseDouble(longitudString);
-		
-		Coordenadas coordenadas = new Coordenadas(latitud, longitud);
-		
-		return coordenadas;
-	}
-
-
-	private void asignarTransformador(Cliente cliente) {
-		
-		double cliLat = cliente.getCoordenadas().getLatitud();
-		double cliLong = cliente.getCoordenadas().getLongitud();
-		Transformador transformador = new Transformador();
-		double distanciaMinima = 0;
-		
-		for(Zona zona: this.zonas){
-			
-			for(Transformador tra: zona.getTransformadores() ){
-				
-				
-				double distancia = FuncionesHelper.calcularDistancia(cliente.getCoordenadas(), tra.getCoordenadas());
-				
-				if (distancia < distanciaMinima || distanciaMinima == 0){
-					
-					distanciaMinima = distancia;
-					transformador = tra;
-				}
-			}
-		}
-		
-		transformador.getClientes().add(cliente);
 		
 	}
 
