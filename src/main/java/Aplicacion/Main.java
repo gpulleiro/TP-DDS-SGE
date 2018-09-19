@@ -3,6 +3,11 @@ package Aplicacion;
 import java.io.IOException;
 import java.text.ParseException;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+
+import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
+
 import com.google.maps.errors.ApiException;
 
 import Dispositivo.Dispositivo;
@@ -22,57 +27,33 @@ import Usuarios.Cliente;
 
 public class Main {
 	
-//	public static void main( String[] args ) throws IOException, ApiException, InterruptedException, ParseException{
-		public static void main( String[] args ) throws IOException, InterruptedException, ParseException, ApiException{
+public static void main( String[] args ) throws IOException, InterruptedException, ParseException, ApiException{
 		
 			Repositorio repositorio = Repositorio.getInstance();
-			repositorio.importarLog();
-			repositorio.importarDispositivos();
-			repositorio.importarZona();
-			repositorio.importarTransformadores();
-			repositorio.importarClientes();			
+//			repositorio.importarLog();
+//			repositorio.importarDispositivos();
+//			repositorio.importarZona();
+//			repositorio.importarTransformadores();
+//			repositorio.importarClientes();			
 			
-						
-			Cliente pepe = new Cliente();
-			pepe.setDispositivos(repositorio.getDispositivos());
-									
-			pepe.mejorCombinacionDispositivos();
+			Dispositivo licuadora = new Dispositivo("licuadora", 2,3,4,new Estandar(3));
 			
-//Se ejecuta timer del simplex			
-			TimerSimplex.ejecutarTimerCombinacionDispositivosCliente(pepe,10);
+			EntityManager entityManager =
+					PerThreadEntityManagers.getEntityManager();
+			
+			EntityTransaction transaccion = 
+					entityManager.getTransaction();
+			
+			transaccion.begin();
 
-//Se agrega dispositivo mientras se ejecuta el simplex			
-			Dispositivo aireAcondicionado = new Dispositivo("AA de 3500 frigorias",(float) 1.613 ,90,360,new Estandar(10));
+		//	Robo roboDB = entityManager.find(Robo.class, new Long(1));
 			
-			pepe.aniadirDispositivo(aireAcondicionado);
+			//robo.setDenunciante("pepe");
 			
+			entityManager.persist(licuadora);
 			
-			
-//			System.out.println(repositorio.getClientes());
-//			System.out.println(repositorio.getZonas());			
-//		
-//		ArrayList<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
-//
-//		Cliente roberto = new Cliente(dispositivos);
-//
-//		Dispositivo aireAcondicionado = new Dispositivo("AA de 3500 frigorias",(float) 1.613 ,90,360,new Estandar(10));
-//		Dispositivo lampara = new Dispositivo("lampara halogena de 40w",(float) 0.04,90,360,new Estandar(9));
-//		Dispositivo lavarropas = new Dispositivo("lavarropas 5kg",(float) 0.175,6,40,new Estandar(6));
-//
-//
-//		dispositivos.add(aireAcondicionado);
-//		dispositivos.add(lampara);
-//		dispositivos.add(lavarropas);
-//		
-//		roberto.setDispositivos(dispositivos);
-//		
-//		/*roberto.getDispositivos().add(aireAcondicionado);
-//		roberto.getDispositivos().add(lampara);
-//		roberto.getDispositivos().add(lavarropas);*/
-//
-//
-//		System.out.println(roberto.getDispositivos());
-//
-//		roberto.mejorCombinacionDispositivos();
+			transaccion.commit();
+
+
 	}
 }

@@ -2,8 +2,17 @@ package Dispositivo;
 
 import java.io.IOException;
 
+import javax.persistence.*;
+
+
+@Entity
+@Table(name = "Dispositivos")
 public class Dispositivo {
 	
+	@Id
+	@GeneratedValue
+	private long id;
+		
 	private String nombre;
 	private float consumoFijo;
 	private double minimoHoras; 
