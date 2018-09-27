@@ -4,11 +4,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import Dispositivo.Dispositivo;
+import Dispositivo.Inteligente;
 
 public abstract class Sensor implements Subject{
 	
 	protected ArrayList<Observer>observadores;
-	protected ArrayList<Dispositivo>dispositivos;
+	protected ArrayList<Inteligente>dispositivos;
 	private double magnitud;
 	
 	//metodos del patron Observer
@@ -18,7 +19,7 @@ public abstract class Sensor implements Subject{
 		for(Observer obs:observadores) {obs.update();}
 	}
 
-	public ArrayList<Dispositivo> getDispositivos() {
+	public ArrayList<Inteligente> getDispositivos() {
 		return dispositivos;
 	}
 	
@@ -31,7 +32,7 @@ public abstract class Sensor implements Subject{
 		this.observadores = observadores;
 	}
 
-	public void setDispositivos(ArrayList<Dispositivo> dispositivos) {
+	public void setDispositivos(ArrayList<Inteligente> dispositivos) {
 		this.dispositivos = dispositivos;
 	}
 
@@ -44,7 +45,7 @@ public abstract class Sensor implements Subject{
 	}
 
 	//agrega un dispositivo a la lista de dispositivos del sensor
-	public void agregarDispositivo(Dispositivo dis){dispositivos.add(dis);};
+	public void agregarDispositivo(Inteligente dis){dispositivos.add(dis);};
 	
 	//hago que al medir el movimiento devuelva falso
 	public void realizarMedicion() throws IOException{

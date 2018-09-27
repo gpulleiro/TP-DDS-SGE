@@ -12,6 +12,7 @@ import com.google.maps.errors.ApiException;
 
 import Dispositivo.Dispositivo;
 import Dispositivo.Estandar;
+import Dispositivo.Inteligente;
 
 //import com.google.maps.GeoApiContext;
 //import com.google.maps.GeocodingApi;
@@ -30,13 +31,15 @@ public class Main {
 public static void main( String[] args ) throws IOException, InterruptedException, ParseException, ApiException{
 		
 			Repositorio repositorio = Repositorio.getInstance();
-//			repositorio.importarLog();
-//			repositorio.importarDispositivos();
+			repositorio.importarLog();
+			repositorio.importarDispositivos();
 //			repositorio.importarZona();
 //			repositorio.importarTransformadores();
 //			repositorio.importarClientes();			
+//			
+			Inteligente licuadora = new Inteligente("licuadora",2,3,4,"encendido");
 			
-			Dispositivo licuadora = new Dispositivo("licuadora", 2,3,4,new Estandar(3));
+			Estandar batidora = new Estandar ("batidora",2,3,4,45);
 			
 			EntityManager entityManager =
 					PerThreadEntityManagers.getEntityManager();
@@ -48,12 +51,11 @@ public static void main( String[] args ) throws IOException, InterruptedExceptio
 
 		//	Robo roboDB = entityManager.find(Robo.class, new Long(1));
 			
-			//robo.setDenunciante("pepe");
+//			robo.setDenunciante("pepe");
 			
 			entityManager.persist(licuadora);
+			entityManager.persist(batidora);
 			
 			transaccion.commit();
-
-
 	}
 }

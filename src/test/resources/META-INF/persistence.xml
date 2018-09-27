@@ -8,8 +8,9 @@
     <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
     	<provider>org.hibernate.ejb.HibernatePersistence</provider>
     	
-        <class>jacklow.model.Robo</class>
-    	 
+        <class>Dispositivo.Inteligente</class>
+        <class>Dispositivo.Estandar</class>
+         
         <properties> 
 	    <property name="hibernate.archive.autodetection" value="class"/>        
         

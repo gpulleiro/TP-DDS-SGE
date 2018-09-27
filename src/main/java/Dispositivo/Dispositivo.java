@@ -4,146 +4,154 @@ import java.io.IOException;
 
 import javax.persistence.*;
 
+import org.junit.Ignore;
+
 
 @Entity
-@Table(name = "Dispositivos")
-public class Dispositivo {
+//@Table(name = "Dispositivos")
+@Inheritance (strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo", discriminatorType = DiscriminatorType.STRING)
+public abstract class Dispositivo {
 	
 	@Id
 	@GeneratedValue
-	private long id;
+	protected long id;
 		
-	private String nombre;
-	private float consumoFijo;
-	private double minimoHoras; 
-	private double maximoHoras; 
-	private Tipo tipo;
+	protected String nombre;
+	protected double consumoFijo;
+	protected double minimoHoras; 
+	protected double maximoHoras;
 	
-	//constructor
-	public Dispositivo(String nombre, float consumoFijo,double minimoHoras, double maximoHoras, Tipo tipo) {
+	//constructor>
+	public Dispositivo(String nombre, double consumoFijo, double minimoHoras, double maximoHoras) {
+		super();
 		this.nombre = nombre;
 		this.consumoFijo = consumoFijo;
-		this.tipo = tipo;
 		this.minimoHoras = minimoHoras;
 		this.maximoHoras = maximoHoras;
 	}
+
 	
-	public Dispositivo(String nombre, float consumoFijo, Tipo tipo) {
-		this.nombre = nombre;
-		this.consumoFijo = consumoFijo;
-		this.tipo = tipo;
-	}	
 	//getters and setters
+	
+	public long getId() {
+		return id;
+	}
+
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+
 	public String getNombre() {
 		return nombre;
 	}
-		
+
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-		
+
+
+	public double getConsumoFijo() {
+		return consumoFijo;
+	}
+
+
+	public void setConsumoFijo(double consumoFijo) {
+		this.consumoFijo = consumoFijo;
+	}
+
+
 	public double getMinimoHoras() {
 		return minimoHoras;
 	}
 
-	public void setMinimoHoras(int minimoHoras) {
+
+	public void setMinimoHoras(double minimoHoras) {
 		this.minimoHoras = minimoHoras;
 	}
+
 
 	public double getMaximoHoras() {
 		return maximoHoras;
 	}
 
-	public void setMaximoHoras(int maximoHoras) {
+
+	public void setMaximoHoras(double maximoHoras) {
 		this.maximoHoras = maximoHoras;
 	}
 
-	public float getConsumoFijo() {
-		return consumoFijo;
-	}
-		
-	public void setConsumoFijo(float consumoFijo) {
-		this.consumoFijo = consumoFijo;
-	}
-		
-	public Tipo getTipo() {
-		return tipo;
-	}
-		
-	public void setTipo(Tipo tipo) {
-		this.tipo = tipo;
-	}
-	
-	public String getEstado(){
-		return this.tipo.getEstado();
-	};
-	
-	public void setEstado(String estado){
-		this.tipo.setEstado(estado);
-	};
+	//metodos 
+//	public void estasEncendido(){
+//		
+//		this.getTipo().estasEncendido();
+//	}	
+//
+//	public void estasApagado(){
+//		
+//		this.getTipo().estasApagado();
+//	}
+//	
+//	public void estasAhorro(){
+//		
+//		this.getTipo().estasAhorro();
+//		
+//	}
+//	
+//	public void encender() throws IOException{
+//		
+//		this.getTipo().encender();
+//	}
+//	public void apagar() throws IOException{
+//		
+//		this.getTipo().apagar();
+//	}
+//	
+//	public void ahorro() throws IOException{
+//
+//		this.getTipo().ahorro();
+//	}
+//	
+//	// opcion 2
+//	
+//	public void cambiarEstado(String estado) throws IOException{
+//
+//		this.getTipo().cambiarEstado(estado);
+//	}
+//	
+//	public double consumoUltimasHoras(int horas){
+//		
+//		double consumo = this.getTipo().consumoUltimasHoras(this, horas);
+//		
+//		return consumo;
+//	}
+//	
+//	public double consumoPeriodo(String fecha1, String fecha2){
+//		
+//		double consumo = this.getTipo().consumoPeriodo(this, fecha1, fecha2);
+//		
+//		return consumo;
+//	}
+//	
+//	public float consumo(){
+//		
+//		return this.getTipo().consumo(this.consumoFijo);
+//		
+//	}
 
+	public abstract String getEstado();
 	
+	public abstract int getCantHoras();
 	
-	//al utilizar el patron state, los metodos de la clase dispositivo lo que hacen es decirle al tipo que invoque el metodo y dependiendo de que tipo sea
-	//inteligente o estandar va a realizar una accion u otra
+	public abstract String obtenerFlag();
 	
+	public abstract double consumoPeriodo(String fecha1, String fecha2);
 
-	public void estasEncendido(){
-		
-		this.getTipo().estasEncendido();
-	}
-	
-	public void estasApagado(){
-		
-		this.getTipo().estasApagado();
-	}
-	
-	public void estasAhorro(){
-		
-		this.getTipo().estasAhorro();
-		
-	}
-	
-	public void encender() throws IOException{
-		
-		this.getTipo().encender();
-	}
-	public void apagar() throws IOException{
-		
-		this.getTipo().apagar();
-	}
-	
-	public void ahorro() throws IOException{
 
-		this.getTipo().ahorro();
-	}
+	public abstract double consumo();
 	
-	// opcion 2
-	
-	public void cambiarEstado(String estado) throws IOException{
-
-		this.getTipo().cambiarEstado(estado);
-	}
-	
-	public double consumoUltimasHoras(int horas){
-		
-		double consumo = this.getTipo().consumoUltimasHoras(this, horas);
-		
-		return consumo;
-	}
-	
-	public double consumoPeriodo(String fecha1, String fecha2){
-		
-		double consumo = this.getTipo().consumoPeriodo(this, fecha1, fecha2);
-		
-		return consumo;
-	}
-	
-	public float consumo(){
-		
-		return this.getTipo().consumo(this.consumoFijo);
-		
-	}
 }
 
 

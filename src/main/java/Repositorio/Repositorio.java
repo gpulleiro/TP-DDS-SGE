@@ -8,7 +8,6 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonIOException;
@@ -16,15 +15,11 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
-import com.google.maps.GeoApiContext;
-import com.google.maps.GeocodingApi;
 import com.google.maps.errors.ApiException;
-import com.google.maps.model.GeocodingResult;
 
 import Dispositivo.Dispositivo;
 import Dispositivo.Estandar;
 import Dispositivo.Inteligente;
-import Dispositivo.Tipo;
 import Helpers.FuncionesHelper;
 import TipoDato.Coordenadas;
 import Usuarios.Cliente;
@@ -38,6 +33,7 @@ public class Repositorio {
 	private ArrayList<Dispositivo> dispositivos;
 	private ArrayList<Log> log;
 	private ArrayList<Zona> zonas;
+	private Dispositivo dispositivo;
 	private static Repositorio miRepositorio;
 	
 	//constructor
@@ -158,17 +154,16 @@ public class Repositorio {
 		for (JsonElement obj: gsonArr){
 			JsonObject unDispo = obj.getAsJsonObject();
 			String nombre = unDispo.get("nombre").getAsString();
-			float consumoFijo = unDispo.get("consumoFijo").getAsFloat();
-			Tipo unTipo = null;
+			double consumoFijo = unDispo.get("consumoFijo").getAsFloat();
 			int minimoHoras = unDispo.get("minimoHoras").getAsInt();
 			int maximoHoras = unDispo.get("maximoHoras").getAsInt();
 			String flag = unDispo.get("flag").getAsString();
+			Dispositivo unDispositivo = null;
 			if (flag.equals("I")){
-				 unTipo= new Inteligente(unDispo.get("estado").getAsString());	
+				 unDispositivo = new Inteligente(nombre, consumoFijo, minimoHoras, maximoHoras,unDispo.get("estado").getAsString());
 			}else if(flag.equals("E")){
-				 unTipo = new Estandar(unDispo.get("cantHoras").getAsInt()); 				
+				unDispositivo = new Estandar(nombre, consumoFijo, minimoHoras, maximoHoras,unDispo.get("cantHoras").getAsInt()); 				
 			}
-			Dispositivo unDispositivo = new Dispositivo(nombre, consumoFijo, minimoHoras, maximoHoras, unTipo);
 			this.getDispositivos().add(unDispositivo);
 		}
 	}

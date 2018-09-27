@@ -2,10 +2,10 @@ package Acciones;
 
 import java.io.IOException;
 
-import Dispositivo.Dispositivo;
+import Dispositivo.Inteligente;
 
 public interface Actuador {
 
-	void actuar (Dispositivo dispositivo) throws IOException;
+	void actuar (Inteligente dispositivo) throws IOException;
 	
 }

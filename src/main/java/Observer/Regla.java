@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import Acciones.Actuador;
 import Dispositivo.Dispositivo;
+import Dispositivo.Inteligente;
 
 public class Regla implements Observer {
 
@@ -79,7 +80,7 @@ public class Regla implements Observer {
 	public void update() throws IOException {
 	for (Sensor sen:sensores)
 	{if(condicionD(sen))
-	{for(Dispositivo dis:sen.getDispositivos())
+	{for(Inteligente dis: sen.getDispositivos())
 	{this.getActuador().actuar(dis);}}}
 }
 	

@@ -25,7 +25,7 @@ public void elConsumoEnElPeriodoFue110KW() throws IOException{
 	Repositorio repo = Repositorio.getInstance();
 	repo.importarLog();
 	
-	Dispositivo licuadora = new Dispositivo("licuadora",20,new Inteligente("apagado"));
+	Inteligente licuadora = new Inteligente("licuadora",20,2,3,"apagado");
 	
 	double consumo = licuadora.consumoPeriodo("06/06/2018 02:30:00", "06/06/2018 11:00:00");
 	
@@ -39,7 +39,7 @@ public void elConsumoEnLasUltimas3HorasFue60KW() throws IOException{
 	Repositorio repo = Repositorio.getInstance();
 	repo.importarLog();
 	
-	Dispositivo licuadora = new Dispositivo("licuadora",20,new Inteligente("encendido"));
+	Inteligente licuadora = new Inteligente("licuadora",20,3,5,"encendido");
 	
 	double consumo = licuadora.consumoUltimasHoras(3);
 	
@@ -49,46 +49,46 @@ public void elConsumoEnLasUltimas3HorasFue60KW() throws IOException{
 	
 @Test
 public void estaEncendidoDispositivoInteligente() {
-Dispositivo licuadora = new Dispositivo("licuadora",20,new Inteligente("encendido"));
+Inteligente licuadora = new Inteligente("licuadora",20,2,4,"encendido");
 
-assertTrue(licuadora.getTipo().estasEncendido());
+assertTrue(licuadora.estasEncendido());
 }
 
 @Test
 public void estaApagadoDispositivoInteligente() {
-Dispositivo licuadora = new Dispositivo("licuadora",20,new Inteligente("apagado"));
+Inteligente licuadora = new Inteligente("licuadora",20,2,6,"apagado");
 
-assertTrue(licuadora.getTipo().estasApagado());
+assertTrue(licuadora.estasApagado());
 }
 
 @Test
 public void estaApagadoDispositivoConvertido() {
 Cliente pepe = new Cliente();
 
-Dispositivo licuadora = new Dispositivo("licuadora",20,new Estandar(3));
-Dispositivo split = new Dispositivo("split",60,new Estandar(4));
+Estandar licuadora = new Estandar ("licuadora",20,4,5,32);
+Estandar split = new Estandar ("split",60,2,5,6);
 
-pepe.convertirDispositivo(licuadora);
-pepe.convertirDispositivo(split);
+Inteligente licu = pepe.convertirDispositivo(licuadora);
+Inteligente spl = pepe.convertirDispositivo(split);
 
-assertTrue(licuadora.getTipo().estasApagado());
-assertTrue(split.getTipo().estasApagado());
+assertTrue(licu.estasApagado());
+assertTrue(spl.estasApagado());
 }
 
 @Test
 public void estaEnModoAhorroDeEnergia() throws IOException {
-Dispositivo licuadora = new Dispositivo("licuadora",20,new Inteligente("apagado"));
+Inteligente licuadora = new Inteligente("licuadora",20,2,4,"apagado");
 
 licuadora.ahorro();
 
-assertTrue(licuadora.getTipo().estasAhorro());
+assertTrue(licuadora.estasAhorro());
 }
 
 @Test
 public void tiene10Puntos() throws IOException {
 Cliente pepe = new Cliente();
 
-Dispositivo licuadora = new Dispositivo("licuadora",20,new Estandar(3));
+Estandar licuadora = new Estandar("licuadora",20,4,6,43);
 
 pepe.convertirDispositivo(licuadora);
 
@@ -98,36 +98,34 @@ assertTrue(pepe.getPuntos() == 10);
 @Test
 public void losDispositivosSinMovimientoEstanApagados1() {
 
-	Dispositivo luz = new Dispositivo("luz",20,new Inteligente("encendido"));
-	Dispositivo luz1 = new Dispositivo("luz1",20,new Inteligente("encendido"));
-	Dispositivo luz2 = new Dispositivo("luz2",20,new Inteligente("encendido"));
-	Dispositivo luz3 = new Dispositivo("luz3",20,new Inteligente("apagado"));
+	Inteligente luz = new Inteligente ("luz",20,3,5,"encendido");
+	Inteligente luz1 = new Inteligente ("luz1",20,3,5,"encendido");
+	Inteligente luz2 = new Inteligente ("luz2",20,3,5,"encendido");
+	Inteligente luz3 = new Inteligente ("luz3",20,3,5,"apagado");
 	
-SensorDeMovimiento sensorLuces = new SensorDeMovimiento();
-AccionApagar apagar = new AccionApagar();
-Regla sinMovimientoApagar = new Regla("menor",1, apagar );
+	SensorDeMovimiento sensorLuces = new SensorDeMovimiento();
+	AccionApagar apagar = new AccionApagar();
+	Regla sinMovimientoApagar = new Regla("menor",1, apagar );
 
+	sensorLuces.agregarDispositivo(luz);
+	sensorLuces.agregarDispositivo(luz1);
+	sensorLuces.agregarDispositivo(luz2);
+	sensorLuces.agregarDispositivo(luz3);
+	
 
+	sinMovimientoApagar.agregarSensor(sensorLuces); 
+	sinMovimientoApagar.setActuador(apagar);
+	
+	try {
+		sensorLuces.realizarMedicion();
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
 
-sensorLuces.agregarDispositivo(luz);
-sensorLuces.agregarDispositivo(luz1);
-sensorLuces.agregarDispositivo(luz2);
-sensorLuces.agregarDispositivo(luz3);
-
-
-sinMovimientoApagar.agregarSensor(sensorLuces); 
-sinMovimientoApagar.setActuador(apagar);
-
-try {
-	sensorLuces.realizarMedicion();
-} catch (IOException e) {
-	e.printStackTrace();
-}
-
-assertTrue(luz.getTipo().estasApagado());
-assertTrue(luz1.getTipo().estasApagado());
-assertTrue(luz2.getTipo().estasApagado());
-assertEquals("apagado",luz3.getTipo().getEstado());
+	assertTrue(luz.estasApagado());
+	assertTrue(luz1.estasApagado());
+	assertTrue(luz2.estasApagado());
+	assertEquals("apagado",luz3.getEstado());
 
 }
 

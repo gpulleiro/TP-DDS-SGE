@@ -23,7 +23,7 @@ public class TestEntrega2 {
 		
 		Repositorio repositorio = Repositorio.getInstance();
 		repositorio.importarLog();
-		repositorio.importarDispositivos();
+		//repositorio.importarDispositivos();
 		repositorio.importarZona();
 		repositorio.importarTransformadores();
 		repositorio.importarClientes();

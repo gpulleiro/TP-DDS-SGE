@@ -160,16 +160,18 @@ public class Cliente extends Usuario {
 	}
 
 	//convertir un dispositivo a inteligente
-	public void convertirDispositivo(Dispositivo dis) {
+	public Inteligente convertirDispositivo(Dispositivo dis) {
 		
-		dis.setTipo(new Inteligente("apagado"));
+		Inteligente convertido = new Inteligente(dis.getNombre(),dis.getConsumoFijo(),dis.getMinimoHoras(),dis.getMaximoHoras(),"apagado");
 		
 		this.puntos = this.getPuntos() + 10;
+	
+		return convertido;
 	}
 
 	//registrar un dispositivo inteligente
 	
-	public void registrarDispositivo(String nombre, float consumo) throws IOException{
+	public void registrarDispositivo(String nombre, double consumo, double min, double max) throws IOException{
 		
 		boolean existe = false;
 		
@@ -195,7 +197,7 @@ public class Cliente extends Usuario {
 		
 		if (existe = false){ 
 		
-			Dispositivo dispositivoNuevo = new Dispositivo(nombre,consumo,new Inteligente("apagado"));
+			Inteligente dispositivoNuevo = new Inteligente(nombre, consumo, min, max, "apagado");
 			
 			Repositorio.getInstance().getDispositivos().add(dispositivoNuevo);
 			
@@ -225,10 +227,10 @@ public class Cliente extends Usuario {
 		
 		for (Dispositivo obj: dispositivos){
 			
-			if(obj.getTipo().obtenerFlag().equals("I")){
+			if(obj.obtenerFlag().equals("I")){
 				
 				consumoTotal = consumoTotal + obj.consumoPeriodo(fecha, fechaFin);
-			} if (obj.getTipo().obtenerFlag().equals("E")){
+			} if (obj.obtenerFlag().equals("E")){
 				
 				consumoTotal = consumoTotal + (obj.consumo()*dif);
 			}

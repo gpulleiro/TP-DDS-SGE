@@ -2,9 +2,8 @@ package Sensores;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Timer;
 
-import Dispositivo.Dispositivo;
+import Dispositivo.Inteligente;
 import Observer.Observer;
 import Observer.Sensor;
 
@@ -14,7 +13,7 @@ public class SensorDeTemperatura extends Sensor {
 	
 	public SensorDeTemperatura() {
 		observadores = new ArrayList<Observer>();
-		dispositivos = new ArrayList<Dispositivo>();
+		dispositivos = new ArrayList<Inteligente>();
 	}
 
 	//metodos del patron Observer
