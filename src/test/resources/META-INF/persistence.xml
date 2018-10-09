@@ -10,6 +10,10 @@
     	
         <class>Dispositivo.Inteligente</class>
         <class>Dispositivo.Estandar</class>
+        <class>Usuarios.Administrador</class>
+        <class>Usuarios.Cliente</class>
+        <class>Usuarios.Categoria</class>
+        <class>TipoDato.Coordenadas</class>
          
         <properties> 
 	    <property name="hibernate.archive.autodetection" value="class"/>        

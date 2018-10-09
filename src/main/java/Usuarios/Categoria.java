@@ -1,11 +1,30 @@
 package Usuarios;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="CATEGORIA")
 public class Categoria {
 
+	@Id
+	@GeneratedValue
+	@Column(name="ID_CAT")
+	private long id;
+	
+	@Column(name="NOMBRE")
 	private String nombre;
+	
+	@Column(name="CONSUMO")
 	private float consumo;
+	
+	@Column(name="CARGO_FIJO")
 	private float cargoFijo;
+	
+	@Column(name="CARGO_VAR")
 	private float cargoVariable;
 	
 	//constructor
@@ -17,6 +36,8 @@ public class Categoria {
 		this.cargoVariable = cargoVariable;
 	}
 
+	public Categoria() {}
+	
 	//getters and setters
 	public String getNombre() {
 		return nombre;

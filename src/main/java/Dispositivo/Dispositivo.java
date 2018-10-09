@@ -8,18 +8,26 @@ import org.junit.Ignore;
 
 
 @Entity
-//@Table(name = "Dispositivos")
+@Table(name = "DISPOSITIVO")
 @Inheritance (strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "tipo", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorColumn(name = "TIPO", discriminatorType = DiscriminatorType.STRING)
 public abstract class Dispositivo {
 	
 	@Id
 	@GeneratedValue
+	@Column(name="ID_DISP")
 	protected long id;
-		
+	
+	@Column(name="NOMBRE")
 	protected String nombre;
+	
+	@Column(name="CONS_FIJO")
 	protected double consumoFijo;
-	protected double minimoHoras; 
+	
+	@Column(name="MIN_HORAS")
+	protected double minimoHoras;
+	
+	@Column(name="MAX_HORAS")
 	protected double maximoHoras;
 	
 	//constructor>
@@ -31,6 +39,7 @@ public abstract class Dispositivo {
 		this.maximoHoras = maximoHoras;
 	}
 
+	public Dispositivo() {}
 	
 	//getters and setters
 	

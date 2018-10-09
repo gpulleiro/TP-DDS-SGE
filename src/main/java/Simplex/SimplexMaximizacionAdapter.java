@@ -1,6 +1,7 @@
 package Simplex;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.math3.optim.PointValuePair;
 import org.apache.commons.math3.optim.linear.Relationship;
@@ -15,19 +16,19 @@ public class SimplexMaximizacionAdapter {
 		simplex = new SimplexFacade(GoalType.MAXIMIZE, true);
 	}
 	
-	public void realizarCombinacionMaximizacion(ArrayList<Dispositivo> dispositivos) {
+	public void realizarCombinacionMaximizacion(List<Dispositivo> list) {
 		
-		int tamanioLista = dispositivos.size();
+		int tamanioLista = list.size();
 		int i=0;
 		double[] coeficientes = new double[tamanioLista];
 		
 		//por cada dispositivo creo las restricciones y tomo el consumo fijo en un vector
-		for (Dispositivo dis:dispositivos){
+		for (Dispositivo dis:list){
 			double[] variables = new double[tamanioLista];
 			variables[i]=1;
 			coeficientes[i]=dis.getConsumoFijo();
-			double min = dispositivos.get(i).getMinimoHoras();
-			double max = dispositivos.get(i).getMaximoHoras();
+			double min = list.get(i).getMinimoHoras();
+			double max = list.get(i).getMaximoHoras();
 			simplex.agregarRestriccion(Relationship.GEQ, min, variables);
 			simplex.agregarRestriccion(Relationship.LEQ, max, variables);
 			i++;

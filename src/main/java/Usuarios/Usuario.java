@@ -1,16 +1,35 @@
 package Usuarios;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
+import javax.persistence.*;
 
+@Entity
+@Table(name = "USUARIO")
+@Inheritance (strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "TIPO", discriminatorType = DiscriminatorType.STRING)
 public abstract class Usuario {
 
+	@Id
+	@GeneratedValue
+	@Column(name="ID_USU")
+	protected long id;
+	
+	@Column(name="NOMBRE")
 	protected String nombre;
+	
+	@Column(name="APELLIDO")
 	protected String apellido;
+	
+	@Column(name="DOMICILIO")
 	protected String domicilio;
+	
+	@Column(name="FECHA_ALTA")
 	protected String fechaAlta;
+	
+	@Column(name="USUARIO")
 	protected String usuario;
+	
+	@Column(name="CONTRASENIA")
 	protected String contrasenia;
 	
 	//constructor

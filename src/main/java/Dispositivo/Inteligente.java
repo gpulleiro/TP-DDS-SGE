@@ -19,6 +19,7 @@ import javax.persistence.*;
 @DiscriminatorValue(value = "INT")
 public class Inteligente extends Dispositivo {
 	
+	@Column(name="ESTADO")
 	private String estado;
 	
 	//constructor	
@@ -26,6 +27,8 @@ public class Inteligente extends Dispositivo {
 		super(nombre, consumoFijo, minimoHoras, maximoHoras);
 		this.estado = estado;
 	}
+	
+	public Inteligente() {}
 		
 	//setters and getters
 	public String getEstado() {

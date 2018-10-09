@@ -6,6 +6,7 @@ import javax.persistence.*;
 @DiscriminatorValue(value = "STD")
 public class Estandar extends Dispositivo {
 	
+	@Column(name="CANT_HORAS")
 	private int cantHoras;
 	
 	//constructor
@@ -13,6 +14,8 @@ public class Estandar extends Dispositivo {
 		super(nombre, consumoFijo, minimoHoras, maximoHoras);
 		this.cantHoras = cantHoras;
 	}
+	
+	public Estandar() {}
 	
 	//getters and setters
 

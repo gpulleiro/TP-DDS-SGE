@@ -1,8 +1,24 @@
 package TipoDato;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="COORDENADAS")
 public class Coordenadas {
 	
+	@Id
+	@GeneratedValue
+	@Column(name="ID_COORD")
+	public long id;
+	
+	@Column(name="LATITUD")
 	private double latitud;
+	
+	@Column(name="LONGITUD")
 	private double longitud;
 	
 	//constructor
@@ -11,6 +27,8 @@ public class Coordenadas {
 		this.latitud = latitud;
 		this.longitud = longitud;
 	}
+	
+	public Coordenadas() {}
 	
 	
 	//getters and setters

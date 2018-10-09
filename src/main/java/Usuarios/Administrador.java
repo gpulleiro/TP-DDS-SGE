@@ -2,35 +2,35 @@ package Usuarios;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.*;
+
+import Dispositivo.Dispositivo;
+
+@Entity
+@DiscriminatorValue(value = "ADMIN")
 public class Administrador extends Usuario {
-
-	private int ID;
 
 	//constructor
 	
 	public Administrador(String nombre, String apellido, String domicilio, String fechaAlta, String usuario,
-			String contrasenia,int ID) {
+			String contrasenia) {
 		super(nombre, apellido, domicilio, fechaAlta, usuario, contrasenia);
-	
-		this.ID = ID;
 			}
 
+	public Administrador() {}
 	
 	//getters-setters
 	
-	public int getID() {
-		return ID;
-	}
-
-
-	public void setID(int iD) {
-		ID = iD;
-	}
-
+	
 	//metodos
 	
 	//cantidad de meses
@@ -46,6 +46,11 @@ public class Administrador extends Usuario {
 		
 		return meses;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Administrador [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", domicilio=" + domicilio
+				+ ", fechaAlta=" + fechaAlta + ", usuario=" + usuario + ", contrasenia=" + contrasenia + "]";
+	}
 }
 

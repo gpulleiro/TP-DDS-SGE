@@ -7,35 +7,53 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 
-import org.apache.commons.math3.linear.ArrayRealVector;
-import org.apache.commons.math3.linear.RealVector;
-import org.apache.commons.math3.optim.PointValuePair;
-import org.apache.commons.math3.optim.linear.Relationship;
-import org.apache.commons.math3.optim.nonlinear.scalar.GoalType;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
 
 import Dispositivo.Dispositivo;
 import Dispositivo.Inteligente;
 import Repositorio.Repositorio;
-import Simplex.SimplexFacade;
 import Simplex.SimplexMaximizacionAdapter;
 import TipoDato.Coordenadas;
 
+@Entity
+@DiscriminatorValue(value="CLIENTE")
 public class Cliente extends Usuario {
 
+	@Column(name="TIPO_DOC")
 	private String tipoDocumento;
+	
+	@Column(name="NUM_DOC")
 	private int numeroDocumento;
+	
+	@Column(name="TELEFONO")
 	private int telefono;
+	
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private Categoria categoria;
-	private ArrayList <Dispositivo> dispositivos;
+	
+	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	private List <Dispositivo> dispositivos = new ArrayList<Dispositivo>();
+	
+	@Column(name="PUNTOS")
 	private int puntos;
+	
+	@OneToOne
 	private Coordenadas coordenadas;
 	
 	//constructor
 	
 	public Cliente(String nombre, String apellido, String domicilio, String fechaAlta, String usuario,
-			String contrasenia, String tipoDocumento, int numeroDocumento, int telefono, Categoria categoria,
-			ArrayList<Dispositivo> dispositivos, int puntos) {
+			String contrasenia, String tipoDocumento, int numeroDocumento, int telefono, Categoria categoria, int puntos) {
 		
 		super(nombre, apellido, domicilio, fechaAlta, usuario, contrasenia);
 		
@@ -43,7 +61,6 @@ public class Cliente extends Usuario {
 		this.numeroDocumento = numeroDocumento;
 		this.telefono = telefono;
 		this.categoria = categoria;
-		this.dispositivos = dispositivos;
 		this.puntos = puntos;
 	}
 
@@ -98,7 +115,7 @@ public class Cliente extends Usuario {
 		this.categoria = categoria;
 	}
 
-	public ArrayList<Dispositivo> getDispositivos() {
+	public List<Dispositivo> getDispositivos() {
 		return dispositivos;
 	}
 
@@ -245,6 +262,16 @@ public class Cliente extends Usuario {
 		SimplexMaximizacionAdapter simplex = new SimplexMaximizacionAdapter();
 		simplex.realizarCombinacionMaximizacion(this.getDispositivos());
 	}
+
+	@Override
+	public String toString() {
+		return "Cliente [tipoDocumento=" + tipoDocumento + ", numeroDocumento=" + numeroDocumento + ", telefono="
+				+ telefono + ", categoria=" + categoria + ", dispositivos=" + dispositivos + ", puntos=" + puntos
+				+ ", coordenadas=" + coordenadas + ", nombre=" + nombre + ", apellido=" + apellido + ", domicilio="
+				+ domicilio + ", fechaAlta=" + fechaAlta + ", usuario=" + usuario + ", contrasenia=" + contrasenia
+				+ "]";
+	}
+	
 	
 	
 }
