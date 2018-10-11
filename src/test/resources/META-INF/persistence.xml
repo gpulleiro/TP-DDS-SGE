@@ -15,7 +15,9 @@
         <class>Usuarios.Categoria</class>
         <class>TipoDato.Coordenadas</class>
         <class>Repositorio.Log</class>
-        
+        <class>Acciones.AccionApagar</class>
+        <class>Acciones.AccionBajarTemperatura</class>
+        <class>Acciones.AccionEncender</class>
          
         <properties> 
 	    <property name="hibernate.archive.autodetection" value="class"/>        
