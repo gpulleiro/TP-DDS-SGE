@@ -14,6 +14,9 @@ import javax.persistence.Entity;
 import javax.persistence.*;
 
 import Dispositivo.Dispositivo;
+import Dispositivo.DispositivoDAO;
+import Repositorio.Log;
+import Repositorio.LogDAO;
 
 @Entity
 @DiscriminatorValue(value = "ADMIN")
@@ -51,6 +54,35 @@ public class Administrador extends Usuario {
 	public String toString() {
 		return "Administrador [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", domicilio=" + domicilio
 				+ ", fechaAlta=" + fechaAlta + ", usuario=" + usuario + ", contrasenia=" + contrasenia + "]";
+	}
+	
+	public void registrarDispositivo(Dispositivo dis) {
+		
+		
+		DispositivoDAO disDAO = new DispositivoDAO();
+		
+		disDAO.registrarDispositivo(dis);
+		
+	}
+	
+	public Dispositivo obtenerDispositivo (String nombre){
+		
+		DispositivoDAO disDAO = new DispositivoDAO();
+		
+		Dispositivo dis = disDAO.obtenerDispositivo(nombre);
+		
+		
+		return dis;
+		
+	}
+
+	public List<Log> obtenerLogs(String nombre, int mes, String estado) {
+		
+		LogDAO logDAO = new LogDAO();
+		
+		List<Log> lista = logDAO.obtenerLogs(nombre,mes,estado);
+		
+		return lista;
 	}
 }
 

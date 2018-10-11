@@ -1,37 +1,44 @@
 [
 {
-	"fecha": "06/06/2018 02:00:00",
-	"nombre": "licuadora",
+	"id_dispositivo": 22,
+	"fecha": "06/10/2018 02:00:00",
+	"nombre": "PC de escritorio",
 	"estado": "encendido"
 },
-{
-	"fecha": "06/06/2018 04:00:00",
-	"nombre": "licuadora",
+{	
+	"id_dispositivo": 22,
+	"fecha": "06/10/2018 04:00:00",
+	"nombre": "PC de escritorio",
 	"estado": "ahorro"
 },
 {
-	"fecha": "06/06/2018 09:00:00",
-	"nombre": "licuadora",
+	"id_dispositivo": 22,
+	"fecha": "06/10/2018 09:00:00",
+	"nombre": "PC de escritorio",
 	"estado": "encendido"
 },
 {
-	"fecha": "06/06/2018 17:03:02",
-	"nombre": "luz",
+	"id_dispositivo": 19,
+	"fecha": "06/10/2018 17:03:02",
+	"nombre": "Lampara 11w",
 	"estado": "encendido"
 },
 {
-	"fecha": "06/06/2018 17:03:02",
-	"nombre": "luz1",
+	"id_dispositivo": 20,
+	"fecha": "06/10/2018 17:03:02",
+	"nombre": "Lampara 15w",
 	"estado": "encendido"
 },
 {
-	"fecha": "06/06/2018 17:03:02",
-	"nombre": "luz2",
+	"id_dispositivo": 21,
+	"fecha": "06/10/2018 17:03:02",
+	"nombre": "Lampara 20w",
 	"estado": "encendido"
 },
 {
-	"fecha": "06/06/2018 17:03:34",
-	"nombre": "luz3",
+	"id_dispositivo": 16,
+	"fecha": "06/10/2018 17:03:34",
+	"nombre": "Lampara halogenas de 40w",
 	"estado": "apagado"
 }
 ]
