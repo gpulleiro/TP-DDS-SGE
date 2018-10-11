@@ -2,10 +2,15 @@ package Acciones;
 
 import java.io.IOException;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 import Dispositivo.Dispositivo;
 import Dispositivo.Inteligente;
 
-public class AccionApagar implements Actuador {
+@Entity
+@DiscriminatorValue(value="APAGAR")
+public class AccionApagar extends Actuador {
 
 	@Override
 	public void actuar(Inteligente dispositivo) throws IOException {

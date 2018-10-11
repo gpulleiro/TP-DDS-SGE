@@ -1,10 +1,15 @@
 package Acciones;
 import java.io.IOException;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 import Dispositivo.Dispositivo;
 import Dispositivo.Inteligente;
 
-public class AccionEncender implements Actuador{
+@Entity
+@DiscriminatorValue(value="ENCENDER")
+public class AccionEncender extends Actuador{
 
 	@Override
 	public void actuar(Inteligente dispositivo) throws IOException {
