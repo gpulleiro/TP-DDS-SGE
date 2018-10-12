@@ -3,15 +3,41 @@ package Observer;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 import Acciones.Actuador;
 import Dispositivo.Dispositivo;
 import Dispositivo.Inteligente;
 
+@Entity
+@Table(name="REGLA")
 public class Regla implements Observer {
 
+	@Id
+	@GeneratedValue
+	@Column(name = "ID_REGLA")
+	protected long id;
+	@ManyToMany(cascade = {CascadeType.ALL})
+	@JoinColumn(name="ID_SENSOR")
 	private ArrayList<Sensor>sensores;
+	@OneToOne(cascade = {CascadeType.ALL})
+	@JoinColumn(name = "ID_ACTUADOR")
 	private Actuador actuador;
+	@Column(name = "FLAG")
 	private double flag;
+	@Column(name="CONDICION")
 	private String condicion;
 	
 	//regla(condicion, flag, actuador)
