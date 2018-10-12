@@ -13,7 +13,7 @@ public class Coordenadas {
 	@Id
 	@GeneratedValue
 	@Column(name="ID_COORD")
-	public long id;
+	private long id;
 	
 	@Column(name="LATITUD")
 	private double latitud;

@@ -64,6 +64,17 @@ public class Cliente extends Usuario {
 		this.puntos = puntos;
 	}
 
+	public Cliente(String nombre, String apellido, String domicilio, String fechaAlta, String usuario,
+			String contrasenia, String tipoDocumento, int numeroDocumento, int telefono, int puntos) {
+		
+		super(nombre, apellido, domicilio, fechaAlta, usuario, contrasenia);
+		
+		this.tipoDocumento = tipoDocumento;
+		this.numeroDocumento = numeroDocumento;
+		this.telefono = telefono;
+		this.puntos = puntos;
+	}
+	
 	public Cliente() {
 		super();
 		this.dispositivos = new ArrayList<Dispositivo>();
