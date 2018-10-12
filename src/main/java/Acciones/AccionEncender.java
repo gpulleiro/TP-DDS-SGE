@@ -11,10 +11,7 @@ import Dispositivo.Inteligente;
 @DiscriminatorValue(value="ENCENDER")
 public class AccionEncender extends Actuador{
 
-	public AccionEncender(String unNombre)
-	{
-		super(unNombre);
-	}
+
 	
 	public AccionEncender() {}
 	

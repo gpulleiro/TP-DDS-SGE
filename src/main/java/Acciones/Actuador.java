@@ -25,21 +25,9 @@ public abstract class Actuador {
 	@Column(name="ID_ACTUADOR")
 	protected long id;
 	
-	@Column(name = "NOMBRE_ACTUADOR")
-	private String nombre;
 
-	public Actuador(String unNombre) {
-		this.nombre = unNombre;
-	}
 	public Actuador() {}
 	
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
 
 	public long getId() {
 		return id;
