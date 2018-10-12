@@ -2,12 +2,14 @@ package Observer;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
@@ -29,11 +31,11 @@ public class Regla implements Observer {
 	@GeneratedValue
 	@Column(name = "ID_REGLA")
 	protected long id;
-	@ManyToMany(cascade = {CascadeType.ALL})
-	@JoinColumn(name="ID_SENSOR")
-	private ArrayList<Sensor>sensores;
+	@ManyToMany(cascade = {CascadeType.ALL}, fetch=FetchType.EAGER)
+	protected List <Sensor> sensores = new ArrayList<Sensor>();
+	//private ArrayList<Sensor>sensores;
 	@OneToOne(cascade = {CascadeType.ALL})
-	@JoinColumn(name = "ID_ACTUADOR")
+
 	private Actuador actuador;
 	@Column(name = "FLAG")
 	private double flag;
@@ -64,9 +66,9 @@ public class Regla implements Observer {
 		this.actuador = actuador;
 	}
 		
-		public ArrayList<Sensor> getSensores() {
-		return sensores;
-	}
+//		public ArrayList<Sensor> getSensores() {
+//		return sensores;
+//	}
 
 	public void setSensores(ArrayList<Sensor> sensores) {
 		this.sensores = sensores;

@@ -2,7 +2,9 @@ package Observer;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
@@ -13,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import Dispositivo.Dispositivo;
@@ -28,10 +31,15 @@ public abstract class Sensor implements Subject{
 	@Column(name = "ID_SENSOR")
 	protected long id;
 	
-	@ManyToMany(mappedBy ="sensores",fetch = FetchType.LAZY)
-	protected ArrayList<Observer>observadores;
-	//falta tocar dispositivo para hacer bidireccional
-	protected ArrayList<Inteligente>dispositivos;
+	@ManyToMany(targetEntity=Regla.class, cascade = {CascadeType.ALL}, fetch=FetchType.EAGER)
+	protected List <Observer> observadores = new ArrayList<Observer>();
+	//protected ArrayList<Observer>observadores;
+	
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	protected List <Inteligente> dispositivos = new ArrayList<Inteligente>();
+	//protected ArrayList<Inteligente>dispositivos;
+	
+	@Column(name="MAGNITUD")
 	private double magnitud;
 	
 	//metodos del patron Observer
@@ -40,15 +48,25 @@ public abstract class Sensor implements Subject{
 	public void notificar() throws IOException {
 		for(Observer obs:observadores) {obs.update();}
 	}
-
-	public ArrayList<Inteligente> getDispositivos() {
+	
+	public List<Inteligente> getDispositivos() {
 		return dispositivos;
 	}
-	
 
-	public ArrayList<Observer> getObservadores() {
+
+
+	public List<Observer> getObservadores() {
 		return observadores;
 	}
+
+//	public ArrayList<Inteligente> getDispositivos() {
+//		return dispositivos;
+//	}
+//	
+//
+//	public ArrayList<Observer> getObservadores() {
+//		return observadores;
+//	}
 
 	public void setObservadores(ArrayList<Observer> observadores) {
 		this.observadores = observadores;
