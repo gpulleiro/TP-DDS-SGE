@@ -12,6 +12,12 @@ import Dispositivo.Inteligente;
 @DiscriminatorValue(value="APAGAR")
 public class AccionApagar extends Actuador {
 
+	public AccionApagar(String unNombre)
+	{
+		super(unNombre);
+	}
+	public AccionApagar() {}
+	
 	@Override
 	public void actuar(Inteligente dispositivo) throws IOException {
 		

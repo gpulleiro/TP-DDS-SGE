@@ -12,6 +12,13 @@ import Dispositivo.Inteligente;
 @DiscriminatorValue(value="BAJAR_TEMPERATURA")
 public class AccionBajarTemperatura extends Actuador{
 
+	public AccionBajarTemperatura(String unNombre)
+	{
+		super(unNombre);
+	}
+	
+	public AccionBajarTemperatura() {}
+	
 	@Override
 	public void actuar(Inteligente dispositivo) throws IOException {
 		
