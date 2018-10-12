@@ -18,6 +18,9 @@
         <class>Acciones.AccionApagar</class>
         <class>Acciones.AccionBajarTemperatura</class>
         <class>Acciones.AccionEncender</class>
+        <class>Observer.Regla</class>
+        <class>Sensores.SensorDeMovimiento</class>
+        <class>Sensores.SensorDeTemperatura</class>
          
         <properties> 
 	    <property name="hibernate.archive.autodetection" value="class"/>        
@@ -26,7 +29,7 @@
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" /> 
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/prueba" /> 
             <property name="hibernate.connection.username" value="root" /> 
-            <property name="hibernate.connection.password" value="tp" /> 
+            <property name="hibernate.connection.password" value="root" /> 
 
 <!-- 
             <property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver" /> 

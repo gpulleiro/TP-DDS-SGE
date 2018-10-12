@@ -30,6 +30,7 @@ public abstract class Sensor implements Subject{
 	
 	@ManyToMany(mappedBy ="sensores",fetch = FetchType.LAZY)
 	protected ArrayList<Observer>observadores;
+	//falta tocar dispositivo para hacer bidireccional
 	protected ArrayList<Inteligente>dispositivos;
 	private double magnitud;
 	
