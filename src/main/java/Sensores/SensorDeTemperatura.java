@@ -3,10 +3,16 @@ package Sensores;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 import Dispositivo.Inteligente;
 import Observer.Observer;
 import Observer.Sensor;
 
+
+@Entity
+@DiscriminatorValue(value = "TEMPERATURA")
 public class SensorDeTemperatura extends Sensor {
 
 	
