@@ -26,7 +26,18 @@ import Dispositivo.Inteligente;
 @Entity
 @Table(name="REGLA")
 public class Regla implements Observer {
-
+	
+	public Regla() {
+	}
+	
+	public Regla(String nombre, String condicion, double flag, Actuador actuador){
+		this.nombre = nombre;
+		this.flag = flag;
+		this.actuador = actuador;
+		this.condicion = condicion;
+		sensores = new ArrayList<Sensor>();
+	}
+	
 	@Id
 	@GeneratedValue
 	@Column(name = "ID_REGLA")
@@ -35,26 +46,14 @@ public class Regla implements Observer {
 	protected List <Sensor> sensores = new ArrayList<Sensor>();
 	//private ArrayList<Sensor>sensores;
 	@OneToOne(cascade = {CascadeType.ALL})
-
 	private Actuador actuador;
+	@Column(name = "NOMBRE", unique=true)
+	private String nombre;
 	@Column(name = "FLAG")
 	private double flag;
 	@Column(name="CONDICION")
 	private String condicion;
-	
-	//regla(condicion, flag, actuador)
-	
-	public Regla(String condicion, double flag, Actuador actuador){
-		this.flag = flag;
-		this.actuador = actuador;
-		this.condicion = condicion;
-		sensores = new ArrayList<Sensor>();
-	}
 		
-	public Regla(){
-		
-	}
-	
 	//agrego un sensor a la lista de sensores y agrego a la regla como observador del sensor.
 	public void agregarSensor(Sensor sen){
 		sensores.add(sen);
@@ -70,9 +69,35 @@ public class Regla implements Observer {
 		this.actuador = actuador;
 	}
 		
+	
+	
 //		public ArrayList<Sensor> getSensores() {
 //		return sensores;
 //	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public List<Sensor> getSensores() {
+		return sensores;
+	}
+
+	public void setSensores(List<Sensor> sensores) {
+		this.sensores = sensores;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
 	public void setSensores(ArrayList<Sensor> sensores) {
 		this.sensores = sensores;

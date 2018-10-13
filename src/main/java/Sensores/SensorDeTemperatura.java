@@ -20,14 +20,14 @@ public class SensorDeTemperatura extends Sensor {
 	public SensorDeTemperatura() {
 		observadores = new ArrayList<Observer>();
 		dispositivos = new ArrayList<Inteligente>();
+		mediciones = new ArrayList<Medicion>();
 	}
-
-	//metodos del patron Observer
 		
-	//hago que al medir el movimiento devuelva falso
 	@Override
 	public void realizarMedicion() throws IOException{
-	super.setMagnitud(15); //la magnitud 0 significa que no se esta moviendo
+	int numero = (int) (Math.random() * 10) + 1;
+	super.setMagnitud(numero); //la magnitud 0 significa que no se esta moviendo
+	super.agregarMedicion(numero);
 	notificar();
 }
 }

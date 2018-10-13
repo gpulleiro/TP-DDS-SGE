@@ -21,6 +21,7 @@
         <class>Observer.Regla</class>
         <class>Sensores.SensorDeMovimiento</class>
         <class>Sensores.SensorDeTemperatura</class>
+		<class>Sensores.Medicion</class>
         <class>ZonaGeografica.Zona</class>
         <class>ZonaGeografica.Transformador</class>
          

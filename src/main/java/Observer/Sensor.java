@@ -20,6 +20,7 @@ import javax.persistence.Table;
 
 import Dispositivo.Dispositivo;
 import Dispositivo.Inteligente;
+import Sensores.Medicion;
 
 @Entity
 @Table(name="SENSOR")
@@ -39,7 +40,10 @@ public abstract class Sensor implements Subject{
 	protected List <Inteligente> dispositivos = new ArrayList<Inteligente>();
 	//protected ArrayList<Inteligente>dispositivos;
 	
-	@Column(name="MAGNITUD")
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	protected List <Medicion> mediciones = new ArrayList<Medicion>();
+	
+	@Column(name = "MAGNITUD")
 	private double magnitud;
 	
 	//metodos del patron Observer
@@ -48,46 +52,53 @@ public abstract class Sensor implements Subject{
 	public void notificar() throws IOException {
 		for(Observer obs:observadores) {obs.update();}
 	}
+
 	
+	//getters y setters
 	public List<Inteligente> getDispositivos() {
 		return dispositivos;
 	}
 
+	public void setDispositivos(List<Inteligente> dispositivos) {
+		this.dispositivos = dispositivos;
+	}
+	
+	public long getId() {
+		return id;
+	}
 
+	public void setId(long id) {
+		this.id = id;
+	}
 
 	public List<Observer> getObservadores() {
 		return observadores;
 	}
 
-//	public ArrayList<Inteligente> getDispositivos() {
-//		return dispositivos;
-//	}
-//	
-//
-//	public ArrayList<Observer> getObservadores() {
-//		return observadores;
-//	}
-
-	public void setObservadores(ArrayList<Observer> observadores) {
+	public void setObservadores(List<Observer> observadores) {
 		this.observadores = observadores;
-	}
-
-	public void setDispositivos(ArrayList<Inteligente> dispositivos) {
-		this.dispositivos = dispositivos;
-	}
-
-	public void setMagnitud(double magnitud) {
-		this.magnitud = magnitud;
 	}
 
 	public double getMagnitud() {
 		return magnitud;
 	}
 
+	public void setMagnitud(double magnitud) {
+		this.magnitud = magnitud;
+	}
+
 	//agrega un dispositivo a la lista de dispositivos del sensor
 	public void agregarDispositivo(Inteligente dis){dispositivos.add(dis);};
 	
-	//hago que al medir el movimiento devuelva falso
+	public void agregarMedicion(double magnitud){
+		
+		Medicion medicion = new Medicion();
+		medicion.setMagnitud(magnitud);
+		mediciones.add(medicion);
+		
+	}
+	
+	
 	public void realizarMedicion() throws IOException{
 //	this.setMovimiento(false);
 //	notificar();
