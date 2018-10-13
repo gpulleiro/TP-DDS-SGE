@@ -2,16 +2,36 @@ package ZonaGeografica;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.List;
 
 import TipoDato.Coordenadas;
 
+import javax.persistence.*;
+
+import Dispositivo.Dispositivo;
+
+@Entity
+@Table(name = "ZONA")
+@Inheritance (strategy = InheritanceType.SINGLE_TABLE)
 public class Zona {
 	
+	@Id
+	@GeneratedValue
+	@Column( name = "ID_ZONA")
 	private int id;
+	
+	@Column(name = "NOMBRE" )
 	private String nombre;
+	
+	@OneToOne
 	private Coordenadas coordenadas;
+	
+	@Column( name = "RADIO" )
 	private int radio;
-	private ArrayList<Transformador> transformadores;
+	
+
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	private List <Transformador> transformadores = new ArrayList<Transformador>();
 	
 	//constructor
 	public Zona(int id, String nombre,Coordenadas coordenadas,
@@ -23,7 +43,29 @@ public class Zona {
 		this.radio = radio;
 		this.setTransformadores(new ArrayList<Transformador>());
 	}
+	
+	
+	public Zona(String nombre,int radio  ) {
+		this.nombre = nombre;
+		this.radio = radio;
+		this.setTransformadores(new ArrayList<Transformador>());
+	}
+	
+	
+	public Zona() {
+		super();
+	}
 
+
+	/*public Zona() {
+		super();
+		this.transformadores = new ArrayList<Transformador>();
+	}*/
+	
+	public Zona(ArrayList<Transformador> transformadores2) {
+		// TODO Auto-generated constructor stub
+	}
+	
 	//getters and setters
 	public int getId() {
 		return id;
@@ -57,7 +99,7 @@ public class Zona {
 		this.radio = radio;
 	}
 	
-	public ArrayList<Transformador> getTransformadores() {
+	public List<Transformador> getTransformadores() {
 		return transformadores;
 	}
 	
@@ -65,6 +107,9 @@ public class Zona {
 		this.transformadores = transformadores;
 	}
 	
+	public void aniadirTransformador(Transformador unTrafo) {
+		this.transformadores.add(unTrafo);
+	}
 	//metodos 
 	public double consumo(String fecha) throws ParseException{
 		
