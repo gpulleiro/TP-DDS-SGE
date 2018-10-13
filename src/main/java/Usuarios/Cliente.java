@@ -47,7 +47,7 @@ public class Cliente extends Usuario {
 	@Column(name="PUNTOS")
 	private int puntos;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private Coordenadas coordenadas;
 	
 	//constructor
