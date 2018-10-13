@@ -14,9 +14,14 @@ import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import com.google.maps.errors.ApiException;
 
+import Acciones.AccionApagar;
 import Dispositivo.Dispositivo;
+import Dispositivo.Inteligente;
+import Observer.Regla;
+import Observer.ReglaDAO;
 import Repositorio.Log;
 import Repositorio.Repositorio;
+import Sensores.SensorDeMovimiento;
 import TipoDato.Coordenadas;
 import TipoDato.CoordenadasDAO;
 import Usuarios.Administrador;
@@ -109,6 +114,41 @@ public class TestEntrega3 {
 		
 
 	}
+	
+	//caso de prueba 3
+	@Test
+	public void creaReglaYCambiaSuCondicion() throws IOException{
+		
+			ReglaDAO rdao = new ReglaDAO();
+			
+			//crear una nueva regla
+			AccionApagar actuadorApagar = new AccionApagar();
+			Regla regla = new Regla("apagar","igual", 0, actuadorApagar);
+			
+			//asociarla a un dispositivo
+			Inteligente televisor = new Inteligente("televisor",2,3,4,"encendido");
+			SensorDeMovimiento senmov = new SensorDeMovimiento();
+			senmov.agregarDispositivo(televisor);
+			regla.agregarSensor(senmov);
+			
+			//persistirla
+			rdao.ingresarRegla(regla);
+			
+			//recuperarla y ejecutarla
+			Regla reg = rdao.obtenerRegla("apagar");
+			reg.update();
+			
+			//modificar alguna condicion y persistirla
+			reg.setCondicion("mayor");
+			rdao.ingresarRegla(reg);
+			
+			//recuperarla y evaluar que la condicion modificada posea la ultima modificacion
+			reg = rdao.obtenerRegla("apagar");
+			assertEquals("mayor", reg.getCondicion());
+	}	
+	
+	
+	
 	
 	@Test
 	public void cantidadActualIgualALaAnteriorMasUno() throws IOException, ApiException, InterruptedException{
