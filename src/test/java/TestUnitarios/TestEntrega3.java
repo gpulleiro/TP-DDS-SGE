@@ -101,8 +101,8 @@ public class TestEntrega3 {
 	public void importarRepositorio() throws IOException, ApiException, InterruptedException {
 		
 		Repositorio repositorio = Repositorio.getInstance();
-		//repositorio.importarLog();
-		//repositorio.importarDispositivos();
+		repositorio.importarLog();
+		repositorio.importarDispositivos();
 		repositorio.importarZona();
 		repositorio.importarTransformadores();
 		repositorio.importarClientes();
@@ -142,6 +142,8 @@ public class TestEntrega3 {
 		List<Transformador> transformadoresNuevos = trafoDAO.listarTransformadores();
 		
 		int cantidadNueva= transformadoresNuevos.size();
+		
+		System.out.println(cantidadNueva);
 		
 		assertEquals((cantidadTrafos +1) , cantidadNueva);
 		
