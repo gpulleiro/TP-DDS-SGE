@@ -1,0 +1,10 @@
+[
+{
+	"coordenadas":
+		{
+		"latitud": -34.9999999, 
+		"longitud": -58.9999999
+		}, 
+	"zona": 3
+}
+]

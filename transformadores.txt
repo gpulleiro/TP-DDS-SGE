@@ -1,6 +1,5 @@
 [
 {
-	"id": 1,
 	"coordenadas":
 		{
 		"latitud": -34.6041238, 
@@ -9,7 +8,6 @@
 	"zona": 1
 },
 {
-	"id": 2,
 	"coordenadas":
 		{
 		"latitud": -34.605343, 
@@ -18,7 +16,6 @@
 	"zona": 1
 },
 {
-	"id": 3,
 	"coordenadas":
 		{
 		"latitud": -34.606155, 
@@ -27,7 +24,6 @@
 	"zona": 1
 },
 {
-	"id": 4,
 	"coordenadas":
 		{
 		"latitud": -34.601281, 
@@ -36,7 +32,6 @@
 	"zona": 2
 },
 {
-	"id": 5,
 	"coordenadas":
 		{
 		"latitud": -34.605731, 
