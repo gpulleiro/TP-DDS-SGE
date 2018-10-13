@@ -2,21 +2,28 @@ package TestUnitarios;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
+import com.google.maps.errors.ApiException;
+
 import Dispositivo.Dispositivo;
 import Repositorio.Log;
+import Repositorio.Repositorio;
 import TipoDato.Coordenadas;
 import TipoDato.CoordenadasDAO;
 import Usuarios.Administrador;
 import Usuarios.Cliente;
 import Usuarios.ClienteDAO;
+import ZonaGeografica.Transformador;
+import ZonaGeografica.TransformadorDAO;
 
 public class TestEntrega3 {
 	
@@ -86,6 +93,59 @@ public class TestEntrega3 {
 //		Dispositivo dis = admin.obtenerDispositivo("Test N2");
 //		dis.setNombre("PC de escritorio");
 //		admin.registrarDispositivo(dis);
+	}
+	
+	
+
+	@Before
+	public void importarRepositorio() throws IOException, ApiException, InterruptedException {
+		
+		Repositorio repositorio = Repositorio.getInstance();
+		//repositorio.importarLog();
+		//repositorio.importarDispositivos();
+		repositorio.importarZona();
+		repositorio.importarTransformadores();
+		repositorio.importarClientes();
+		
+
+	}
+	
+	@Test
+	public void cantidadActualIgualALaAnteriorMasUno() throws IOException, ApiException, InterruptedException{
+		
+		EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
+		EntityTransaction transaccion = entityManager.getTransaction();
+		
+		TransformadorDAO trafoDAO = new TransformadorDAO();
+		transaccion.begin();
+		
+		trafoDAO.cargaInicial();
+		
+		transaccion.commit();
+		
+		List<Transformador> transformadores = trafoDAO.listarTransformadores();
+		
+		int cantidadTrafos = transformadores.size();
+		
+		System.out.println(cantidadTrafos);
+		
+		Repositorio repositorio = Repositorio.getInstance();
+		
+		repositorio.importarTransformadoresNuevos();
+		
+		transaccion.begin();
+		
+		trafoDAO.cargaInicial();
+		
+		transaccion.commit();
+		
+		List<Transformador> transformadoresNuevos = trafoDAO.listarTransformadores();
+		
+		int cantidadNueva= transformadoresNuevos.size();
+		
+		assertEquals((cantidadTrafos +1) , cantidadNueva);
+		
+		
 	}
 	
 }
