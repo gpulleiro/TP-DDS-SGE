@@ -28,11 +28,12 @@ import ZonaGeografica.Zona;
 
 public class Repositorio {
 	
-	private String dir = "C:\\Users\\Gaston Adm\\Workspace\\TP-DDS-SGE";
+	private String dir = "D:\\Facu\\DDS\\2018\\TP\\TP-DDS-SGE";
 	private ArrayList<Cliente> clientes;
 	private ArrayList<Dispositivo> dispositivos;
 	private ArrayList<Log> log;
 	private ArrayList<Zona> zonas;
+	private ArrayList<Transformador> transformadores;
 	private Dispositivo dispositivo;
 	private static Repositorio miRepositorio;
 	
@@ -104,6 +105,15 @@ public class Repositorio {
 		this.zonas = zonas;
 	}
 
+	public ArrayList<Transformador> getTransformadores() {
+		return transformadores;
+	}
+
+
+	public void setTransformadores(ArrayList<Transformador> transformadores) {
+		this.transformadores = transformadores;
+	}
+
 
 	//importar los archivos 
 	public  void importarLog() throws IOException {
@@ -121,6 +131,8 @@ public class Repositorio {
 	}
 	
 	
+	
+		
 	public  void importarClientes() throws IOException, ApiException, InterruptedException {
 
 		//cargo los clientes
@@ -192,22 +204,44 @@ public class Repositorio {
 	public  void importarTransformadores() throws JsonIOException, JsonSyntaxException, FileNotFoundException{
 		
 		String json = this.dir +"\\"+"transformadores.txt";
+		this.setTransformadores(new ArrayList<Transformador>());
 		JsonParser parser = new JsonParser();
 		JsonArray gsonArr = parser.parse(new FileReader(json)).getAsJsonArray();
 		for (JsonElement obj: gsonArr){
 			JsonObject unTransf = obj.getAsJsonObject();
-			int id = unTransf.get("id").getAsInt();
+//			int id = unTransf.get("id").getAsInt();
 			JsonObject coordenadas = unTransf.getAsJsonObject("coordenadas");
 			double latitud = coordenadas.get("latitud").getAsDouble();
 			double longitud = coordenadas.get("longitud").getAsDouble();
 			int zona = unTransf.get("zona").getAsInt();
-			Transformador tf = new Transformador(id, new Coordenadas(latitud, longitud), zona);
+			Transformador tf = new Transformador(new Coordenadas(latitud, longitud), zona);
 		
 			this.agregarTransformador(tf);
 		}
 			
+	}
+	
+	public  void importarTransformadoresNuevos() throws JsonIOException, JsonSyntaxException, FileNotFoundException{
+		
+		String json = this.dir +"\\"+"transformadoresNuevos.txt";
+		this.setTransformadores(new ArrayList<Transformador>());
+		JsonParser parser = new JsonParser();
+		JsonArray gsonArr = parser.parse(new FileReader(json)).getAsJsonArray();
+		for (JsonElement obj: gsonArr){
+			JsonObject unTransf = obj.getAsJsonObject();
+//			int id = unTransf.get("id").getAsInt();
+			JsonObject coordenadas = unTransf.getAsJsonObject("coordenadas");
+			double latitud = coordenadas.get("latitud").getAsDouble();
+			double longitud = coordenadas.get("longitud").getAsDouble();
+			int zona = unTransf.get("zona").getAsInt();
+			Transformador tf = new Transformador(new Coordenadas(latitud, longitud), zona);
+		
+			this.agregarTransformador(tf);
 		}
-
+	}
+	
+	
+	
 	private  void agregarTransformador(Transformador tf) {
 
 		//recorrer la lista y agregar el transformador segun la zona que corresponda
@@ -216,6 +250,7 @@ public class Repositorio {
 			if(obj.getId() == tf.getZona()){
 				
 				obj.getTransformadores().add(tf);
+				this.getTransformadores().add(tf);
 				break;
 			}
 		}
