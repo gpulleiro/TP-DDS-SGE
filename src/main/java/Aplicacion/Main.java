@@ -37,53 +37,53 @@ public class Main {
 	
 	public static void main( String[] args ) throws IOException, InterruptedException, ParseException, ApiException{
 		
-		Repositorio repositorio = Repositorio.getInstance();
-		repositorio.importarLog();
-		repositorio.importarDispositivos();
+//		Repositorio repositorio = Repositorio.getInstance();
+//		repositorio.importarLog();
+//		repositorio.importarDispositivos();
 //		repositorio.importarZona();
 //		repositorio.importarTransformadores();
 //		repositorio.importarClientes();		
 
-		Inteligente licuadora = new Inteligente("licuadora",2,3,4,"encendido");
-		Inteligente licuadora1 = new Inteligente("licuadora",2,3,4,"encendido");
-		
-//		Estandar batidora = new Estandar ("batidora",2,3,4,45);
-
-//		AccionEncender actuadorEncender = new AccionEncender();
-		AccionApagar actuadorApagar = new AccionApagar();
-
-		SensorDeMovimiento smov = new SensorDeMovimiento();
-		smov.agregarDispositivo(licuadora1);
-		smov.agregarDispositivo(licuadora);
-//		SensorDeTemperatura stem = new SensorDeTemperatura();
-		
-		Regla regla1 = new Regla("menor", 10, actuadorApagar);
-		regla1.agregarSensor(smov);
-		
-		EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
-		EntityTransaction transaccion = entityManager.getTransaction();
-		
-		transaccion.begin();
-
-		
-		entityManager.persist(licuadora);
-		entityManager.persist(licuadora1);
-		entityManager.persist(smov);
-		entityManager.persist(actuadorApagar);
-		entityManager.persist(regla1);
-		
-		transaccion.commit();
-		
-		//correrlo una vez y despues comentarlo...
-		//esto hace la carga inicial de todo lo que esta en el repo a la base y si se corre muchas veces 
-		// se duplican los datos
-		DispositivoDAO disDAO = new DispositivoDAO();
-		
-		transaccion.begin();
-		
-		disDAO.cargaInicial();
-		
-		transaccion.commit();
+//		Inteligente licuadora = new Inteligente("licuadora",2,3,4,"encendido");
+//		Inteligente licuadora1 = new Inteligente("licuadora",2,3,4,"encendido");
+//		
+////		Estandar batidora = new Estandar ("batidora",2,3,4,45);
+//
+////		AccionEncender actuadorEncender = new AccionEncender();
+//		AccionApagar actuadorApagar = new AccionApagar();
+//
+//		SensorDeMovimiento smov = new SensorDeMovimiento();
+//		smov.agregarDispositivo(licuadora1);
+//		smov.agregarDispositivo(licuadora);
+////		SensorDeTemperatura stem = new SensorDeTemperatura();
+//		
+//		Regla regla1 = new Regla("menor", 10, actuadorApagar);
+//		regla1.agregarSensor(smov);
+//		
+//		EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
+//		EntityTransaction transaccion = entityManager.getTransaction();
+//		
+//		transaccion.begin();
+//
+//		
+//		entityManager.persist(licuadora);
+//		entityManager.persist(licuadora1);
+//		entityManager.persist(smov);
+//		entityManager.persist(actuadorApagar);
+//		entityManager.persist(regla1);
+//		
+//		transaccion.commit();
+//		
+//		//correrlo una vez y despues comentarlo...
+//		//esto hace la carga inicial de todo lo que esta en el repo a la base y si se corre muchas veces 
+//		// se duplican los datos
+//		DispositivoDAO disDAO = new DispositivoDAO();
+//		
+//		transaccion.begin();
+//		
+//		disDAO.cargaInicial();
+//		
+//		transaccion.commit();
 		
 	}
 }

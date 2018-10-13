@@ -28,13 +28,13 @@ import ZonaGeografica.Zona;
 
 public class Repositorio {
 	
-	private String dir = "C:\\Users\\Gaston Adm\\workspace\\TP-DDS-SGE";
+	private String dir = "C:\\TP-DDS-SGE";
 	//private String dir = "D:\\Facu\\DDS\\2018\\TP\\TP-DDS-SGE";
 	private ArrayList<Cliente> clientes;
 	private ArrayList<Dispositivo> dispositivos;
 	private ArrayList<Log> log;
 	private ArrayList<Zona> zonas;
-	private ArrayList<Transformador> transformadores;
+	private ArrayList<Transformador> transformadores = new ArrayList<Transformador>();
 	private Dispositivo dispositivo;
 	private static Repositorio miRepositorio;
 	

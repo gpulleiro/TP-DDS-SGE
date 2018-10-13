@@ -95,39 +95,39 @@ pepe.convertirDispositivo(licuadora);
 assertTrue(pepe.getPuntos() == 10);
 }
 
-@Test
-public void losDispositivosSinMovimientoEstanApagados1() {
-
-	Inteligente luz = new Inteligente ("luz",20,3,5,"encendido");
-	Inteligente luz1 = new Inteligente ("luz1",20,3,5,"encendido");
-	Inteligente luz2 = new Inteligente ("luz2",20,3,5,"encendido");
-	Inteligente luz3 = new Inteligente ("luz3",20,3,5,"apagado");
-	
-	SensorDeMovimiento sensorLuces = new SensorDeMovimiento();
-	AccionApagar apagar = new AccionApagar();
-	Regla sinMovimientoApagar = new Regla("menor",1, apagar );
-
-	sensorLuces.agregarDispositivo(luz);
-	sensorLuces.agregarDispositivo(luz1);
-	sensorLuces.agregarDispositivo(luz2);
-	sensorLuces.agregarDispositivo(luz3);
-	
-
-	sinMovimientoApagar.agregarSensor(sensorLuces); 
-	sinMovimientoApagar.setActuador(apagar);
-	
-	try {
-		sensorLuces.realizarMedicion();
-	} catch (IOException e) {
-		e.printStackTrace();
-	}
-
-	assertTrue(luz.estasApagado());
-	assertTrue(luz1.estasApagado());
-	assertTrue(luz2.estasApagado());
-	assertEquals("apagado",luz3.getEstado());
-
-}
+//@Test
+//public void losDispositivosSinMovimientoEstanApagados1() {
+//
+//	Inteligente luz = new Inteligente ("luz",20,3,5,"encendido");
+//	Inteligente luz1 = new Inteligente ("luz1",20,3,5,"encendido");
+//	Inteligente luz2 = new Inteligente ("luz2",20,3,5,"encendido");
+//	Inteligente luz3 = new Inteligente ("luz3",20,3,5,"apagado");
+//	
+//	SensorDeMovimiento sensorLuces = new SensorDeMovimiento();
+//	AccionApagar apagar = new AccionApagar();
+//	Regla sinMovimientoApagar = new Regla("menor",1, apagar );
+//
+//	sensorLuces.agregarDispositivo(luz);
+//	sensorLuces.agregarDispositivo(luz1);
+//	sensorLuces.agregarDispositivo(luz2);
+//	sensorLuces.agregarDispositivo(luz3);
+//	
+//
+//	sinMovimientoApagar.agregarSensor(sensorLuces); 
+//	sinMovimientoApagar.setActuador(apagar);
+//	
+//	try {
+//		sensorLuces.realizarMedicion();
+//	} catch (IOException e) {
+//		e.printStackTrace();
+//	}
+//
+//	assertTrue(luz.estasApagado());
+//	assertTrue(luz1.estasApagado());
+//	assertTrue(luz2.estasApagado());
+//	assertEquals("apagado",luz3.getEstado());
+//
+//}
 
 
 }

@@ -1,10 +1,8 @@
 package Dispositivo;
 
-import java.io.IOException;
 
 import javax.persistence.*;
 
-import org.junit.Ignore;
 
 
 @Entity

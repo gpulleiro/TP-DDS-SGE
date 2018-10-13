@@ -7,7 +7,6 @@ import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 import Repositorio.Log;
 import Repositorio.Repositorio;
-import Usuarios.Usuario;
 
 public class DispositivoDAO implements WithGlobalEntityManager {
 	
