@@ -51,6 +51,10 @@ public class Regla implements Observer {
 		sensores = new ArrayList<Sensor>();
 	}
 		
+	public Regla(){
+		
+	}
+	
 	//agrego un sensor a la lista de sensores y agrego a la regla como observador del sensor.
 	public void agregarSensor(Sensor sen){
 		sensores.add(sen);
