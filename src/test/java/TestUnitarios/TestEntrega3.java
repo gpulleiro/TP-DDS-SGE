@@ -3,6 +3,7 @@ package TestUnitarios;
 import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -16,6 +17,7 @@ import com.google.maps.errors.ApiException;
 
 import Acciones.AccionApagar;
 import Dispositivo.Dispositivo;
+import Dispositivo.DispositivoDAO;
 import Dispositivo.Inteligente;
 import Observer.Regla;
 import Observer.ReglaDAO;
@@ -64,10 +66,22 @@ public class TestEntrega3 {
 		
 	}
 	
+	// test N2
 	@Test
 	public void recuperarDispositivoMostrarLogModificarNombreYGrabarlo(){
 		
 		Administrador admin = new Administrador();
+		
+		EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
+		EntityTransaction transaccion = entityManager.getTransaction();
+		
+		DispositivoDAO disDAO = new DispositivoDAO();
+		
+		transaccion.begin();
+		
+		disDAO.cargaInicial();
+		
+		transaccion.commit();
 		
 		//obtengo el dispositivo
 		Dispositivo dis = admin.obtenerDispositivo("PC de escritorio");
@@ -115,47 +129,48 @@ public class TestEntrega3 {
 
 	}
 	
+	
 	//caso de prueba 3
-	@Test
-	public void creaReglaYCambiaSuCondicion() throws IOException{
-		
-			ReglaDAO rdao = new ReglaDAO();
+		@Test
+		public void creaReglaYCambiaSuCondicion() throws IOException{
 			
-			//crear una nueva regla
-			AccionApagar actuadorApagar = new AccionApagar();
-			Regla regla = new Regla("apagar","igual", 0, actuadorApagar);
-			
-			//asociarla a un dispositivo
-			Inteligente televisor = new Inteligente("televisor",2,3,4,"encendido");
-			SensorDeMovimiento senmov = new SensorDeMovimiento();
-			senmov.agregarDispositivo(televisor);
-			regla.agregarSensor(senmov);
-			
-			//persistirla
-			rdao.ingresarRegla(regla);
-			
-			//recuperarla y ejecutarla
-			Regla reg = rdao.obtenerRegla("apagar");
-			reg.update();
-			
-			//modificar alguna condicion y persistirla
-			reg.setCondicion("mayor");
-			rdao.ingresarRegla(reg);
-			
-			//recuperarla y evaluar que la condicion modificada posea la ultima modificacion
-			reg = rdao.obtenerRegla("apagar");
-			assertEquals("mayor", reg.getCondicion());
-	}	
+				ReglaDAO rdao = new ReglaDAO();
+				
+				//crear una nueva regla
+				AccionApagar actuadorApagar = new AccionApagar();
+				Regla regla = new Regla("apagar","igual", 0, actuadorApagar);
+				
+				//asociarla a un dispositivo
+				Inteligente televisor = new Inteligente("televisor",2,3,4,"encendido");
+				SensorDeMovimiento senmov = new SensorDeMovimiento();
+				senmov.agregarDispositivo(televisor);
+				regla.agregarSensor(senmov);
+				
+				//persistirla
+				rdao.ingresarRegla(regla);
+				
+				//recuperarla y ejecutarla
+				Regla reg = rdao.obtenerRegla("apagar");
+				reg.update();
+				
+				//modificar alguna condicion y persistirla
+				reg.setCondicion("mayor");
+				rdao.ingresarRegla(reg);
+				
+				//recuperarla y evaluar que la condicion modificada posea la ultima modificacion
+				reg = rdao.obtenerRegla("apagar");
+				assertEquals("mayor", reg.getCondicion());
+		}
 	
 	
-	
-	
+	//test 4
 	@Test
 	public void cantidadActualIgualALaAnteriorMasUno() throws IOException, ApiException, InterruptedException{
 		
 		EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
 		EntityTransaction transaccion = entityManager.getTransaction();
 		
+		//leo todos los transformadores del json y los persisto
 		TransformadorDAO trafoDAO = new TransformadorDAO();
 		transaccion.begin();
 		
@@ -163,12 +178,15 @@ public class TestEntrega3 {
 		
 		transaccion.commit();
 		
+		//me traigo todos los transformadores
 		List<Transformador> transformadores = trafoDAO.listarTransformadores();
 		
+		//obtengo la cantidad 
 		int cantidadTrafos = transformadores.size();
 		
 		System.out.println(cantidadTrafos);
 		
+		//agrego el nuevo transformador
 		Repositorio repositorio = Repositorio.getInstance();
 		
 		repositorio.importarTransformadoresNuevos();
@@ -179,15 +197,71 @@ public class TestEntrega3 {
 		
 		transaccion.commit();
 		
+		//obtengo la lista de transformadores actualizada
 		List<Transformador> transformadoresNuevos = trafoDAO.listarTransformadores();
 		
+		//obtengo la nueva cantidad
 		int cantidadNueva= transformadoresNuevos.size();
 		
 		System.out.println(cantidadNueva);
 		
 		assertEquals((cantidadTrafos +1) , cantidadNueva);
-		
-		
+			
 	}
+	
+	//test numero 5
+	@Test
+	public void consumoTotal() throws IOException, ApiException, InterruptedException, ParseException{
+	
+	Repositorio repo = Repositorio.getInstance();
+	
+	DispositivoDAO disDAO = new DispositivoDAO();
+	
+	ClienteDAO cliDAO = new ClienteDAO();
+	
+	Dispositivo dis1 = repo.getDispositivos().get(21);
+	
+	Cliente cli1 = repo.getClientes().get(1);
+	
+	cli1.aniadirDispositivo(dis1);
+	
+	cliDAO.registrarCliente(cli1);
+	
+	//muestro el consumo total de un hogar
+	double consumoTotal = cli1.consumo("06/10/2018 02:30:00");
+	
+	System.out.println("consumo hogar: "+consumoTotal);
+	
+	//muestro el consumo total por dispositivo
+	Dispositivo dis = repo.getDispositivos().get(21);
+	
+	double consumoDis = dis.consumoPeriodo("06/10/2018 02:30:00", "06/10/2018 17:00:00"); 
+	
+	System.out.println("consumo dispositivo: "+consumoDis);
+	
+	//muestro el consumo del transformador 
+	
+	Transformador trafo = repo.getTransformadores().get(0);
+	
+	double consumoTrafo = trafo.consumo("06/10/2018 02:30:00");
+	
+	System.out.println("consumo transformador: "+consumoTrafo);
+	
+	//aumento el consumo del dispositivo	
+	Dispositivo dispoAumentado = cli1.getDispositivos().get(0);
+	
+	dispoAumentado.setConsumoFijo(dispoAumentado.getConsumoFijo()* 1000);
+	
+//	disDAO.registrarDispositivo(dispoAumentado);
+	
+	//calculo nuevamente el consumo
+	consumoTrafo = trafo.consumo("06/10/2018 02:30:00");
+	
+	System.out.println("consumo transformador aumentado: "+consumoTrafo);
+	
+	
+	
+	
+}
 	
 }

@@ -240,6 +240,7 @@ public class Cliente extends Usuario {
 		Calendar fechaActual = Calendar.getInstance();
 		Calendar fechaInicio = Calendar.getInstance();
 		
+		String date = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date());
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		
 		fechaInicio.setTime(formato.parse(fecha));
@@ -251,13 +252,13 @@ public class Cliente extends Usuario {
 		//diferencia en dias 
 		dif = dif/(1000*60*60*24);
 		
-		String fechaFin = fechaActual.toString();
 		
 		for (Dispositivo obj: dispositivos){
 			
 			if(obj.obtenerFlag().equals("I")){
 				
-				consumoTotal = consumoTotal + obj.consumoPeriodo(fecha, fechaFin);
+				consumoTotal = consumoTotal + obj.consumoPeriodo(fecha, date);
+				
 			} if (obj.obtenerFlag().equals("E")){
 				
 				consumoTotal = consumoTotal + (obj.consumo()*dif);

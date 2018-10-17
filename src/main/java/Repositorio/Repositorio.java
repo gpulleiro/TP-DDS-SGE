@@ -28,7 +28,8 @@ import ZonaGeografica.Zona;
 
 public class Repositorio {
 	
-	private String dir = "C:\\TP-DDS-SGE";
+//	private String dir = "C:\\TP-DDS-SGE";
+	private String dir = "C:\\Users\\Gaston Adm\\workspace\\TP-DDS-SGE";
 	//private String dir = "D:\\Facu\\DDS\\2018\\TP\\TP-DDS-SGE";
 	private ArrayList<Cliente> clientes;
 	private ArrayList<Dispositivo> dispositivos;
