@@ -5,13 +5,21 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.TimeZone;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
@@ -126,7 +134,24 @@ public class Repositorio {
 		
 		BufferedReader bufferedReader = new BufferedReader(new FileReader(json));
 		
-		Gson gson = new Gson();
+//		Gson gson = new Gson();
+		
+		Gson gson = new GsonBuilder().registerTypeAdapter(Date.class, new JsonDeserializer<Date>() {
+            @Override
+            public Date deserialize(JsonElement json, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+                String date = json.getAsString();
+                SimpleDateFormat formatter = new SimpleDateFormat("d/M/yy hh:mm:ss");
+                formatter.setTimeZone(TimeZone.getTimeZone("GMT-3:00"));
+                try {
+                    return formatter.parse(date);
+                } catch (ParseException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                    return null;
+                }
+            }
+            }).create();
+
 		
 		this.setLog(gson.fromJson(bufferedReader, tipoListaLog));
 		
