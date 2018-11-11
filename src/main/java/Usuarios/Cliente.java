@@ -285,6 +285,10 @@ public class Cliente extends Usuario {
 	}
 	
 	
+	public boolean esAdmin() {
+		
+		return false;
+	}
 	
 }
 

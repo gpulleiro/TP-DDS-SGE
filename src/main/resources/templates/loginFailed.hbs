@@ -1,0 +1,30 @@
+{{#partial "content"}}
+
+  <h2>Login to your account</h2>
+
+<form action ='/home'>
+	<div class="form-group">
+		<label for="nombre">Usuario</label>
+		<input id="nombre" name="nombre" class="form-control" type="text">
+	</div>
+ 	<div class="form-group">
+   		<label for="password">Password</label>
+   		<input id="password" name="password" class="form-control" type="Password">
+ 	</div>
+	
+  	<button type="submit" class="btn btn-default">Submit</button>
+	
+	<div class="alert alert-danger" >
+    	<strong>Login Fallido</strong> Verifique username y password.
+  	</div>
+
+
+</form>
+
+{{/partial}}
+
+
+{{> layout.hbs}}
+
+
+

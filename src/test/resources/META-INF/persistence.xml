@@ -11,8 +11,8 @@
         <class>Dispositivo.Inteligente</class>
         <class>Dispositivo.Estandar</class>
         <class>Usuarios.Administrador</class>
-        <class>Usuarios.Cliente</class>
         <class>Usuarios.Categoria</class>
+        <class>Usuarios.Cliente</class>
         <class>TipoDato.Coordenadas</class>
         <class>Repositorio.Log</class>
         <class>Acciones.AccionApagar</class>

@@ -80,5 +80,10 @@ public class Administrador extends Usuario {
 		
 		return lista;
 	}
+	
+	public boolean esAdmin() {
+		
+		return true;
+	}
 }
 

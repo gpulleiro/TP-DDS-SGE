@@ -1,0 +1,35 @@
+{{#partial "content"}}
+
+  <h2>Login to your account</h2>
+
+<form id ='loginForm' method='post'>
+	{{#if authenticationFailed }}
+	<p class="bad notification">Login Incorrecto</p>
+	{{else}}
+		{{#if authenticationSucceeded}}
+		<p class="good notification">Bienvenido {{currentUser}}</p>
+		{{else}}
+			{{#if loggedOut}}
+			<p class="notification">Deslogueado</p>
+			{{/if}}
+		{{/if}}
+	{{/if}}
+	{{#unless currentUser}}
+	<div class="form-group">
+		<label for="username">Usuario</label>
+		<input id="username" name="username" class="form-control" type="text" required>
+	</div>
+ 	<div class="form-group">
+   		<label for="password">Password</label>
+   		<input id="password" name="password" class="form-control" type="Password" required>
+ 	</div>
+	{{#if loginRedirect}}
+	<input type="hidden" name="loginRedirect" value="{{loginRedirect}}">
+	{{/if}}
+  	<button type="submit" class="btn btn-default">Login</button>
+	{{/unless}}
+</form>
+
+{{/partial}}
+
+{{> layout.hbs}}

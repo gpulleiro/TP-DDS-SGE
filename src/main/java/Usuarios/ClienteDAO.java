@@ -6,11 +6,13 @@ import javax.persistence.EntityTransaction;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
-public class ClienteDAO implements WithGlobalEntityManager{
+import Dao.AbstractDAO;
+
+public class ClienteDAO extends AbstractDAO{
 	
-	EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
+	static EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
 	
-	EntityTransaction transaccion = entityManager.getTransaction();
+	static EntityTransaction transaccion = entityManager.getTransaction();
 	
 
 	public void registrarCliente(Cliente cliente) {
@@ -28,5 +30,9 @@ public class ClienteDAO implements WithGlobalEntityManager{
 		transaccion.begin();
 		entityManager.merge(cliente);
 		transaccion.commit();
+	}
+	public Usuario recuperarPorUsername(String usuario) {
+		// TODO Auto-generated method stub
+		return (Usuario) entityManager.createQuery("from Usuario where usuario = :usuario").setParameter("usuario", usuario).getSingleResult();
 	}
 }
