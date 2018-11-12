@@ -4,6 +4,7 @@ import static spark.Spark.*;
 import java.util.*;
 
 import Helpers.ViewHelper;
+import Usuarios.ClienteDAO;
 import Usuarios.UsuarioController;
 import spark.Route;
 import spark.ModelAndView;
@@ -35,6 +36,7 @@ public class LoginController {
 	        if (getQueryLoginRedirect(request) != null) {
 	            response.redirect(getQueryLoginRedirect(request));
 	        }
+	        
 	        response.redirect("/home");
 	        return null;
 	        //return ViewHelper.render(request, model, "login2.html");

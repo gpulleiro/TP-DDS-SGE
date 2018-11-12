@@ -5,12 +5,18 @@
 <form id ='loginForm' method='post'>
 	{{#if authenticationFailed }}
 	<p class="bad notification">Login Incorrecto</p>
+	<div class="alert alert-danger">
+    	<strong>Fallo al iniciar sesion</strong>, verifique su usuario y/o password
+  	</div>
 	{{else}}
 		{{#if authenticationSucceeded}}
 		<p class="good notification">Bienvenido {{currentUser}}</p>
 		{{else}}
 			{{#if loggedOut}}
 			<p class="notification">Deslogueado</p>
+			  <div class="alert alert-warning">
+    			<strong>Usted se acaba de desloguear</strong> Complete el formulario para volver a iniciar sesion
+  				</div>
 			{{/if}}
 		{{/if}}
 	{{/if}}
