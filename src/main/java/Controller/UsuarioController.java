@@ -1,5 +1,8 @@
-package Usuarios;
+package Controller;
 import static spark.Spark.*;
+
+import Usuarios.ClienteDAO;
+import Usuarios.Usuario;
 
 public class UsuarioController {
 	

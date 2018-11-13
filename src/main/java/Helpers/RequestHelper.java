@@ -4,13 +4,6 @@ import spark.*;
 
 public class RequestHelper {
 
-    public static String getQueryLocale(Request request) {
-        return request.queryParams("locale");
-    }
-
-    public static String getParamIsbn(Request request) {
-        return request.params("isbn");
-    }
 
     public static String getQueryUsername(Request request) {
         return request.queryParams("username");
@@ -24,12 +17,12 @@ public class RequestHelper {
         return request.queryParams("loginRedirect");
     }
 
-    public static String getSessionLocale(Request request) {
-        return request.session().attribute("locale");
-    }
 
     public static String getSessionCurrentUser(Request request) {
         return request.session().attribute("currentUser");
+    }
+    public static String getSessionIsAdmin(Request request) {
+        return request.session().attribute("isAdmin");
     }
 
     public static boolean removeSessionAttrLoggedOut(Request request) {
@@ -42,16 +35,6 @@ public class RequestHelper {
         String loginRedirect = request.session().attribute("loginRedirect");
         request.session().removeAttribute("loginRedirect");
         return loginRedirect;
-    }
-
-    public static boolean clientAcceptsHtml(Request request) {
-        String accept = request.headers("Accept");
-        return accept != null && accept.contains("text/html");
-    }
-
-    public static boolean clientAcceptsJson(Request request) {
-        String accept = request.headers("Accept");
-        return accept != null && accept.contains("application/json");
     }
 
 }

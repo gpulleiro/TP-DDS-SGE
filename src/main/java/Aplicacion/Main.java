@@ -15,13 +15,15 @@ import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import com.google.maps.errors.ApiException;
 
 import Acciones.AccionApagar;
+import Controller.DispositivosController;
+import Controller.HomeController;
+import Controller.LoginController;
+import Controller.UsuarioController;
 import Dao.AbstractDAO;
 import Dispositivo.Dispositivo;
 import Dispositivo.DispositivoDAO;
 import Dispositivo.Estandar;
 import Dispositivo.Inteligente;
-import Login.HomeController;
-import Login.LoginController;
 import Observer.Regla;
 import Repositorio.Log;
 
@@ -40,7 +42,6 @@ import Usuarios.Administrador;
 import Usuarios.Cliente;
 import Usuarios.ClienteDAO;
 import Usuarios.Usuario;
-import Usuarios.UsuarioController;
 import ZonaGeografica.Transformador;
 
 import spark.ModelAndView;
@@ -86,7 +87,9 @@ public class Main {
         post("/logout",		LoginController.handleLogoutPost);
         get("/index",			LoginController.index);
         get("/home",			HomeController.homeClientePage);
+        get("/dispositivos",			DispositivosController.traerDispositivos);
         
+       
         
 	
 	}

@@ -1,10 +1,9 @@
-package Login;
+package Controller;
 import spark.*;
 import java.util.*;
 import Helpers.*;
 import Helpers.ViewHelper;
 import Usuarios.ClienteDAO;
-import Usuarios.UsuarioController;
 import spark.Route;
 import spark.ModelAndView;
 import static spark.Spark.*;
@@ -19,11 +18,13 @@ public class HomeController {
         ClienteDAO dao = new ClienteDAO();
         if (dao.recuperarPorUsername(myUser).esAdmin()) {
         	
+        	request.session().attribute("isAdmin",true);
+        	
         	return ViewHelper.render(request, model, "homeAdmin.html");
 
         }
         else {
-        	
+        	request.session().attribute("isAdmin",false);
         	return ViewHelper.render(request, model, "homeCliente.html");
         }
         

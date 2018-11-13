@@ -1,11 +1,12 @@
-package Login;
+package Controller;
 import static spark.Spark.*;
 
 import java.util.*;
 
+import Dispositivo.DispositivoDAO;
 import Helpers.ViewHelper;
 import Usuarios.ClienteDAO;
-import Usuarios.UsuarioController;
+import ZonaGeografica.TransformadorDAO;
 import spark.Route;
 import spark.ModelAndView;
 import spark.*;
@@ -19,7 +20,7 @@ public class LoginController {
 	        Map<String, Object> model = new HashMap<>();
 	        model.put("loggedOut", removeSessionAttrLoggedOut(request));
 	        model.put("loginRedirect", removeSessionAttrLoginRedirect(request));
-	        //return new ModelAndView(model,"login.hbs");
+
 	        return ViewHelper.render(request, model, "login2.html");
 	    };
 
@@ -27,19 +28,19 @@ public class LoginController {
 	        Map<String, Object> model = new HashMap<>();
 	        if (!UsuarioController.authenticate(getQueryUsername(request), getQueryPassword(request))) {
 	            model.put("authenticationFailed", true);
-	            //return new ModelAndView(model,"login.hbs");
-	            //return ViewUtil.render(request, model, Path.Template.LOGIN);
+	            
 	            return ViewHelper.render(request, model, "login2.html");
 	        }
 	        model.put("authenticationSucceeded", true);
 	        request.session().attribute("currentUser", getQueryUsername(request));
+
 	        if (getQueryLoginRedirect(request) != null) {
 	            response.redirect(getQueryLoginRedirect(request));
 	        }
 	        
 	        response.redirect("/home");
 	        return null;
-	        //return ViewHelper.render(request, model, "login2.html");
+
 	    };
 
 	    public static Route handleLogoutPost = (Request request, Response response) -> {
@@ -60,6 +61,8 @@ public class LoginController {
 	    
 	    public static Route index = (Request request, Response response) -> {
 	        Map<String, Object> model = new HashMap<>();
+	        TransformadorDAO dao = new TransformadorDAO();
+	        model.put("transformadores", dao.obtenerTransformadores());
 	        return ViewHelper.render(request, model, "index.html");
 	    };
 
