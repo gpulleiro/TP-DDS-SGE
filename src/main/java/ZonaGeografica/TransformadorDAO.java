@@ -15,8 +15,7 @@ import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
-
-
+import Dispositivo.Dispositivo;
 import Repositorio.Repositorio;
 
 
@@ -54,6 +53,11 @@ public class TransformadorDAO implements WithGlobalEntityManager{
 //
 //		}
 	
+	}
+	public List<Transformador> obtenerTransformadores(){
+		
+		return entityManager.createQuery("FROM ZonaGeografica.Transformador").getResultList();
+		
 	}
 
 }

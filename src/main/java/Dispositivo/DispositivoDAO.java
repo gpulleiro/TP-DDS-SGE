@@ -1,5 +1,7 @@
 package Dispositivo;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
@@ -39,6 +41,12 @@ public class DispositivoDAO implements WithGlobalEntityManager {
 			
 			entityManager().persist(log);
 		}
+	}
+	
+	public List<Dispositivo> obtenerDispositivos(){
+		
+		return entityManager.createQuery("FROM Dispositivo.Dispositivo").getResultList();
+		
 	}
 	
 }
