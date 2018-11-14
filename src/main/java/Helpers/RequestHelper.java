@@ -36,5 +36,32 @@ public class RequestHelper {
         request.session().removeAttribute("loginRedirect");
         return loginRedirect;
     }
+    
+//Requests para el alta de dispositivo///
+	public static String getQueryDispositivoName(Request request) {
+		return request.queryParams("dispositivoNombre");
+	}
+
+	public static String getQueryDispositivoCantHoras(Request request) {
+		return request.queryParams("dispositivoCantHoras");
+	}
+
+	public static String getQueryDispositivoMaxHoras(Request request) {
+		return request.queryParams("dispositivoMaxHoras");
+	}
+
+	public static String getQueryDispositivoMinHoras(Request request) {
+		return request.queryParams("dispositivoMinHoras");
+	}
+
+	public static String getQueryDispositivoConsumo(Request request) {
+		return request.queryParams("dispositivoConsumo");
+	}
+	
+	public static String getQueryTipoDispositivo(Request request) {
+		return request.queryParams("tipo-dispositivo");
+	}
+    
+    
 
 }

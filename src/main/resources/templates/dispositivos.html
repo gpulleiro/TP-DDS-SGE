@@ -42,7 +42,14 @@
 		<td>{{id}}</td>
 		<td>{{nombre}}</td>
 		<td>{{consumoFijo}}</td>
-		<td>{{TIPO}}</td>
+		
+		{{#if cantHoras}}
+			<td>Estandar</td>
+		{{/if}}
+		
+		{{#unless cantHoras}}
+			<td>Inteligente</td>
+		{{/unless}}
 		</tr>
 		 {{/each}}
 		</tbody>

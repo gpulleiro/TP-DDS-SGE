@@ -89,6 +89,11 @@ public abstract class Dispositivo {
 	public void setMaximoHoras(double maximoHoras) {
 		this.maximoHoras = maximoHoras;
 	}
+	
+	public String esInteligente() {
+		
+		return "NO";
+	}
 
 	//metodos 
 //	public void estasEncendido(){

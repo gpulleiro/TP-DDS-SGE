@@ -338,5 +338,9 @@ public class Inteligente extends Dispositivo {
 	public String obtenerFlag() {
 		return "I";
 	}
-
+	
+	public String esInteligente() {
+		
+		return "SI";
+	}
 }

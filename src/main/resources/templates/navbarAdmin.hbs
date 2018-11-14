@@ -1,0 +1,22 @@
+{{#block "navbarAdmin"}}
+
+   <ul class="nav navbar-nav">
+      <li class="active"><a href="/home">Home</a></li>
+      
+      <li><a href="/hogares">Hogares</a></li>
+      <li><a href="/reportes">Reportes</a></li>
+      <li><a href="/dispositivos">Alta de dispositivos</a></li>
+      
+      
+   </ul>
+   <ul class="nav navbar-nav navbar-right">
+      <li>
+         <p class="navbar-text"><span class="glyphicon glyphicon-user"></span> {{currentUser}}</p>
+      </li>
+      <li>
+         <form action="/logout" method="post"><button type="submit"><span class="glyphicon glyphicon-log-out"></span>Logout</button></form>
+      </li>
+   </ul>
+
+
+{{/block}}

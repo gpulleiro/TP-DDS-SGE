@@ -1,0 +1,59 @@
+{{#partial "navbar"}}
+{{> navbarAdmin.hbs}}
+{{/partial}}
+{{#partial "content"}}
+<body>
+    <div class="container">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6">
+            <h2><b>Dispositivos</b></h2>
+          </div>
+          <div class="col-sm-6">
+            <a href="#agregarDispositivo" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Agregar Dispositivo</span></a>         
+          </div>
+                </div>
+            </div>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Consumo Fijo</th>
+            			<th>Tipo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+					{{#each dispositivos}}
+							<tr>
+							<td>{{id}}</td>
+							<td>{{nombre}}</td>
+							<td>{{consumoFijo}}</td>
+							
+							{{#unless estado}}
+								<td>Estandar</td>
+							{{/unless}}
+							
+							{{#if estado}}
+								<td>Inteligente</td>
+							{{/if}}
+							</tr>
+							 {{/each}}
+                    </tr>
+                    
+                </tbody>
+            </table>
+      
+        </div>
+    </div>
+  <!-- Edit Modal HTML -->
+ 
+
+        {{> altaDispositivo.hbs}}
+
+
+
+ {{/partial}}
+ {{> layout.hbs}}
