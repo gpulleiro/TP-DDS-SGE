@@ -1,4 +1,4 @@
-package Usuarios;
+package Dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -6,7 +6,8 @@ import javax.persistence.EntityTransaction;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
-import Dao.AbstractDAO;
+import Usuarios.Cliente;
+import Usuarios.Usuario;
 
 public class ClienteDAO extends AbstractDAO{
 	

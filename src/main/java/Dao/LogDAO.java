@@ -1,4 +1,4 @@
-package Repositorio;
+package Dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +7,8 @@ import javax.persistence.*;
 
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+
+import TipoDato.Log;
 
 public class LogDAO implements WithGlobalEntityManager {
 

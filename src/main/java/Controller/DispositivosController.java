@@ -1,7 +1,6 @@
 package Controller;
 import Helpers.ViewHelper;
 import Repositorio.Repositorio;
-import Usuarios.ClienteDAO;
 import spark.*;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 import static Helpers.RequestHelper.*;
@@ -10,8 +9,9 @@ import static spark.Spark.get;
 import java.util.*;
 import java.util.stream.*;
 
+import Dao.ClienteDAO;
+import Dao.DispositivoDAO;
 import Dispositivo.Dispositivo;
-import Dispositivo.DispositivoDAO;
 import Dispositivo.Estandar;
 import Dispositivo.Inteligente;
 

@@ -1,7 +1,7 @@
 package Controller;
 import static spark.Spark.*;
 
-import Usuarios.ClienteDAO;
+import Dao.ClienteDAO;
 import Usuarios.Usuario;
 
 public class UsuarioController {

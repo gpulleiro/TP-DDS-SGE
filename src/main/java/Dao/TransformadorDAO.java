@@ -1,4 +1,4 @@
-package ZonaGeografica;
+package Dao;
 
 
 import java.util.List;
@@ -17,6 +17,7 @@ import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 import Dispositivo.Dispositivo;
 import Repositorio.Repositorio;
+import ZonaGeografica.Transformador;
 
 
 public class TransformadorDAO implements WithGlobalEntityManager{

@@ -30,6 +30,7 @@ import Dispositivo.Estandar;
 import Dispositivo.Inteligente;
 import Helpers.FuncionesHelper;
 import TipoDato.Coordenadas;
+import TipoDato.Log;
 import Usuarios.Cliente;
 import ZonaGeografica.Transformador;
 import ZonaGeografica.Zona;

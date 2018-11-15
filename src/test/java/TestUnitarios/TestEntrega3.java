@@ -16,21 +16,21 @@ import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import com.google.maps.errors.ApiException;
 
 import Acciones.AccionApagar;
+import Dao.ClienteDAO;
+import Dao.CoordenadasDAO;
+import Dao.DispositivoDAO;
+import Dao.ReglaDAO;
+import Dao.TransformadorDAO;
 import Dispositivo.Dispositivo;
-import Dispositivo.DispositivoDAO;
 import Dispositivo.Inteligente;
 import Observer.Regla;
-import Observer.ReglaDAO;
-import Repositorio.Log;
 import Repositorio.Repositorio;
 import Sensores.SensorDeMovimiento;
 import TipoDato.Coordenadas;
-import TipoDato.CoordenadasDAO;
+import TipoDato.Log;
 import Usuarios.Administrador;
 import Usuarios.Cliente;
-import Usuarios.ClienteDAO;
 import ZonaGeografica.Transformador;
-import ZonaGeografica.TransformadorDAO;
 
 public class TestEntrega3 {
 	

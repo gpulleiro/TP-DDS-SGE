@@ -1,4 +1,4 @@
-package Dispositivo;
+package Dao;
 
 import java.util.List;
 
@@ -7,8 +7,9 @@ import javax.persistence.*;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
-import Repositorio.Log;
+import Dispositivo.Dispositivo;
 import Repositorio.Repositorio;
+import TipoDato.Log;
 
 public class DispositivoDAO implements WithGlobalEntityManager {
 	

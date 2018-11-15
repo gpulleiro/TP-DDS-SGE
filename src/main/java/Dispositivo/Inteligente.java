@@ -8,9 +8,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 
-import Repositorio.Log;
 import Repositorio.Repositorio;
-
+import TipoDato.Log;
 
 import javax.persistence.*;
 

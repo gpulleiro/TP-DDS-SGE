@@ -1,4 +1,4 @@
-package Repositorio;
+package TipoDato;
 
 import java.util.Date;
 

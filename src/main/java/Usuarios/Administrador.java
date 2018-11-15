@@ -9,10 +9,10 @@ import java.util.List;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
+import Dao.DispositivoDAO;
+import Dao.LogDAO;
 import Dispositivo.Dispositivo;
-import Dispositivo.DispositivoDAO;
-import Repositorio.Log;
-import Repositorio.LogDAO;
+import TipoDato.Log;
 
 @Entity
 @DiscriminatorValue(value = "ADMIN")

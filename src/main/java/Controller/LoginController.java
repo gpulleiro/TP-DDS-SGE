@@ -3,10 +3,10 @@ import static spark.Spark.*;
 
 import java.util.*;
 
-import Dispositivo.DispositivoDAO;
+import Dao.ClienteDAO;
+import Dao.DispositivoDAO;
+import Dao.TransformadorDAO;
 import Helpers.ViewHelper;
-import Usuarios.ClienteDAO;
-import ZonaGeografica.TransformadorDAO;
 import spark.Route;
 import spark.ModelAndView;
 import spark.*;

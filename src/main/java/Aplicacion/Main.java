@@ -20,12 +20,12 @@ import Controller.HomeController;
 import Controller.LoginController;
 import Controller.UsuarioController;
 import Dao.AbstractDAO;
+import Dao.ClienteDAO;
+import Dao.DispositivoDAO;
 import Dispositivo.Dispositivo;
-import Dispositivo.DispositivoDAO;
 import Dispositivo.Estandar;
 import Dispositivo.Inteligente;
 import Observer.Regla;
-import Repositorio.Log;
 
 //import com.google.maps.GeoApiContext;
 //import com.google.maps.GeocodingApi;
@@ -38,9 +38,9 @@ import Repositorio.Log;
 import Repositorio.Repositorio;
 import Sensores.SensorDeMovimiento;
 import Simplex.TimerSimplex;
+import TipoDato.Log;
 import Usuarios.Administrador;
 import Usuarios.Cliente;
-import Usuarios.ClienteDAO;
 import Usuarios.Usuario;
 import ZonaGeografica.Transformador;
 
