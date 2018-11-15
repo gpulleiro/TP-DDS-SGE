@@ -89,6 +89,7 @@ public class Main {
         get("/home",			HomeController.homeClientePage);
         get("/dispositivos",			DispositivosController.traerDispositivos);
         post("/dispositivos",		DispositivosController.crearDispositivo);
+        get("/hogares",				UsuarioController.traerClientes);
 
        
         

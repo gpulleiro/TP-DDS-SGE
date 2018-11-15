@@ -17,7 +17,7 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-
+import javax.persistence.Transient;
 
 import Dispositivo.Dispositivo;
 import Dispositivo.Inteligente;
@@ -49,7 +49,9 @@ public class Cliente extends Usuario {
 	
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private Coordenadas coordenadas;
-	
+//ESTE TRANSIENT ESTA EN BETA	
+	@Transient
+	private double consumoCalculable;
 	//constructor
 	
 	public Cliente(String nombre, String apellido, String domicilio, String fechaAlta, String usuario,
@@ -83,11 +85,27 @@ public class Cliente extends Usuario {
 	public Cliente(ArrayList<Dispositivo> dispositivos2) {
 		// TODO Auto-generated constructor stub
 	}
-
-
+	
+	public Cliente(String nombre, double consumoCalculable, List<Dispositivo> dispos) {
+		
+		this.nombre = nombre;
+		this.consumoCalculable = consumoCalculable;
+		this.dispositivos = dispos;
+	}
+	
 	//getters-setters
+	
+	
 	public String getTipoDocumento() {
 		return tipoDocumento;
+	}
+
+	public double getConsumoCalculable() {
+		return consumoCalculable;
+	}
+
+	public void setConsumoCalculable(double consumoCalculable) {
+		this.consumoCalculable = consumoCalculable;
 	}
 
 	public void setTipoDocumento(String tipoDocumento) {
@@ -288,6 +306,19 @@ public class Cliente extends Usuario {
 	public boolean esAdmin() {
 		
 		return false;
+	};
+	
+	public double consumoGenerico() {
+		
+		double consumoTotal = 0;
+		dispositivos = this.getDispositivos();
+		
+		for (Dispositivo dispositivo:dispositivos) {
+		
+			consumoTotal = dispositivo.getConsumoFijo() + consumoTotal;
+		
+	}
+		return consumoTotal;
 	}
 	
 }

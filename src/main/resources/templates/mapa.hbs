@@ -1,0 +1,88 @@
+{{#block "mapa"}}
+
+  <div id="mapid" style="width: 600px; height: 400px;border-radius:25px;"></div>
+<script>
+
+	var mymap = L.map('mapid').setView([-34.6051106,-58.3849734], 15);
+
+	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+		maxZoom: 18,
+		attribution: 'TP DDS',
+		id: 'mapbox.streets'
+	}).addTo(mymap);
+
+	<!-- Zona 1 : Obelisco -->
+
+	var circle = L.circle([-34.6051106,-58.3849734], {
+	    color: 'red',
+	    fillColor: '#f03',
+	    fillOpacity: 0.5,
+	    radius: 300
+	}).bindPopup("Zona 1: Obelisco").addTo(mymap);
+	
+	<!-- Zona 2 Diagonal Sur-->
+	var circle = L.circle([-34.6061218,-58.3788544], {
+	    color: 'red',
+	    fillColor: '#f03',
+	    fillOpacity: 0.5,
+	    radius: 200
+	}).bindPopup("Zona 2 : Diagonal Sur").addTo(mymap);
+	
+	<!-- Zona 3 Diagonal Sur-->
+	var circle = L.circle([-34.6022685,-58.3800909], {
+	    color: 'red',
+	    fillColor: '#f03',
+	    fillOpacity: 0.5,
+	    radius: 200
+	}).bindPopup("Zona 3: Lavalle").addTo(mymap);
+	
+
+	<!-- Clientes -->
+	
+	var marker = L.marker([-34.6060203, -58.3784528]).bindPopup("Cliente: 11111 <br> Dirección: Cnel Tte J D Peron 850").addTo(mymap);
+	var marker = L.marker([-34.6037313, -58.3840308]).bindPopup("Cliente: 22222 <br> Dirección: Av. Corrientes 1225").addTo(mymap);
+
+	var greenIcon = new L.Icon({
+	  iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+	  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+	  iconSize: [25, 41],
+	  iconAnchor: [12, 41],
+	  popupAnchor: [1, -34],
+	  shadowSize: [41, 41]
+	});
+
+	<!-- Transformadores -->
+	{{#each transformadores}}
+	<!-- Zona 1 -->
+	var marker = L.marker([{{coordenadas.latitud}}, {{coordenadas.longitud}}], {icon: greenIcon}).bindPopup("Transformador: {{id}}").addTo(mymap);
+	
+	{{/each}}
+	
+</script>
+     
+<table id="datatable" class="table table-striped table-bordered">
+		<thead>
+		<tr>
+		<th>ID</th>
+		<th>LATITUD</th>
+		<th>LONGITUD</th>
+		<th>Consumo Instantaneo</th>
+
+		
+		</tr>
+		</thead>
+		
+		<tbody>
+		{{#each transformadores}}
+		<tr>
+		<td>{{id}}</td>
+		<td>{{coordenadas.latitud}}</td>
+		<td>{{coordenadas.longitud}}</td>
+		<td>{{consumo}}</td>
+
+		</tr>
+		 {{/each}}
+		</tbody>
+		</table>
+		
+{{/block}}

@@ -1,0 +1,40 @@
+{{#partial "navbar"}}
+{{> navbarAdmin.hbs}}
+{{/partial}}
+{{#partial "content"}}
+<body>
+    <div class="container">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6">
+            <h2><b>Hogares</b></h2>
+          </div>
+                </div>
+            </div>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Consumo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+					{{#each clientes}}
+							<tr>
+							<td>{{nombre}}</td>
+							<td>{{consumoCalculable}}</td>
+	
+							</tr>
+					 {{/each}}
+                    </tr>
+                    
+                </tbody>
+            </table>
+      
+        </div>
+    </div>
+
+ {{/partial}}
+ {{> layout.hbs}}

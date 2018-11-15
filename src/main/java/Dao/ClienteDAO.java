@@ -1,5 +1,7 @@
 package Dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
@@ -35,6 +37,13 @@ public class ClienteDAO extends AbstractDAO{
 	public Usuario recuperarPorUsername(String usuario) {
 		// TODO Auto-generated method stub
 		return (Usuario) entityManager.createQuery("from Usuario where usuario = :usuario").setParameter("usuario", usuario).getSingleResult();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Cliente> obtenerClientes() {
+		
+		return entityManager.createQuery("FROM Usuarios.Cliente").getResultList();
+		
 	}
 	
 	
