@@ -7,7 +7,7 @@
 	"usuario": "mauri",
 	"contrasenia": "123456",
 	"tipoDocumento": "DNI",
-	"numeroDocumento":35287364,
+	"numeroDocumento":35287399,
 	"telefono": 48972378,
 	"categoria":
 		{

@@ -10,6 +10,8 @@ import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import Dispositivo.Dispositivo;
 import Repositorio.Repositorio;
 import TipoDato.Log;
+import Usuarios.Cliente;
+import ZonaGeografica.Transformador;
 
 public class DispositivoDAO implements WithGlobalEntityManager {
 	
@@ -31,6 +33,8 @@ public class DispositivoDAO implements WithGlobalEntityManager {
 
 	public void cargaInicial() {
 		
+		transaccion.begin();
+		
 		Repositorio repo = Repositorio.getInstance();
 		
 		for(Dispositivo dis : repo.getDispositivos()){
@@ -42,6 +46,18 @@ public class DispositivoDAO implements WithGlobalEntityManager {
 			
 			entityManager().persist(log);
 		}
+		
+		for(Cliente cli: repo.getClientes()){
+			
+			entityManager().persist(cli);
+		}
+		
+		for(Transformador trafo: repo.getTransformadores()){
+			
+			entityManager().persist(trafo);
+		}
+		
+		transaccion.commit();
 	}
 	
 	public List<Dispositivo> obtenerDispositivos(){

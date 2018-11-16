@@ -14,8 +14,10 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
@@ -41,7 +43,7 @@ public class Cliente extends Usuario {
 	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private Categoria categoria;
 	
-	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private List <Dispositivo> dispositivos = new ArrayList<Dispositivo>();
 	
 	@Column(name="PUNTOS")

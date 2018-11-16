@@ -66,16 +66,15 @@ public class Main {
 	
 	public static void main( String[] args ) throws IOException, InterruptedException, ParseException, ApiException{
 		
-		
-
-		
-		
 		Repositorio repositorio = Repositorio.getInstance();
 		repositorio.importarLog();
 		repositorio.importarDispositivos();
 		repositorio.importarZona();
 		repositorio.importarTransformadores();
 		repositorio.importarClientes();		
+		
+//		DispositivoDAO dao = new DispositivoDAO();
+//		dao.cargaInicial();
 
 
 		port(8080);
