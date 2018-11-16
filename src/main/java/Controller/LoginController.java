@@ -7,6 +7,7 @@ import Dao.ClienteDAO;
 import Dao.DispositivoDAO;
 import Dao.TransformadorDAO;
 import Helpers.ViewHelper;
+import ZonaGeografica.Transformador;
 import spark.Route;
 import spark.ModelAndView;
 import spark.*;
@@ -62,7 +63,19 @@ public class LoginController {
 	    public static Route index = (Request request, Response response) -> {
 	        Map<String, Object> model = new HashMap<>();
 	        TransformadorDAO dao = new TransformadorDAO();
-	        model.put("transformadores", dao.obtenerTransformadores());
+	        List<Transformador> transformadores = dao.obtenerTransformadores();
+	        ArrayList<Transformador> trafosMapeados = new ArrayList<Transformador>();
+	        
+	        for (Transformador trafo:transformadores) {
+	        	
+	        	
+	        	Transformador trafoMapeado = new Transformador(trafo.getId(),trafo.getCoordenadas(),trafo.consumoGenerico());
+	        	trafoMapeado.setClientes(trafo.getClientes());
+	        	
+	        	trafosMapeados.add(trafoMapeado);
+	        }
+	        
+	        model.put("transformadores", trafosMapeados);
 	        return ViewHelper.render(request, model, "index.html");
 	    };
 

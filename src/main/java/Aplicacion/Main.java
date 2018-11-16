@@ -19,6 +19,7 @@ import Controller.DispositivosController;
 import Controller.HomeController;
 import Controller.LoginController;
 import Controller.SimplexController;
+import Controller.TransformadorController;
 import Controller.UsuarioController;
 import Dao.AbstractDAO;
 import Dao.ClienteDAO;
@@ -101,6 +102,9 @@ public class Main {
         
         //ABM
         get("/ABMdispositivos",	UsuarioController.traerDispositivos);
+        
+        get("/mapa",			TransformadorController.mapa);
+        
         
 	
 	}

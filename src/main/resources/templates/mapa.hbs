@@ -37,10 +37,7 @@
 	}).bindPopup("Zona 3: Lavalle").addTo(mymap);
 	
 
-	<!-- Clientes -->
-	
-	var marker = L.marker([-34.6060203, -58.3784528]).bindPopup("Cliente: 11111 <br> Dirección: Cnel Tte J D Peron 850").addTo(mymap);
-	var marker = L.marker([-34.6037313, -58.3840308]).bindPopup("Cliente: 22222 <br> Dirección: Av. Corrientes 1225").addTo(mymap);
+
 
 	var greenIcon = new L.Icon({
 	  iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
@@ -54,7 +51,7 @@
 	<!-- Transformadores -->
 	{{#each transformadores}}
 	<!-- Zona 1 -->
-	var marker = L.marker([{{coordenadas.latitud}}, {{coordenadas.longitud}}], {icon: greenIcon}).bindPopup("Transformador: {{id}}").addTo(mymap);
+	var marker = L.marker([{{coordenadas.latitud}}, {{coordenadas.longitud}}], {icon: greenIcon}).bindPopup("Transformador: {{id}} / Consumo: {{consumoCalculable}}").addTo(mymap);
 	
 	{{/each}}
 	
@@ -78,7 +75,7 @@
 		<td>{{id}}</td>
 		<td>{{coordenadas.latitud}}</td>
 		<td>{{coordenadas.longitud}}</td>
-		<td>{{consumo}}</td>
+		<td>{{consumoCalculable}}</td>
 
 		</tr>
 		 {{/each}}

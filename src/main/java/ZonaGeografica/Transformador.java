@@ -35,6 +35,9 @@ public class Transformador {
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<Cliente> clientes = new ArrayList<Cliente>();
 	
+	@Transient
+	private double consumoCalculable;
+	
 	//constructor
 	public Transformador(int id, Coordenadas coordenadas, int zona) {
 		super();
@@ -53,6 +56,15 @@ public class Transformador {
 	
 	public Transformador() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public Transformador(int id, Coordenadas coordenadas, double consumoCalculable) {
+		
+		this.id = id;
+		this.coordenadas = coordenadas;
+		this.clientes = new ArrayList<Cliente>();
+		this.consumoCalculable = consumoCalculable;
+		
 	}
 
 	//getters and setters
@@ -80,8 +92,20 @@ public class Transformador {
 		this.clientes = clientes;
 	}
 	
+	public double getConsumoCalculable() {
+		return consumoCalculable;
+	}
+	
+	public void setConsumoCalculable(double consumoCalculable) {
+		this.consumoCalculable = consumoCalculable;
+	}
+	
+	
 	//metodos 
 	
+	
+	
+
 	public int getZona() {
 		return zona;
 	}
@@ -103,6 +127,18 @@ public class Transformador {
 		for (Cliente obj: this.getClientes()){
 			
 			consumoTotal = consumoTotal + obj.consumo(fecha);
+		}
+		
+		return consumoTotal;
+	}
+	
+	public double consumoGenerico() throws ParseException{
+		
+		double consumoTotal = 0;
+		
+		for (Cliente obj: this.getClientes()){
+			
+			consumoTotal = consumoTotal + obj.consumoGenerico();
 		}
 		
 		return consumoTotal;
