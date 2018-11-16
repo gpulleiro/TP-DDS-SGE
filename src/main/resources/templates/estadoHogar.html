@@ -1,0 +1,29 @@
+{{#partial "navbar"}}
+{{> navbarCliente.hbs}}
+{{/partial}}
+
+{{#partial "content"}}
+
+<div class="container-fluid">
+<h1>Ultimas Mediciones</h1>
+</div><br/>
+
+<div class="container-fluid">
+<h1>Consumo del ultimo periodo</h1>
+<p class="good notification">El consumo del ultimo periodo es {{consumoPeriodo}}</p>
+
+</div><br/>
+
+<div class="container-fluid">
+<h1>Mis Dispositivos</h1>
+{{> dispositivosCliente.hbs}}
+</div><br/>
+
+<div class="container-fluid">
+<h1>Reglas activas</h1>
+</div><br/>
+
+
+{{/partial}}
+
+{{> layout.hbs}}

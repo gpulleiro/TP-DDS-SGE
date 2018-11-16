@@ -15,7 +15,9 @@ import static Helpers.RequestHelper.*;
 public class SimplexController {
 	
 	public static Route simplexPage = (Request request, Response response) -> {
-        Map<String, Object> model = new HashMap<>();
+		LoginController.ensureUserIsLoggedIn(request, response);
+		
+		Map<String, Object> model = new HashMap<>();
         String myUser = request.session().attribute("currentUser");
         
         ClienteDAO dao = new ClienteDAO();
@@ -29,7 +31,8 @@ public class SimplexController {
        
        
    	public static Route simplexEjecutado = (Request request, Response response) -> {
-        Map<String, Object> model = new HashMap<>();
+   		LoginController.ensureUserIsLoggedIn(request, response);
+   		Map<String, Object> model = new HashMap<>();
         String myUser = request.session().attribute("currentUser");
         
         ClienteDAO dao = new ClienteDAO();

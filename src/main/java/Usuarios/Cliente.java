@@ -321,5 +321,6 @@ public class Cliente extends Usuario {
 		return consumoTotal;
 	}
 	
+	
 }
 

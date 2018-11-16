@@ -40,5 +40,59 @@
 	"fecha": "06/10/2018 17:03:34",
 	"nombre": "Lampara halogenas de 40w",
 	"estado": "apagado"
+},
+{
+	"id_dispositivo": 7,
+	"fecha": "06/10/2018 17:03:34",
+	"nombre": "Televisor LED 24",
+	"estado": "apagado"
+},
+{
+	"id_dispositivo": 7,
+	"fecha": "06/10/2018 18:03:34",
+	"nombre": "Televisor LED 24",
+	"estado": "encendido"
+},
+{
+	"id_dispositivo": 7,
+	"fecha": "06/10/2018 17:03:34",
+	"nombre": "Televisor LED 24",
+	"estado": "encendido"
+},
+{
+	"id_dispositivo": 8,
+	"fecha": "06/10/2018 17:03:34",
+	"nombre": "Televisor LED 32",
+	"estado": "apagado"
+},
+{
+	"id_dispositivo": 8,
+	"fecha": "06/10/2018 17:03:34",
+	"nombre": "Televisor LED 32",
+	"estado": "encendido"
+},
+{
+	"id_dispositivo": 8,
+	"fecha": "06/10/2018 17:03:34",
+	"nombre": "Televisor LED 32",
+	"estado": "encendido"
+},
+{
+	"id_dispositivo": 2,
+	"fecha": "06/10/2018 17:03:34",
+	"nombre": "Aire acondicionado 3500 frigorias",
+	"estado": "apagado"
+},
+{
+	"id_dispositivo": 2,
+	"fecha": "06/10/2018 18:03:34",
+	"nombre": "Aire acondicionado 3500 frigorias",
+	"estado": "encendido"
+},
+{
+	"id_dispositivo": 2,
+	"fecha": "06/10/2018 23:03:34",
+	"nombre": "Aire acondicionado 3500 frigorias",
+	"estado": "encendido"
 }
 ]

@@ -91,8 +91,16 @@ public class Main {
         get("/dispositivos",	DispositivosController.traerDispositivos);
         post("/dispositivos",	DispositivosController.crearDispositivo);
         get("/hogares",			UsuarioController.traerClientes);
+
+        //menu del cliente
         get("/simplex",			SimplexController.simplexPage);
         post("/simplex",		SimplexController.simplexEjecutado);
+        
+//        get("/estadoHogar", 	UsuarioController.clienteEstadoHogar);
+        get("/estadoHogar", 	UsuarioController.clienteConsumoPeriodo);
+        
+        //ABM
+        get("/ABMdispositivos",	UsuarioController.traerDispositivos);
         
 	
 	}
