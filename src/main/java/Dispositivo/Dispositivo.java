@@ -28,6 +28,9 @@ public abstract class Dispositivo {
 	@Column(name="MAX_HORAS")
 	protected double maximoHoras;
 	
+	@Transient
+	protected double consumoIdeal;
+	
 	//constructor>
 	public Dispositivo(String nombre, double consumoFijo, double minimoHoras, double maximoHoras) {
 		super();
@@ -41,10 +44,21 @@ public abstract class Dispositivo {
 	
 	//getters and setters
 	
+	
+	
+	
 	public long getId() {
 		return id;
 	}
 
+
+	public double getConsumoIdeal() {
+		return consumoIdeal;
+	}
+
+	public void setConsumoIdeal(double consumoIdeal) {
+		this.consumoIdeal = consumoIdeal;
+	}
 
 	public void setId(long id) {
 		this.id = id;

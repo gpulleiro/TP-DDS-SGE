@@ -18,6 +18,7 @@ import Acciones.AccionApagar;
 import Controller.DispositivosController;
 import Controller.HomeController;
 import Controller.LoginController;
+import Controller.SimplexController;
 import Controller.UsuarioController;
 import Dao.AbstractDAO;
 import Dao.ClienteDAO;
@@ -82,16 +83,16 @@ public class Main {
         enableDebugScreen();
 
     
-        get("/login",		LoginController.serveLoginPage);
-        post("/login",		LoginController.handleLoginPost);
-        post("/logout",		LoginController.handleLogoutPost);
+        get("/login",			LoginController.serveLoginPage);
+        post("/login",			LoginController.handleLoginPost);
+        post("/logout",			LoginController.handleLogoutPost);
         get("/index",			LoginController.index);
         get("/home",			HomeController.homeClientePage);
-        get("/dispositivos",			DispositivosController.traerDispositivos);
-        post("/dispositivos",		DispositivosController.crearDispositivo);
-        get("/hogares",				UsuarioController.traerClientes);
-
-       
+        get("/dispositivos",	DispositivosController.traerDispositivos);
+        post("/dispositivos",	DispositivosController.crearDispositivo);
+        get("/hogares",			UsuarioController.traerClientes);
+        get("/simplex",			SimplexController.simplexPage);
+        post("/simplex",		SimplexController.simplexEjecutado);
         
 	
 	}

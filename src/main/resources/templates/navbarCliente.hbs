@@ -1,0 +1,26 @@
+{{#block "navbarCliente"}}
+
+   <ul class="nav navbar-nav">
+      <li class="active"><a href="/home">Home</a></li>
+      
+      <li><a href="/estadoHogar">Estado Del Hogar</a></li>
+      <li><a href="/consumo">Consumo</a></li>
+      <li><a href="/simplex">Simplex</a></li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">ABM<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/ABMreglas">Reglas</a></li>
+          <li><a href="/ABMDispositivos">Dispositivos</a></li>
+        </ul>
+      </li>
+      
+   </ul>
+   <ul class="nav navbar-nav navbar-right">
+      <li>
+         <p class="navbar-text"><span class="glyphicon glyphicon-user"></span> {{currentUser}}</p>
+      </li>
+      <li>
+         <form action="/logout" method="post"><button type="submit"><span class="glyphicon glyphicon-log-out"></span>Logout</button></form>
+      </li>
+   </ul>
+
+{{/block}}

@@ -38,6 +38,10 @@ public class ClienteDAO extends AbstractDAO{
 		// TODO Auto-generated method stub
 		return (Usuario) entityManager.createQuery("from Usuario where usuario = :usuario").setParameter("usuario", usuario).getSingleResult();
 	}
+	public Cliente obtenerCliente(String usuario) {
+		// TODO Auto-generated method stub
+		return (Cliente) entityManager.createQuery("from Usuarios.Cliente where usuario = :usuario").setParameter("usuario", usuario).getSingleResult();
+	}
 	
 	@SuppressWarnings("unchecked")
 	public List<Cliente> obtenerClientes() {

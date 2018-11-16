@@ -10,14 +10,8 @@ import Usuarios.Usuario;
 import spark.*;
 
 public class UsuarioController {
-	
-		//ClienteDAO clieDAO = new ClienteDAO();
-		
+			
 		public static boolean authenticate(String username, String password) {
-//	        if (username.isEmpty() || password.isEmpty()) {
-//	            return false;
-//	        }
-//			return true;
 
 			ClienteDAO dao = new ClienteDAO();
 			Usuario user = dao.recuperarPorUsername(username);
@@ -27,9 +21,6 @@ public class UsuarioController {
 	        	return user.getContrasenia().equals(password.toString());
 	        }
 	        
-/* Esto es para el HASHEO de la password, primero lo pruebo normal sin hashear        
- * String hashedPassword = BCrypt.hashpw(password, user.getSalt());
- * return hashedPassword.equals(user.getHashedPassword());*/
 	    }
 
 		public static Route traerClientes = (Request request, Response response) -> {

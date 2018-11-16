@@ -1,0 +1,54 @@
+{{#partial "navbar"}}
+{{> navbarCliente.hbs}}
+{{/partial}}
+{{#partial "content"}}
+<body>
+    <div class="container">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6">
+            <h2><b>Dispositivos</b></h2>
+          </div>
+          <div class="col-sm-6">
+            <form method='post' action="/simplex">
+            	<input type="hidden" name="simplexPlay" value="ejecutado">
+            	<button type="submit" class="btn btn-success">Ejecutar Simplex</button>
+            </form>         
+          </div>
+                </div>
+            </div>
+            <table class="table table-striped table-hover">
+                <thead>	
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Consumo Fijo</th>
+            			<th>Horas Maximas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+					{{#each dSimplex}}
+							<tr>
+							<td>{{id}}</td>
+							<td>{{nombre}}</td>
+							<td>{{consumoFijo}}</td>
+							<td>{{consumoIdeal}}</td>
+							
+							</tr>
+					{{/each}}
+                    </tr>
+                    
+                </tbody>
+            </table>
+      
+        </div>
+    </div>
+  <!-- Edit Modal HTML -->
+ 
+
+
+
+ {{/partial}}
+ {{> layout.hbs}}

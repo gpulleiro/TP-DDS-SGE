@@ -61,6 +61,12 @@ public class RequestHelper {
 	public static String getQueryTipoDispositivo(Request request) {
 		return request.queryParams("tipo-dispositivo");
 	}
+	
+//Req simplex
+	public static String getQuerySimplexPlayed(Request request) {
+		return request.queryParams("simplexPlay");
+	}
+	
     
     
 

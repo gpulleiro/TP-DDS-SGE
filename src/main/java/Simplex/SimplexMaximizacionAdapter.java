@@ -34,7 +34,7 @@ public class SimplexMaximizacionAdapter {
 			i++;
 		}
 		//agrego la restriccion general, en este caso el ejemplo es 620
-		simplex.agregarRestriccion(Relationship.LEQ, 620, coeficientes);
+		simplex.agregarRestriccion(Relationship.LEQ, 720, coeficientes);
 		//creo la funcion economica
 		simplex.crearFuncionEconomica(coeficientes);
 	
@@ -43,10 +43,10 @@ public class SimplexMaximizacionAdapter {
 	
 		for(i=0;i<tamanioLista;i++){
 		
-		System.out.printf(" x%d: %f", i, solucion.getPoint()[i]);
+			double cons_ideal = solucion.getPoint()[i];	
+			list.get(i).setConsumoIdeal(cons_ideal);
+		
 		}
-		System.out.printf(" total: %f", solucion.getValue());
-		
-		
 	}
+		
 }
