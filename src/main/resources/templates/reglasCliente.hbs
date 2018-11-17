@@ -1,0 +1,39 @@
+{{#block "reglasCliente"}}
+
+<div class="container">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6">
+            <h2><b>Reglas</b></h2>
+          </div>
+                </div>
+            </div>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Condicion</th>
+                        <th>Valor de la condicion</th>
+                        <th>Actuador</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+					{{#each reglasCliente}}
+							<tr>
+							<td>{{nombre}}</td>
+							<td>{{condicion}}</td>
+							<td>{{flag}}</td>
+							<td>{{actuador.id}}</td>
+							<tr>
+							 {{/each}}
+                    </tr>
+                    
+                </tbody>
+            </table>
+      
+        </div>
+    </div>
+
+{{/block}}
