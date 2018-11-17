@@ -66,4 +66,10 @@ public class DispositivoDAO implements WithGlobalEntityManager {
 		
 	}
 	
+	public Dispositivo obtenerDispositivoPorId( long id) {
+		
+		return (Dispositivo) entityManager().createQuery("from Dispositivo.Dispositivo where id = :id").setParameter("id", id).getSingleResult();
+		
+		}
+	
 }

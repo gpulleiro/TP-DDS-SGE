@@ -43,7 +43,7 @@ public class Cliente extends Usuario {
 	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private Categoria categoria;
 	
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private List <Dispositivo> dispositivos = new ArrayList<Dispositivo>();
 	
 	@Column(name="PUNTOS")
@@ -322,6 +322,10 @@ public class Cliente extends Usuario {
 	}
 		return consumoTotal;
 	}
+	
+	public void eliminarDispositivo(Dispositivo dispositivo) {
+		
+		this.dispositivos.remove(dispositivo);     }
 	
 	
 }

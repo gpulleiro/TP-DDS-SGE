@@ -102,9 +102,14 @@ public class Main {
         post("/consumo", 		UsuarioController.clienteConsultaConsumo);
         
         //ABM
-        get("/ABMdispositivos",	UsuarioController.traerDispositivos);
+        get("/dispositivosAlta",	UsuarioController.traerDispositivos);
         
-        get("/mapa",			TransformadorController.mapa);
+        get("/mapa",				TransformadorController.mapa);
+        get("/dispositivosByM",		UsuarioController.clienteBajaYModificacion);
+        post("/dispositivosAlta", 	UsuarioController.clienteAgregarDispositivo);
+        post("/dispositivosByM", 	UsuarioController.clienteEliminarDispositivo);
+        
+        
         
         
         

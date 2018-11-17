@@ -71,5 +71,15 @@ public class RequestHelper {
 		return request.queryParams("fechaConsumo");
 	}
     
+//Requests ABM cliente
+	
+	
+	public static String getQueryAgregarDispositivo(Request request) {
+		return request.queryParams("agregarDispositivo");
+	}
+	
+	public static String getQueryEliminarDispositivo(Request request) {
+		return request.queryParams("eliminarDispositivo");
+	}
 
 }
