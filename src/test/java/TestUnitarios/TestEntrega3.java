@@ -138,13 +138,13 @@ public class TestEntrega3 {
 				
 				//crear una nueva regla
 				AccionApagar actuadorApagar = new AccionApagar();
-				Regla regla = new Regla("apagar","igual", 0, actuadorApagar);
+				SensorDeMovimiento senmov = new SensorDeMovimiento();
+				Regla regla = new Regla("apagar","igual", 0, actuadorApagar,senmov);
 				
 				//asociarla a un dispositivo
 				Inteligente televisor = new Inteligente("televisor",2,3,4,"encendido");
-				SensorDeMovimiento senmov = new SensorDeMovimiento();
-				senmov.agregarDispositivo(televisor);
-				regla.agregarSensor(senmov);
+				
+				regla.getDispositivos().add(televisor);
 				
 				//persistirla
 				rdao.ingresarRegla(regla);

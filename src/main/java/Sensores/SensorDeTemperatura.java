@@ -19,7 +19,6 @@ public class SensorDeTemperatura extends Sensor {
 	
 	public SensorDeTemperatura() {
 		observadores = new ArrayList<Observer>();
-		dispositivos = new ArrayList<Inteligente>();
 		mediciones = new ArrayList<Medicion>();
 	}
 		

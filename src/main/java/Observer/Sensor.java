@@ -31,20 +31,17 @@ public abstract class Sensor implements Subject{
 	@GeneratedValue
 	@Column(name = "ID_SENSOR")
 	protected long id;
+
 	
-	@ManyToMany(targetEntity=Regla.class, cascade = {CascadeType.ALL}, fetch=FetchType.EAGER)
+	@OneToMany(targetEntity=Regla.class, cascade = {CascadeType.ALL}, fetch=FetchType.EAGER)
 	protected List <Observer> observadores = new ArrayList<Observer>();
 	//protected ArrayList<Observer>observadores;
-	
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	protected List <Inteligente> dispositivos = new ArrayList<Inteligente>();
-	//protected ArrayList<Inteligente>dispositivos;
-	
+
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	protected List <Medicion> mediciones = new ArrayList<Medicion>();
 	
 	@Column(name = "MAGNITUD")
-	private double magnitud;
+	protected double magnitud;
 	
 	//metodos del patron Observer
 	public void agregarObservador(Observer obs) {observadores.add(obs);};
@@ -54,14 +51,8 @@ public abstract class Sensor implements Subject{
 	}
 
 	
-	//getters y setters
-	public List<Inteligente> getDispositivos() {
-		return dispositivos;
-	}
 
-	public void setDispositivos(List<Inteligente> dispositivos) {
-		this.dispositivos = dispositivos;
-	}
+
 	
 	public long getId() {
 		return id;
@@ -87,9 +78,6 @@ public abstract class Sensor implements Subject{
 		this.magnitud = magnitud;
 	}
 
-	//agrega un dispositivo a la lista de dispositivos del sensor
-	public void agregarDispositivo(Inteligente dis){dispositivos.add(dis);};
-	
 	public void agregarMedicion(double magnitud){
 		
 		Medicion medicion = new Medicion();

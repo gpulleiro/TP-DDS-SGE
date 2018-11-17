@@ -71,6 +71,7 @@ public class UsuarioController {
 
 		model.put("dispositivosCliente", cliente.getDispositivos());
 		model.put("consumoPeriodo", consumoPeriodo);
+		model.put("reglasCliente", cliente.getReglas());
 
 		return ViewHelper.render(request, model, "estadoHogar.html");
 	};

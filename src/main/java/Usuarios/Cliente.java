@@ -23,6 +23,7 @@ import javax.persistence.Transient;
 
 import Dispositivo.Dispositivo;
 import Dispositivo.Inteligente;
+import Observer.Regla;
 import Repositorio.Repositorio;
 import Simplex.SimplexMaximizacionAdapter;
 import TipoDato.Coordenadas;
@@ -45,6 +46,11 @@ public class Cliente extends Usuario {
 	
 	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private List <Dispositivo> dispositivos = new ArrayList<Dispositivo>();
+	
+	///AGREGO LA LISTA DE REGLAS
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	private List <Regla> reglas = new ArrayList<Regla>();
+	
 	
 	@Column(name="PUNTOS")
 	private int puntos;
@@ -98,10 +104,18 @@ public class Cliente extends Usuario {
 	//getters-setters
 	
 	
+	
+	
+	
+	
 	public String getTipoDocumento() {
 		return tipoDocumento;
 	}
 
+	public List<Regla> getReglas() {
+		return reglas;
+	}
+	
 	public double getConsumoCalculable() {
 		return consumoCalculable;
 	}

@@ -16,6 +16,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -30,20 +32,22 @@ public class Regla implements Observer {
 	public Regla() {
 	}
 	
-	public Regla(String nombre, String condicion, double flag, Actuador actuador){
+	public Regla(String nombre, String condicion, double flag, Actuador actuador, Sensor sensor){
 		this.nombre = nombre;
 		this.flag = flag;
 		this.actuador = actuador;
 		this.condicion = condicion;
-		sensores = new ArrayList<Sensor>();
+		this.sensor = sensor;
+		sensor.agregarObservador(this);
 	}
 	
 	@Id
 	@GeneratedValue
 	@Column(name = "ID_REGLA")
-	protected long id;
-	@ManyToMany(cascade = {CascadeType.ALL}, fetch=FetchType.EAGER)
-	protected List <Sensor> sensores = new ArrayList<Sensor>();
+	private long id;
+	
+	@ManyToOne(cascade = {CascadeType.ALL}, fetch=FetchType.EAGER)
+	private Sensor sensor;
 	//private ArrayList<Sensor>sensores;
 	@OneToOne(cascade = {CascadeType.ALL})
 	private Actuador actuador;
@@ -53,14 +57,21 @@ public class Regla implements Observer {
 	private double flag;
 	@Column(name="CONDICION")
 	private String condicion;
+	@OneToMany(cascade = {CascadeType.ALL}, fetch=FetchType.EAGER)
+	private List<Inteligente> dispositivos = new ArrayList<Inteligente>();
 		
 	//agrego un sensor a la lista de sensores y agrego a la regla como observador del sensor.
-	public void agregarSensor(Sensor sen){
-		sensores.add(sen);
-		sen.agregarObservador(this);
-	}
 	
-//getters y setters	
+public Sensor getSensor() {
+		return sensor;
+	}
+
+	public void setSensor(Sensor sensor) {
+		this.sensor = sensor;
+		sensor.agregarObservador(this);
+	}
+
+	//getters y setters	
 	public Actuador getActuador() {
 		return actuador;
 	}
@@ -68,12 +79,19 @@ public class Regla implements Observer {
 	public void setActuador(Actuador actuador) {
 		this.actuador = actuador;
 	}
-		
-	
+
 	
 //		public ArrayList<Sensor> getSensores() {
 //		return sensores;
 //	}
+
+	public List<Inteligente> getDispositivos() {
+		return dispositivos;
+	}
+
+	public void setDispositivos(List<Inteligente> dispositivos) {
+		this.dispositivos = dispositivos;
+	}
 
 	public long getId() {
 		return id;
@@ -83,13 +101,6 @@ public class Regla implements Observer {
 		this.id = id;
 	}
 
-	public List<Sensor> getSensores() {
-		return sensores;
-	}
-
-	public void setSensores(List<Sensor> sensores) {
-		this.sensores = sensores;
-	}
 
 	public String getNombre() {
 		return nombre;
@@ -99,9 +110,6 @@ public class Regla implements Observer {
 		this.nombre = nombre;
 	}
 
-	public void setSensores(ArrayList<Sensor> sensores) {
-		this.sensores = sensores;
-	}
 
 	public double getFlag() {
 		return flag;
@@ -135,10 +143,9 @@ public class Regla implements Observer {
 	
 	//metodo update
 	public void update() throws IOException {
-	for (Sensor sen:sensores)
-	{if(condicionD(sen))
-	{for(Inteligente dis: sen.getDispositivos())
-	{this.getActuador().actuar(dis);}}}
+	if(condicionD(this.getSensor()))
+	{for(Inteligente dis: this.getDispositivos())
+	{this.getActuador().actuar(dis);}}
 }
 	
 }
