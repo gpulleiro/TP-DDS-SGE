@@ -1,0 +1,44 @@
+{{#partial "navbar"}}
+{{> navbarCliente.hbs}}
+{{/partial}}
+
+{{#partial "content"}}
+
+<div class="row">
+<h1>Consulta del consumo</h1></br>
+</div>
+<div class="col-sm"></div>
+<div class="col-sm-6">
+	<form method='post' action="/consumo">
+		<div class="form-group">
+			<label for="fechaConsumo">Ingrese Fecha</label>
+			<input id="fechaConsumo" name="fechaConsumo" class="form-control" type="text" required>
+		</div>
+		<button type="submit" class="btn btn-success">Consultar</button>
+	</form>         
+</div>
+
+
+<div class="row">
+
+</div></br>
+
+<div class="row">
+<div class="col-sm"></div>
+<div class="col-sm-6">
+{{#if fechaConsumo}}
+<div class="alert alert-info">
+    	<p>El consumo al dia de la fecha es</p><strong>{{fechaConsumo}} kWh	</strong>
+</div>
+{{/if}}
+</div>
+</div>
+
+
+
+
+
+
+{{/partial}}
+
+{{> layout.hbs}}

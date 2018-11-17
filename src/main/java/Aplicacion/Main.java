@@ -98,11 +98,15 @@ public class Main {
         
 //        get("/estadoHogar", 	UsuarioController.clienteEstadoHogar);
         get("/estadoHogar", 	UsuarioController.clienteConsumoPeriodo);
+        get("/consumo", 		UsuarioController.clienteMenuConsumo);
+        post("/consumo", 		UsuarioController.clienteConsultaConsumo);
         
         //ABM
         get("/ABMdispositivos",	UsuarioController.traerDispositivos);
         
         get("/mapa",			TransformadorController.mapa);
+        
+        
         
         
 	

@@ -10,6 +10,7 @@ import Helpers.ViewHelper;
 import Usuarios.Cliente;
 import Usuarios.Usuario;
 import spark.*;
+import static Helpers.RequestHelper.*;
 
 public class UsuarioController {
 			
@@ -90,6 +91,36 @@ public class UsuarioController {
 		        
 		        
 			};
+			
+			
+			public static Route clienteMenuConsumo = (Request request, Response response) -> {
+		        LoginController.ensureUserIsLoggedIn(request, response);
+				Map<String, Object> model = new HashMap<>();
+
+		        	return ViewHelper.render(request, model, "consumo.html");
+		        };   
+			
+			public static Route clienteConsultaConsumo = (Request request, Response response) -> {
+			        LoginController.ensureUserIsLoggedIn(request, response);
+					Map<String, Object> model = new HashMap<>();
+			        String myUser = request.session().attribute("currentUser");
+			        
+			        ClienteDAO dao = new ClienteDAO();
+			        Cliente cliente = dao.obtenerCliente(myUser);
+			        
+
+
+			        	//model.put("dispositivosCliente" , cliente.getDispositivos());
+			        	
+			        	if ( getQueryConsumoFecha(request).isEmpty()) {
+				            
+				            return ViewHelper.render(request, model, "consumo.html");
+				        }
+				        String fecha = getQueryConsumoFecha(request);
+				        double consumoFecha = cliente.consumo(fecha);
+			        	model.put("fechaConsumo", consumoFecha);
+			        	return ViewHelper.render(request, model, "consumo.html");
+			        };
 	        
 	    
 	

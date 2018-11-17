@@ -67,7 +67,9 @@ public class RequestHelper {
 		return request.queryParams("simplexPlay");
 	}
 	
-    
+	public static String getQueryConsumoFecha(Request request) {
+		return request.queryParams("fechaConsumo");
+	}
     
 
 }
