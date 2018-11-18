@@ -30,7 +30,7 @@ public class Zona {
 	private int radio;
 	
 
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private List <Transformador> transformadores = new ArrayList<Transformador>();
 	
 	//constructor

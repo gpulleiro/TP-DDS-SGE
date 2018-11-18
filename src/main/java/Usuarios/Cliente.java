@@ -41,21 +41,21 @@ public class Cliente extends Usuario {
 	@Column(name="TELEFONO")
 	private int telefono;
 	
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private Categoria categoria;
 	
-	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private List <Dispositivo> dispositivos = new ArrayList<Dispositivo>();
 	
 	///AGREGO LA LISTA DE REGLAS
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private List <Regla> reglas = new ArrayList<Regla>();
 	
 	
 	@Column(name="PUNTOS")
 	private int puntos;
 	
-	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private Coordenadas coordenadas;
 //ESTE TRANSIENT ESTA EN BETA	
 	@Transient
