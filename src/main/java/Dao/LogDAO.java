@@ -17,4 +17,10 @@ public class LogDAO extends AbstractDAO {
 		
 		return entityManager.createQuery("from Repositorio.Log where month(fecha) = :mes and nombre = :nombre and estado = :estado" ).setParameter("mes", mes).setParameter("nombre", nombre).setParameter("estado", estado).getResultList();
 	}
+	
+	public Log obtenerLogPorId(long id) {
+
+		return (Log) entityManager.createQuery("from TipoDato.Log where id = :id").setParameter("id", id).getSingleResult();
+
+	}
 }

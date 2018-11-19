@@ -26,4 +26,10 @@ public class ReglaDAO extends AbstractDAO {
 		return entityManager.createQuery("FROM Observer.Regla").getResultList();
 		
 	}
+	
+	public Regla obtenerReglaPorId(long id) {
+
+		return (Regla) entityManager.createQuery("from Observer.Regla where id = :id").setParameter("id", id).getSingleResult();
+
+	}
 }

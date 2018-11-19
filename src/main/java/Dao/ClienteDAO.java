@@ -43,5 +43,11 @@ public class ClienteDAO extends AbstractDAO {
 		return entityManager.createQuery("FROM Usuarios.Cliente").getResultList();
 
 	}
+	
+	public Cliente obtenerClientePorId(long id) {
+		
+		return  (Cliente) entityManager.createQuery("from Usuarios.Cliente where id = :id").setParameter("id", id).getSingleResult();
+		
+	}
 
 }

@@ -53,5 +53,11 @@ public class TransformadorDAO extends AbstractDAO {
 		return entityManager.createQuery("FROM ZonaGeografica.Transformador").getResultList();
 		
 	}
+	
+	public Transformador obtenerTransformadorPorId(long id) {
+
+		return (Transformador) entityManager.createQuery("from ZonaGeografica.Transformador where id = :id").setParameter("id", id).getSingleResult();
+
+	}
 
 }
