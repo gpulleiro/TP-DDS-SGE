@@ -12,14 +12,6 @@ import TipoDato.Log;
 
 public class LogDAO extends AbstractDAO {
 
-	EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
-	
-	EntityTransaction transaccion = entityManager.getTransaction();
-	
-	public void registrarLog(Log log) {
-		entityManager.persist(log);
-	}
-
 	@SuppressWarnings("unchecked")
 	public List<Log> obtenerLogs(String nombre, int mes, String estado) {
 		

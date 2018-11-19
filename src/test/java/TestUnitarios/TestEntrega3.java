@@ -48,15 +48,15 @@ public class TestEntrega3 {
 		ClienteDAO dao = new ClienteDAO();
 		
 		//registro en la base de datos
-		coodao.registrarCoordenadas(c1);
-		dao.registrarCliente(cliente1);
+		coodao.agregar(c1);
+		dao.agregar(cliente1);
 		
 		//se recupera de la base un cliente por nombre
 		Cliente clienteRecup = dao.recuperarClientePorNombre("gabi");
 		
 		//se crea nueva coordenada y se le setea la nueva al cliente recuperado de la base
 		Coordenadas c2 = new Coordenadas(25,30);
-		coodao.registrarCoordenadas(c2);
+		coodao.agregar(c2);
 		clienteRecup.setCoordenadas(c2);
 		
 		//se actualiza cliente con la nueva coordenada en la base
@@ -68,7 +68,7 @@ public class TestEntrega3 {
 	
 	// test N2
 	@Test
-	public void recuperarDispositivoMostrarLogModificarNombreYGrabarlo(){
+	public void recuperarDispositivoMostrarLogModificarNombreYGrabarlo() {
 		
 		Administrador admin = new Administrador();
 		
@@ -147,7 +147,7 @@ public class TestEntrega3 {
 				regla.getDispositivos().add(televisor);
 				
 				//persistirla
-				rdao.ingresarRegla(regla);
+				rdao.agregar(regla);
 				
 				//recuperarla y ejecutarla
 				Regla reg = rdao.obtenerRegla("apagar");
@@ -155,7 +155,7 @@ public class TestEntrega3 {
 				
 				//modificar alguna condicion y persistirla
 				reg.setCondicion("mayor");
-				rdao.ingresarRegla(reg);
+				rdao.agregar(reg);
 				
 				//recuperarla y evaluar que la condicion modificada posea la ultima modificacion
 				reg = rdao.obtenerRegla("apagar");
@@ -211,8 +211,8 @@ public class TestEntrega3 {
 	
 	//test numero 5
 	@Test
-	public void consumoTotal() throws IOException, ApiException, InterruptedException, ParseException{
-	
+    public void consumoTotal() throws IOException, ApiException, InterruptedException, ParseException{
+
 	Repositorio repo = Repositorio.getInstance();
 	
 	DispositivoDAO disDAO = new DispositivoDAO();
@@ -225,7 +225,7 @@ public class TestEntrega3 {
 	
 	cli1.aniadirDispositivo(dis1);
 	
-	cliDAO.registrarCliente(cli1);
+	cliDAO.agregar(cli1);
 	
 	//muestro el consumo total de un hogar
 	double consumoTotal = cli1.consumo("06/10/2018 02:30:00");

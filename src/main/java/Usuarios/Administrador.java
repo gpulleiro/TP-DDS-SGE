@@ -57,7 +57,7 @@ public class Administrador extends Usuario {
 		
 		DispositivoDAO disDAO = new DispositivoDAO();
 		
-		disDAO.registrarDispositivo(dis);
+		disDAO.agregar(dis);
 		
 	}
 	

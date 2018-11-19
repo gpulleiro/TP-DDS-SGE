@@ -22,12 +22,6 @@ import ZonaGeografica.Transformador;
 
 public class TransformadorDAO extends AbstractDAO {
 
-	public void registrarTransformador(Transformador transformador) {
-
-		entityManager.persist(transformador);
-
-	}
-
 	@SuppressWarnings("unchecked")
 	public List<Transformador> listarTransformadores(){
 

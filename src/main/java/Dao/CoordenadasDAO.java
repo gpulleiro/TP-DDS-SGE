@@ -9,10 +9,4 @@ import TipoDato.Coordenadas;
 
 public class CoordenadasDAO extends AbstractDAO {
 
-	public void registrarCoordenadas(Coordenadas coordenadas) {
-
-		transaccion.begin();
-		entityManager.persist(coordenadas);
-		transaccion.commit();
-	}
 }

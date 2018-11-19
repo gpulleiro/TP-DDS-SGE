@@ -45,7 +45,7 @@ public class DispositivosController {
 	        		Double.parseDouble(getQueryDispositivoMaxHoras(request)),0);
 	        
 	        
-	        dao.registrarDispositivo(nuevoDispositivo);;
+	        dao.agregar(nuevoDispositivo);;
 	        response.redirect("/dispositivos");
 	        
 	        }
@@ -58,7 +58,7 @@ public class DispositivosController {
 	        	        "apagado");
 	        	        
 	        	        
-	        	        dao.registrarDispositivo(nuevoDispositivo);
+	        	        dao.agregar(nuevoDispositivo);
 	        	        response.redirect("/dispositivos");
 	        	        
 	        }

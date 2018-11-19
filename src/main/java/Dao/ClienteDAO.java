@@ -13,13 +13,6 @@ import Usuarios.Usuario;
 
 public class ClienteDAO extends AbstractDAO {
 
-	public void registrarCliente(Cliente cliente) {
-
-		transaccion.begin();
-		entityManager.persist(cliente);
-		transaccion.commit();
-	}
-
 	public Cliente recuperarClientePorNombre(String nombre) {
 
 		return (Cliente) entityManager.createQuery("from Usuarios.Cliente where nombre = :nombre")

@@ -17,9 +17,7 @@ public abstract class AbstractDAO {
 	public static void agregar(Object objeto) {
 
 		transaccion.begin();
-		
 		entityManager.persist(objeto);
-		
 		transaccion.commit();
 		
 	}
@@ -31,23 +29,6 @@ public abstract class AbstractDAO {
 			agregar(objetos.get(i));
 		}
 		
-	}
-	
-	public static Object buscarPorId(Object objeto, long id) {
-
-		Object obj = entityManager.find(objeto.getClass(), id);
-		
-		return obj;
-	}
-	
-	
-	public static void borrarPorId(Object objeto, long id) {
-		
-		Object obj = buscarPorId(objeto,id);
-		
-		transaccion.begin();
-		entityManager.remove(obj);
-		transaccion.commit();
 	}
 	
 	public static void borrar(Object objeto) {
@@ -63,6 +44,7 @@ public abstract class AbstractDAO {
 		transaccion.begin();
 		entityManager.merge(objeto);
 		transaccion.commit();
+		
 	}
 	
 }

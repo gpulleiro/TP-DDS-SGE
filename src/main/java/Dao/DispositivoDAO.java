@@ -15,13 +15,6 @@ import ZonaGeografica.Transformador;
 
 public class DispositivoDAO extends AbstractDAO {
 
-	public void registrarDispositivo(Dispositivo dis) {
-
-		transaccion.begin();
-		entityManager.persist(dis);
-		transaccion.commit();
-	}
-
 	public Dispositivo obtenerDispositivo(String nombre) {
 
 		return (Dispositivo) entityManager.createQuery("from Dispositivo.Dispositivo where nombre = :nombre").setParameter("nombre", nombre).getSingleResult();
