@@ -31,7 +31,7 @@ public abstract class AbstractDAO {
 		
 	}
 	
-	public static void borrar(Object objeto) {
+	public static void borrar(Object objeto) throws Exception {
 		
 		transaccion.begin();
 		entityManager.remove(objeto);
@@ -39,7 +39,7 @@ public abstract class AbstractDAO {
 		
 	}
 	
-	public static void actualizar(Object objeto) {
+	public static void actualizar(Object objeto) throws Exception {
 		
 		transaccion.begin();
 		entityManager.merge(objeto);
