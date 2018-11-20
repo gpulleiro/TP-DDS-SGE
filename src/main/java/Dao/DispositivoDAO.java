@@ -15,13 +15,13 @@ import ZonaGeografica.Transformador;
 
 public class DispositivoDAO extends AbstractDAO {
 
-	public Dispositivo obtenerDispositivo(String nombre) {
+	public Dispositivo obtenerDispositivo(String nombre) throws Exception {
 
 		return (Dispositivo) entityManager.createQuery("from Dispositivo.Dispositivo where nombre = :nombre").setParameter("nombre", nombre).getSingleResult();
 
 	}
 
-	public void cargaInicial() {
+	public void cargaInicial() throws Exception {
 
 		transaccion.begin();
 
@@ -51,13 +51,13 @@ public class DispositivoDAO extends AbstractDAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Dispositivo> obtenerDispositivos() {
+	public List<Dispositivo> obtenerDispositivos() throws Exception {
 
 		return entityManager.createQuery("FROM Dispositivo.Dispositivo").getResultList();
 
 	}
 
-	public Dispositivo obtenerDispositivoPorId(long id) {
+	public Dispositivo obtenerDispositivoPorId(long id) throws Exception {
 
 		return (Dispositivo) entityManager.createQuery("from Dispositivo.Dispositivo where id = :id").setParameter("id", id).getSingleResult();
 

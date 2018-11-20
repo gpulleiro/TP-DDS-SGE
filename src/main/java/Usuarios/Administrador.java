@@ -61,7 +61,7 @@ public class Administrador extends Usuario {
 		
 	}
 	
-	public Dispositivo obtenerDispositivo (String nombre){
+	public Dispositivo obtenerDispositivo (String nombre) throws Exception{
 		
 		DispositivoDAO disDAO = new DispositivoDAO();
 		
