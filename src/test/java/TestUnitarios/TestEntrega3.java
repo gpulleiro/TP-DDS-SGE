@@ -165,7 +165,7 @@ public class TestEntrega3 {
 	
 	//test 4
 	@Test
-	public void cantidadActualIgualALaAnteriorMasUno() throws IOException, ApiException, InterruptedException{
+	public void cantidadActualIgualALaAnteriorMasUno() throws Exception{
 		
 		EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
 		EntityTransaction transaccion = entityManager.getTransaction();

@@ -13,7 +13,7 @@ import Observer.Regla;
 
 public class ReglaDAO extends AbstractDAO {
 	
-	public Regla obtenerRegla (String nombre){ 
+	public Regla obtenerRegla (String nombre) throws Exception { 
 		
 		return (Regla) entityManager.createQuery("from Observer.Regla where nombre = :nombre").setParameter("nombre", nombre).getSingleResult();
 		
@@ -21,13 +21,13 @@ public class ReglaDAO extends AbstractDAO {
 	
 	
 	@SuppressWarnings("unchecked")
-	public List<Regla> obtenerReglas(){
+	public List<Regla> obtenerReglas() throws Exception {
 		
 		return entityManager.createQuery("FROM Observer.Regla").getResultList();
 		
 	}
 	
-	public Regla obtenerReglaPorId(long id) {
+	public Regla obtenerReglaPorId(long id) throws Exception {
 
 		return (Regla) entityManager.createQuery("from Observer.Regla where id = :id").setParameter("id", id).getSingleResult();
 

@@ -72,7 +72,7 @@ public class Administrador extends Usuario {
 		
 	}
 
-	public List<Log> obtenerLogs(String nombre, int mes, String estado) {
+	public List<Log> obtenerLogs(String nombre, int mes, String estado) throws Exception {
 		
 		LogDAO logDAO = new LogDAO();
 		

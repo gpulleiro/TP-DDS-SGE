@@ -13,12 +13,12 @@ import TipoDato.Log;
 public class LogDAO extends AbstractDAO {
 
 	@SuppressWarnings("unchecked")
-	public List<Log> obtenerLogs(String nombre, int mes, String estado) {
+	public List<Log> obtenerLogs(String nombre, int mes, String estado) throws Exception {
 		
 		return entityManager.createQuery("from Repositorio.Log where month(fecha) = :mes and nombre = :nombre and estado = :estado" ).setParameter("mes", mes).setParameter("nombre", nombre).setParameter("estado", estado).getResultList();
 	}
 	
-	public Log obtenerLogPorId(long id) {
+	public Log obtenerLogPorId(long id) throws Exception {
 
 		return (Log) entityManager.createQuery("from TipoDato.Log where id = :id").setParameter("id", id).getSingleResult();
 
