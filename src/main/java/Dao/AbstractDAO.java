@@ -14,7 +14,7 @@ public abstract class AbstractDAO {
 	static EntityTransaction transaccion = entityManager.getTransaction();
 	
 	
-	public static void agregar(Object objeto) {
+	public static void agregar(Object objeto) throws Exception {
 
 		transaccion.begin();
 		entityManager.persist(objeto);
@@ -23,7 +23,7 @@ public abstract class AbstractDAO {
 	}
 	
 	
-	public static void agregar(List<Object> objetos) {
+	public static void agregar(List<Object> objetos) throws Exception {
 		
 		for (int i = 0; i < objetos.size(); i++) {
 			agregar(objetos.get(i));

@@ -36,7 +36,7 @@ public class TestEntrega3 {
 	
 	//Caso de Prueba 1
 	@Test
-	public void seRealizoElCambioDeGeolocalizacionDeC1AC2() {
+	public void seRealizoElCambioDeGeolocalizacionDeC1AC2() throws Exception {
 		
 		//se crea nuevo cliente, y se le setea la nueva coordenada
 		Cliente cliente1 = new Cliente("gabi","mamani","beiro","11/10/2018","gabi23","contra123","DNI",22222,111,11);
@@ -68,7 +68,7 @@ public class TestEntrega3 {
 	
 	// test N2
 	@Test
-	public void recuperarDispositivoMostrarLogModificarNombreYGrabarlo() {
+	public void recuperarDispositivoMostrarLogModificarNombreYGrabarlo() throws Exception {
 		
 		Administrador admin = new Administrador();
 		
@@ -132,7 +132,7 @@ public class TestEntrega3 {
 	
 	//caso de prueba 3
 		@Test
-		public void creaReglaYCambiaSuCondicion() throws IOException{
+		public void creaReglaYCambiaSuCondicion() throws Exception{
 			
 				ReglaDAO rdao = new ReglaDAO();
 				
@@ -211,7 +211,7 @@ public class TestEntrega3 {
 	
 	//test numero 5
 	@Test
-    public void consumoTotal() throws IOException, ApiException, InterruptedException, ParseException{
+    public void consumoTotal() throws Exception{
 
 	Repositorio repo = Repositorio.getInstance();
 	
