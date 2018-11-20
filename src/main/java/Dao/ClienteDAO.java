@@ -25,7 +25,7 @@ public class ClienteDAO extends AbstractDAO {
 		transaccion.commit();
 	}
 
-	public Usuario recuperarPorUsername(String usuario) {
+	public Usuario recuperarPorUsername(String usuario) throws Exception {
 		// TODO Auto-generated method stub
 		return (Usuario) entityManager.createQuery("from Usuario where usuario = :usuario")
 				.setParameter("usuario", usuario).getSingleResult();
