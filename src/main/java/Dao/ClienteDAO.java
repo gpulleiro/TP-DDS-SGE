@@ -13,13 +13,13 @@ import Usuarios.Usuario;
 
 public class ClienteDAO extends AbstractDAO {
 
-	public Cliente recuperarClientePorNombre(String nombre) {
+	public Cliente recuperarClientePorNombre(String nombre) throws Exception {
 
 		return (Cliente) entityManager.createQuery("from Usuarios.Cliente where nombre = :nombre")
 				.setParameter("nombre", nombre).getSingleResult();
 	}
 
-	public void actualizarCliente(Cliente cliente) {
+	public void actualizarCliente(Cliente cliente) throws Exception {
 		transaccion.begin();
 		entityManager.merge(cliente);
 		transaccion.commit();
@@ -31,20 +31,20 @@ public class ClienteDAO extends AbstractDAO {
 				.setParameter("usuario", usuario).getSingleResult();
 	}
 
-	public Cliente obtenerCliente(String usuario) {
+	public Cliente obtenerCliente(String usuario) throws Exception {
 		// TODO Auto-generated method stub
 		return (Cliente) entityManager.createQuery("from Usuarios.Cliente where usuario = :usuario")
 				.setParameter("usuario", usuario).getSingleResult();
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Cliente> obtenerClientes() {
+	public List<Cliente> obtenerClientes() throws Exception {
 
 		return entityManager.createQuery("FROM Usuarios.Cliente").getResultList();
 
 	}
 	
-	public Cliente obtenerClientePorId(long id) {
+	public Cliente obtenerClientePorId(long id) throws Exception {
 		
 		return  (Cliente) entityManager.createQuery("from Usuarios.Cliente where id = :id").setParameter("id", id).getSingleResult();
 		
