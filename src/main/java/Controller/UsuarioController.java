@@ -17,13 +17,19 @@ public class UsuarioController {
 
 	public static boolean authenticate(String username, String password) {
 
-		ClienteDAO dao = new ClienteDAO();
-		Usuario user = dao.recuperarPorUsername(username);
-		if (user == null) {
-			return false;
-		} else {
-			return user.getContrasenia().equals(password.toString());
+		try {
+			ClienteDAO dao = new ClienteDAO();
+			Usuario user = dao.recuperarPorUsername(username);
+			if (user == null) {
+				return false;
+			} else {
+				return user.getContrasenia().equals(password.toString());
+			}
 		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		return false;
 
 	}
 

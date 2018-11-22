@@ -11,28 +11,25 @@ import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import Dispositivo.Dispositivo;
 import Observer.Regla;
 
-public class ReglaDAO implements WithGlobalEntityManager {
+public class ReglaDAO extends AbstractDAO {
 	
-	EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
-	EntityTransaction transaccion = entityManager.getTransaction();
-
-	public void ingresarRegla(Regla regla){
+	public Regla obtenerRegla (String nombre) throws Exception { 
 		
-		transaccion.begin();
-		entityManager().persist(regla);
-		transaccion.commit();
-	}
-	
-	public Regla obtenerRegla (String nombre){ 
-		
-		return (Regla) entityManager().createQuery("from Observer.Regla where nombre = :nombre").setParameter("nombre", nombre).getSingleResult();
+		return (Regla) entityManager.createQuery("from Observer.Regla where nombre = :nombre").setParameter("nombre", nombre).getSingleResult();
 		
 	}
 	
 	
-	public List<Regla> obtenerReglas(){
+	@SuppressWarnings("unchecked")
+	public List<Regla> obtenerReglas() throws Exception {
 		
 		return entityManager.createQuery("FROM Observer.Regla").getResultList();
 		
+	}
+	
+	public Regla obtenerReglaPorId(long id) throws Exception {
+
+		return (Regla) entityManager.createQuery("from Observer.Regla where id = :id").setParameter("id", id).getSingleResult();
+
 	}
 }

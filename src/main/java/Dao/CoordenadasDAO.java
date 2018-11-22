@@ -7,17 +7,12 @@ import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import TipoDato.Coordenadas;
 
-public class CoordenadasDAO {
-
-	EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
+public class CoordenadasDAO extends AbstractDAO {
 	
-	EntityTransaction transaccion = entityManager.getTransaction();
-	
+	public Coordenadas obtenerCoordenadasPorId(long id) throws Exception {
 
-	public void registrarCoordenadas(Coordenadas coordenadas) {
-		
-		transaccion.begin();
-		entityManager.persist(coordenadas);
-		transaccion.commit();
+		return (Coordenadas) entityManager.createQuery("from TipoDato.Coordenadas where id = :id").setParameter("id", id).getSingleResult();
+
 	}
+
 }

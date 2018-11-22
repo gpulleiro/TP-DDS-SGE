@@ -20,32 +20,23 @@ import Repositorio.Repositorio;
 import ZonaGeografica.Transformador;
 
 
-public class TransformadorDAO implements WithGlobalEntityManager{
-
-	EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
-	EntityTransaction transaccion = entityManager.getTransaction();
-
-	public void registrarTransformador(Transformador transformador) {
-
-		entityManager().persist(transformador);
-
-	}
+public class TransformadorDAO extends AbstractDAO {
 
 	@SuppressWarnings("unchecked")
-	public List<Transformador> listarTransformadores(){
+	public List<Transformador> listarTransformadores() throws Exception {
 
-		return entityManager().createQuery("FROM Transformador").getResultList();
+		return entityManager.createQuery("FROM Transformador").getResultList();
 
 	}
 
 	
-	public void cargaInicial() {
+	public void cargaInicial() throws Exception {
 
 		Repositorio repo = Repositorio.getInstance();
 		
 		for(Transformador trafo : repo.getTransformadores()){
 	
-			entityManager().persist(trafo);
+			entityManager.persist(trafo);
 			
 		}
 //		for(Zona zona: repo.getZonas()){
@@ -55,10 +46,18 @@ public class TransformadorDAO implements WithGlobalEntityManager{
 //		}
 	
 	}
-	public List<Transformador> obtenerTransformadores(){
+	
+	@SuppressWarnings("unchecked")
+	public List<Transformador> obtenerTransformadores() throws Exception {
 		
 		return entityManager.createQuery("FROM ZonaGeografica.Transformador").getResultList();
 		
+	}
+	
+	public Transformador obtenerTransformadorPorId(long id) throws Exception {
+
+		return (Transformador) entityManager.createQuery("from ZonaGeografica.Transformador where id = :id").setParameter("id", id).getSingleResult();
+
 	}
 
 }

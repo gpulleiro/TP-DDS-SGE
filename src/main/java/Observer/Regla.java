@@ -46,7 +46,7 @@ public class Regla implements Observer {
 	@Column(name = "ID_REGLA")
 	private long id;
 	
-	@ManyToOne(cascade = {CascadeType.ALL}, fetch=FetchType.EAGER)
+	@ManyToOne(cascade = {CascadeType.ALL}, fetch=FetchType.LAZY)
 	private Sensor sensor;
 	//private ArrayList<Sensor>sensores;
 	@OneToOne(cascade = {CascadeType.ALL})
@@ -57,7 +57,7 @@ public class Regla implements Observer {
 	private double flag;
 	@Column(name="CONDICION")
 	private String condicion;
-	@OneToMany(cascade = {CascadeType.ALL}, fetch=FetchType.EAGER)
+	@OneToMany(cascade = {CascadeType.ALL}, fetch=FetchType.LAZY)
 	private List<Inteligente> dispositivos = new ArrayList<Inteligente>();
 		
 	//agrego un sensor a la lista de sensores y agrego a la regla como observador del sensor.

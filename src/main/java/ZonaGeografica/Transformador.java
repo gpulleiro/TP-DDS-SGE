@@ -21,7 +21,7 @@ public class Transformador {
 	private int id;
 	
 	
-	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private Coordenadas coordenadas;
 	
 	@Column(name="ZONA")
@@ -32,7 +32,7 @@ public class Transformador {
 	joinColumns = {@JoinColumn(name = "ID")},
 	inverseJoinColumns = {@JoinColumn(name = "ID_TRAFO")}
 	)*/
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private List<Cliente> clientes = new ArrayList<Cliente>();
 	
 	@Transient

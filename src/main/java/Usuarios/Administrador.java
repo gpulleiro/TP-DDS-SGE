@@ -52,16 +52,16 @@ public class Administrador extends Usuario {
 				+ ", fechaAlta=" + fechaAlta + ", usuario=" + usuario + ", contrasenia=" + contrasenia + "]";
 	}
 	
-	public void registrarDispositivo(Dispositivo dis) {
+	public void registrarDispositivo(Dispositivo dis) throws Exception {
 		
 		
 		DispositivoDAO disDAO = new DispositivoDAO();
 		
-		disDAO.registrarDispositivo(dis);
+		disDAO.agregar(dis);
 		
 	}
 	
-	public Dispositivo obtenerDispositivo (String nombre){
+	public Dispositivo obtenerDispositivo (String nombre) throws Exception{
 		
 		DispositivoDAO disDAO = new DispositivoDAO();
 		
@@ -72,7 +72,7 @@ public class Administrador extends Usuario {
 		
 	}
 
-	public List<Log> obtenerLogs(String nombre, int mes, String estado) {
+	public List<Log> obtenerLogs(String nombre, int mes, String estado) throws Exception {
 		
 		LogDAO logDAO = new LogDAO();
 		

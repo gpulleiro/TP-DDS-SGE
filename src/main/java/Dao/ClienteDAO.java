@@ -11,44 +11,43 @@ import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import Usuarios.Cliente;
 import Usuarios.Usuario;
 
-public class ClienteDAO extends AbstractDAO{
-	
-	static EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
-	
-	static EntityTransaction transaccion = entityManager.getTransaction();
-	
+public class ClienteDAO extends AbstractDAO {
 
-	public void registrarCliente(Cliente cliente) {
-		
-		transaccion.begin();
-		entityManager.persist(cliente);
-		transaccion.commit();
-	}
-	public Cliente recuperarClientePorNombre(String nombre) {
+	public Cliente recuperarClientePorNombre(String nombre) throws Exception {
 
-		return (Cliente) entityManager.createQuery("from Usuarios.Cliente where nombre = :nombre").setParameter("nombre", nombre).getSingleResult();		
+		return (Cliente) entityManager.createQuery("from Usuarios.Cliente where nombre = :nombre")
+				.setParameter("nombre", nombre).getSingleResult();
 	}
-	
-	public void actualizarCliente(Cliente cliente) {
+
+	public void actualizarCliente(Cliente cliente) throws Exception {
 		transaccion.begin();
 		entityManager.merge(cliente);
 		transaccion.commit();
 	}
-	public Usuario recuperarPorUsername(String usuario) {
+
+	public Usuario recuperarPorUsername(String usuario) throws Exception {
 		// TODO Auto-generated method stub
-		return (Usuario) entityManager.createQuery("from Usuario where usuario = :usuario").setParameter("usuario", usuario).getSingleResult();
+		return (Usuario) entityManager.createQuery("from Usuario where usuario = :usuario")
+				.setParameter("usuario", usuario).getSingleResult();
 	}
-	public Cliente obtenerCliente(String usuario) {
+
+	public Cliente obtenerCliente(String usuario) throws Exception {
 		// TODO Auto-generated method stub
-		return (Cliente) entityManager.createQuery("from Usuarios.Cliente where usuario = :usuario").setParameter("usuario", usuario).getSingleResult();
+		return (Cliente) entityManager.createQuery("from Usuarios.Cliente where usuario = :usuario")
+				.setParameter("usuario", usuario).getSingleResult();
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	public List<Cliente> obtenerClientes() {
-		
+	public List<Cliente> obtenerClientes() throws Exception {
+
 		return entityManager.createQuery("FROM Usuarios.Cliente").getResultList();
-		
+
 	}
 	
-	
+	public Cliente obtenerClientePorId(long id) throws Exception {
+		
+		return  (Cliente) entityManager.createQuery("from Usuarios.Cliente where id = :id").setParameter("id", id).getSingleResult();
+		
+	}
+
 }

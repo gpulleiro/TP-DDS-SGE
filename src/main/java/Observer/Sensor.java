@@ -33,11 +33,11 @@ public abstract class Sensor implements Subject{
 	protected long id;
 
 	
-	@OneToMany(targetEntity=Regla.class, cascade = {CascadeType.ALL}, fetch=FetchType.EAGER)
+	@OneToMany(targetEntity=Regla.class, cascade = {CascadeType.ALL}, fetch=FetchType.LAZY)
 	protected List <Observer> observadores = new ArrayList<Observer>();
 	//protected ArrayList<Observer>observadores;
 
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	protected List <Medicion> mediciones = new ArrayList<Medicion>();
 	
 	@Column(name = "MAGNITUD")
