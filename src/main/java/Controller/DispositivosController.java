@@ -1,6 +1,7 @@
 package Controller;
 import Helpers.ViewHelper;
 import Repositorio.Repositorio;
+import Usuarios.Cliente;
 import spark.*;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 import static Helpers.RequestHelper.*;
@@ -65,6 +66,76 @@ public class DispositivosController {
 	        return null;
 	        
 		};
+		
+		public static Route borrarDispositivo = (Request request, Response response) -> {
+			LoginController.ensureUserIsLoggedIn(request, response);
+			Map<String, Object> model = new HashMap<>();
+			
+			
+			DispositivoDAO dispositivoDao = new DispositivoDAO();
+			Dispositivo dispositivoNuevo = dispositivoDao.obtenerDispositivoPorId(Long.parseLong(getQueryBorrarDispositivo(request)));
+			
+			
+			try {
+			
+			dispositivoDao.borrar(dispositivoNuevo);
+			
+			
+
+			response.redirect("/dispositivos");
+			
+			}
+			catch(Exception e) {
+				
+				
+				model.put("noSeBorra", true);
+				return null;
+			}
+			
+			return null;
+	   
+			
+		};
+		
+		public static Route editarDispositivoMenu = (Request request, Response response) -> {
+			LoginController.ensureUserIsLoggedIn(request, response);
+			Map<String, Object> model = new HashMap<>();
+			
+			
+			DispositivoDAO dispositivoDao = new DispositivoDAO();
+			Dispositivo dispositivoRecuperado = dispositivoDao.obtenerDispositivoPorId(Long.parseLong(getQueryEditarDispositivo(request)));
+			
+			
+			model.put("dispositivo", dispositivoRecuperado);
+
+			
+			return ViewHelper.render(request, model, "editarDispositivo.html");
+	   
+	        
+		};
+		
+		
+		public static Route editarDispositivo = (Request request, Response response) -> {
+			LoginController.ensureUserIsLoggedIn(request, response);
+			Map<String, Object> model = new HashMap<>();
+			
+	        DispositivoDAO dao = new DispositivoDAO();
+	        
+	        Dispositivo dispositivoRecuperado = dao.obtenerDispositivoPorId(Long.parseLong(getQueryEditarDispositivo(request)));
+	        dispositivoRecuperado.setNombre(getQueryDispositivoName(request));
+	        dispositivoRecuperado.setConsumoFijo(Double.parseDouble(getQueryDispositivoConsumo(request)));
+	        dispositivoRecuperado.setMaximoHoras(Double.parseDouble(getQueryDispositivoMaxHoras(request)));
+	        dispositivoRecuperado.setMinimoHoras(Double.parseDouble(getQueryDispositivoMinHoras(request)));
+	        
+	        
+	        dao.actualizar(dispositivoRecuperado);;
+	        response.redirect("/dispositivos");
+	        
+	        return null;
+	        
+	        
+		};
+		
 
 		
 }

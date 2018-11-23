@@ -64,7 +64,7 @@ import static spark.debug.DebugScreen.*;
 
 public class Main {
 	
-	public static void main( String[] args ) throws IOException, InterruptedException, ParseException, ApiException{
+	public static void main( String[] args ) throws Exception{
 		
 		Repositorio repositorio = Repositorio.getInstance();
 		repositorio.importarLog();
@@ -90,6 +90,10 @@ public class Main {
         get("/home",			HomeController.homeClientePage);
         get("/dispositivos",	DispositivosController.traerDispositivos);
         post("/dispositivos",	DispositivosController.crearDispositivo);
+        post("/dispositivos/borrar",	DispositivosController.borrarDispositivo);
+        get("/editarDispositivo",		DispositivosController.editarDispositivoMenu);
+        post("/editarDispositivo",		DispositivosController.editarDispositivoMenu);
+        post("/editarDispositivo/confirm",		DispositivosController.editarDispositivo);
         get("/hogares",			UsuarioController.traerClientes);
 
         //menu del cliente

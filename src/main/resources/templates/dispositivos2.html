@@ -3,6 +3,13 @@
 {{/partial}}
 {{#partial "content"}}
 <body>
+	{{#if noSeBorra}}
+	<div class ="container">
+	<div class="alert alert-danger">
+    	<strong>Fallo al eliminar dispositivo</strong>, verifique antes si los clientes tienen el dispositivo en su lista
+  	</div>
+	</div>
+	{{/if}}
     <div class="container">
         <div class="table-wrapper">
             <div class="table-title">
@@ -22,6 +29,8 @@
                         <th>Nombre</th>
                         <th>Consumo Fijo</th>
             			<th>Tipo</th>
+            			<th>Editar</th>
+            			<th>Eliminar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,6 +48,22 @@
 							{{#if estado}}
 								<td>Inteligente</td>
 							{{/if}}
+							<td>
+							<form method="post" action="/editarDispositivo">
+							<div class="form-group">
+              				<input id="editarDispositivo" type="hidden" name="editarDispositivo" class="form-control" value={{id}} required>
+							<input type="submit" class="btn btn-warning" value="Editar">
+							</div>
+							</form>
+							</td>
+							<td>
+							<form method="post" action="/dispositivos/borrar">
+							<div class="form-group">
+              				<input id="borrarDispositivo" type="hidden" name="borrarDispositivo" class="form-control" value={{id}} required>
+							<input type="submit" class="btn btn-danger" value="Eliminar">
+							</div>
+							</form>
+							</td>
 							</tr>
 							 {{/each}}
                     </tr>

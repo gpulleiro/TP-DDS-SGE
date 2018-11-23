@@ -81,5 +81,13 @@ public class RequestHelper {
 	public static String getQueryEliminarDispositivo(Request request) {
 		return request.queryParams("eliminarDispositivo");
 	}
+	
+	public static String getQueryEditarDispositivo(Request request) {
+		return request.queryParams("editarDispositivo");
+	}
+	
+	public static String getQueryBorrarDispositivo(Request request) {
+		return request.queryParams("borrarDispositivo");
+	}
 
 }

@@ -62,5 +62,12 @@ public class DispositivoDAO extends AbstractDAO {
 		return (Dispositivo) entityManager.createQuery("from Dispositivo.Dispositivo where id = :id").setParameter("id", id).getSingleResult();
 
 	}
+	public void borrar(Dispositivo dispositivo) throws Exception{
+		
+		transaccion.begin();
+		entityManager.remove(dispositivo);
+		transaccion.commit();
+		
+	}
 
 }

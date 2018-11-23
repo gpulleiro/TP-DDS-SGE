@@ -24,8 +24,7 @@
             			<th>Max Horas</th>
             			<th>Cant. horas</th>
             			<th>Estado</th>
-            			<th>Editar</th>
-						<th>Eliminar</th>
+            			<th>Eliminar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,9 +47,6 @@
 							<td>{{cantHoras}}</td>
 							<td>{{estado}}</td>
 							<td>
-							<a href="#editarDispositivo" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                     		</td>
-                     		<td>
                      		<form method="post">
 							<div class="form-group">
               				<input id="eliminarDispositivo" type="hidden" name="eliminarDispositivo" class="form-control" value={{id}} required>
