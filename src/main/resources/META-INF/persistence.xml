@@ -12,6 +12,7 @@
         <class>Dispositivo.Estandar</class>
         <class>Usuarios.Administrador</class>
         <class>Usuarios.Cliente</class>
+        <class>Usuarios.Usuario</class>
         <class>Usuarios.Categoria</class>
         <class>TipoDato.Coordenadas</class>
         <class>Repositorio.Log</class>
