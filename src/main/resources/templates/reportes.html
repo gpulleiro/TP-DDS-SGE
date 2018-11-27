@@ -1,0 +1,88 @@
+{{#partial "navbar"}}
+{{> navbarAdmin.hbs}}
+{{/partial}}
+
+{{#partial "content"}}
+
+<body>
+    <div class="container">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6">
+            <h2><b>Reporte: consumo por hogar periodo</b></h2>
+          </div>
+          
+                </div>
+            </div>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+            			<th>Fecha</th>
+            			<th>Consumo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+					{{#each reportes1}}
+							<tr>
+							<td>{{nombre_usuario}}</td>
+							<td>{{apellido_usuario}}</td>
+							<td>{{fecha}}</td>
+							<td>{{consumo}}</td>
+							
+							</tr>
+					{{/each}}
+                    </tr>
+                    
+                </tbody>
+            </table>
+      
+        </div>
+    </div>
+    <div class="container">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col">
+            <h2><b>Reporte: consumo promedio por tipo dispositivo y periodo</b></h2>
+          </div>
+          
+                </div>
+            </div>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Tipo</th>                        
+            			<th>Fecha</th>
+            			<th>Consumo Promedio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+					{{#each reportes2}}
+							<tr>
+							<td>{{nombre_usuario}}</td>
+							<td>{{apellido_usuario}}</td>
+							<td>{{tipo}}</td>
+							<td>{{fecha}}</td>
+							<td>{{consumo}}</td>
+							
+							</tr>
+					{{/each}}
+                    </tr>
+                    
+                </tbody>
+            </table>
+      
+        </div>
+    </div>
+
+
+{{/partial}}
+
+{{> layout.hbs}}

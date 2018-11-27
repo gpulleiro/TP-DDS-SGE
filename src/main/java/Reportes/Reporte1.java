@@ -5,8 +5,8 @@ public class Reporte1 {
 	private int id_usuario;
 	private String nombre_usuario;
 	private String apellido_usuario;
-	private int id_dispositivo;
-	private String nombre_dispositivo;
+//	private int id_dispositivo;
+//	private String nombre_dispositivo;
 	private String fecha;
 	private double consumo;
 	
@@ -29,18 +29,18 @@ public class Reporte1 {
 	public void setApellido_usuario(String apellido_usuario) {
 		this.apellido_usuario = apellido_usuario;
 	}
-	public int getId_dispositivo() {
-		return id_dispositivo;
-	}
-	public void setId_dispositivo(int id_dispositivo) {
-		this.id_dispositivo = id_dispositivo;
-	}
-	public String getNombre_dispositivo() {
-		return nombre_dispositivo;
-	}
-	public void setNombre_dispositivo(String nombre_dispositivo) {
-		this.nombre_dispositivo = nombre_dispositivo;
-	}
+//	public int getId_dispositivo() {
+//		return id_dispositivo;
+//	}
+//	public void setId_dispositivo(int id_dispositivo) {
+//		this.id_dispositivo = id_dispositivo;
+//	}
+//	public String getNombre_dispositivo() {
+//		return nombre_dispositivo;
+//	}
+//	public void setNombre_dispositivo(String nombre_dispositivo) {
+//		this.nombre_dispositivo = nombre_dispositivo;
+//	}
 	public String getFecha() {
 		return fecha;
 	}

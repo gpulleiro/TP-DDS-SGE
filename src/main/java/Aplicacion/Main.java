@@ -19,6 +19,7 @@ import Controller.DispositivosController;
 import Controller.HomeController;
 import Controller.LoginController;
 import Controller.ReglaController;
+import Controller.ReportesController;
 import Controller.SimplexController;
 import Controller.TransformadorController;
 import Controller.UsuarioController;
@@ -128,6 +129,9 @@ public class Main {
         get("/editarRegla",				ReglaController.editarReglaMenu);
         post("/editarRegla", 			ReglaController.editarReglaMenu);
         post("/editarRegla/confirm", 	ReglaController.editarRegla);
+        
+        get("/reportes",				ReportesController.reportes);
+        
         
         
         

@@ -22,7 +22,7 @@ public class ReportesDAO {
 		Statement st = null;
 		ResultSet rs = null;		
 		
-		String strQuery = "select U.ID_USU, U.NOMBRE, U.APELLIDO, UD.dispositivos_ID_DISP, D.NOMBRE, C.fecha, SUM(D.CONS_FIJO * C.cant_horas) AS consumo from   usuario U join usuario_dispositivo UD on U.ID_USU = UD.USUARIO_ID_USU join dispositivo D  on UD.dispositivos_ID_DISP = D.ID_DISP join consumos C on UD.dispositivos_ID_DISP = C.id_dispositivo group by U.ID_USU, U.NOMBRE, U.APELLIDO, D.NOMBRE, UD.dispositivos_ID_DISP, C.fecha;";
+		String strQuery = "select U.ID_USU, U.NOMBRE, U.APELLIDO, C.fecha, SUM(D.CONS_FIJO * C.cant_horas) AS consumo from   usuario U join usuario_dispositivo UD on U.ID_USU = UD.USUARIO_ID_USU join dispositivo D  on UD.dispositivos_ID_DISP = D.ID_DISP join consumos C on UD.dispositivos_ID_DISP = C.id_dispositivo group by U.ID_USU, U.NOMBRE, U.APELLIDO, C.fecha;";
 		try {
 			con = objConexion.getConnectionMySQL();
 			st = con.createStatement();
@@ -34,8 +34,8 @@ public class ReportesDAO {
 				reporte.setId_usuario(rs.getInt("U.ID_USU"));
 				reporte.setNombre_usuario(rs.getString("U.NOMBRE"));
 				reporte.setApellido_usuario(rs.getString("U.APELLIDO"));
-				reporte.setId_dispositivo(rs.getInt("UD.dispositivos_ID_DISP"));
-				reporte.setNombre_dispositivo(rs.getString("D.NOMBRE"));
+	//			reporte.setId_dispositivo(rs.getInt("UD.dispositivos_ID_DISP"));
+	//			reporte.setNombre_dispositivo(rs.getString("D.NOMBRE"));
 				reporte.setFecha(rs.getString("C.fecha"));
 				reporte.setConsumo(rs.getDouble("consumo"));
 				
