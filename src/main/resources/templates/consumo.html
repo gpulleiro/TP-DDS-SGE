@@ -12,7 +12,7 @@
 	<form method='post' action="/consumo">
 		<div class="form-group">
 			<label for="fechaConsumo">Ingrese Fecha</label>
-			<input id="fechaConsumo" name="fechaConsumo" class="form-control" type="text" required>
+			<input id="fechaConsumo" name="fechaConsumo" class="form-control" type="text" placeholder="dd/MM/yyyy" required>
 		</div>
 		<button type="submit" class="btn btn-success">Consultar</button>
 	</form>         
@@ -31,10 +31,13 @@
     	<p>El consumo al dia de la fecha es</p><strong>{{fechaConsumo}} kWh	</strong>
 </div>
 {{/if}}
+{{#if fechaInvalida}}
+<div class="alert alert-danger">
+    	<strong>Fecha incorrecta</strong><p>Verifique la fecha ingresada</p>
+</div>
+{{/if}}
 </div>
 </div>
-
-
 
 
 

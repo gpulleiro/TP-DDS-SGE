@@ -117,10 +117,19 @@ public class UsuarioController {
 
 			return ViewHelper.render(request, model, "consumo.html");
 		}
-		String fecha = getQueryConsumoFecha(request);
+		String fecha = getQueryConsumoFecha(request) + " 00:00:00";
+		try {
 		double consumoFecha = cliente.consumo(fecha);
 		model.put("fechaConsumo", consumoFecha);
+		
+		}catch (Exception e) {
+		
+		model.put("fechaInvalida", true);
+		}
+		
 		return ViewHelper.render(request, model, "consumo.html");
+//		model.put("fechaConsumo", consumoFecha);
+//		return ViewHelper.render(request, model, "consumo.html");
 	};
 
 	public static Route clienteBajaYModificacion = (Request request, Response response) -> {
