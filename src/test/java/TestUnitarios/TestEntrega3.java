@@ -144,7 +144,7 @@ public class TestEntrega3 {
 				//asociarla a un dispositivo
 				Inteligente televisor = new Inteligente("televisor",2,3,4,"encendido");
 				
-				regla.getDispositivos().add(televisor);
+//				regla.getDispositivos().add(televisor);
 				
 				//persistirla
 				rdao.agregar(regla);

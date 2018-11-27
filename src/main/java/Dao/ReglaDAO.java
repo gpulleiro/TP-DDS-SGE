@@ -8,6 +8,7 @@ import javax.persistence.EntityTransaction;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
+import Acciones.Actuador;
 import Dispositivo.Dispositivo;
 import Observer.Regla;
 
@@ -31,5 +32,18 @@ public class ReglaDAO extends AbstractDAO {
 
 		return (Regla) entityManager.createQuery("from Observer.Regla where id = :id").setParameter("id", id).getSingleResult();
 
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Actuador> obtenerActuadores() throws Exception {
+		
+		return (List<Actuador>) entityManager.createQuery("from Acciones.Actuador").getResultList();
+		
+	}
+	
+	public Actuador obtenerActuador(long id) throws Exception {
+		
+		return (Actuador) entityManager.createQuery("from Acciones.Actuador where id = :id").setParameter("id", id).getSingleResult();
+		
 	}
 }

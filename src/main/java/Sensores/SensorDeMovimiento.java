@@ -19,11 +19,9 @@ public class SensorDeMovimiento extends Sensor {
 	public SensorDeMovimiento() {
 		observadores = new ArrayList<Observer>();
 		mediciones = new ArrayList<Medicion>();
+		dispositivos = new ArrayList<Inteligente>();
 	}
-	
-	
-	
-		
+			
 	@Override
 	public void realizarMedicion() throws IOException{
 	int numero = (int) (Math.random() * 10) + 1;

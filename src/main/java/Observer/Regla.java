@@ -24,6 +24,7 @@ import javax.persistence.Table;
 import Acciones.Actuador;
 import Dispositivo.Dispositivo;
 import Dispositivo.Inteligente;
+import Usuarios.Cliente;
 
 @Entity
 @Table(name="REGLA")
@@ -51,19 +52,29 @@ public class Regla implements Observer {
 	//private ArrayList<Sensor>sensores;
 	@OneToOne(cascade = {CascadeType.ALL})
 	private Actuador actuador;
-	@Column(name = "NOMBRE", unique=true)
+	@Column(name = "NOMBRE")
 	private String nombre;
 	@Column(name = "FLAG")
 	private double flag;
 	@Column(name="CONDICION")
 	private String condicion;
-	@OneToMany(cascade = {CascadeType.ALL}, fetch=FetchType.LAZY)
-	private List<Inteligente> dispositivos = new ArrayList<Inteligente>();
+	
+//	@ManyToOne(cascade = {CascadeType.ALL}, fetch=FetchType.LAZY)
+//	private Cliente cliente;
 		
 	//agrego un sensor a la lista de sensores y agrego a la regla como observador del sensor.
 	
-public Sensor getSensor() {
+	
+	
+	public Sensor getSensor() {
 		return sensor;
+	}
+
+	public Regla(String nombre, double flag, String condicion) {
+		super();
+		this.nombre = nombre;
+		this.flag = flag;
+		this.condicion = condicion;
 	}
 
 	public void setSensor(Sensor sensor) {
@@ -85,13 +96,14 @@ public Sensor getSensor() {
 //		return sensores;
 //	}
 
-	public List<Inteligente> getDispositivos() {
-		return dispositivos;
-	}
 
-	public void setDispositivos(List<Inteligente> dispositivos) {
-		this.dispositivos = dispositivos;
-	}
+//	public Cliente getCliente() {
+//		return cliente;
+//	}
+//
+//	public void setCliente(Cliente cliente) {
+//		this.cliente = cliente;
+//	}
 
 	public long getId() {
 		return id;
@@ -144,7 +156,7 @@ public Sensor getSensor() {
 	//metodo update
 	public void update() throws IOException {
 	if(condicionD(this.getSensor()))
-	{for(Inteligente dis: this.getDispositivos())
+	{for(Inteligente dis: this.getSensor().getDispositivos())
 	{this.getActuador().actuar(dis);}}
 }
 	

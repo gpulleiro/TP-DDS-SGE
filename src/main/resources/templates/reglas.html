@@ -1,0 +1,70 @@
+{{#partial "navbar"}}
+{{> navbarCliente.hbs}}
+{{/partial}}
+{{#partial "content"}}
+<body>
+    <div class="container">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6">
+            <h2><b>Reglas</b></h2>
+          </div>
+          <div class="col-sm-6">
+            <a href="#agregarRegla" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Agregar Regla</span></a>         
+          </div>
+                </div>
+            </div>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Flag</th>
+                        <th>Condicion</th>
+            			<th>Editar</th>
+            			<th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+					{{#each reglas}}
+							<tr>
+							<td>{{id}}</td>
+							<td>{{nombre}}</td>
+							<td>{{flag}}</td>
+							<td>{{condicion}}</td>
+							<td>
+							<form method="post" action="/editarRegla">
+							<div class="form-group">
+              				<input id="editarRegla" type="hidden" name="editarRegla" class="form-control" value={{id}} required>
+							<input type="submit" class="btn btn-warning" value="Editar">
+							</div>
+							</form>
+							</td>
+							<td>
+							<form method="post" action="/reglas/eliminar">
+							<div class="form-group">
+              				<input id="eliminarRegla" type="hidden" name="eliminarRegla" class="form-control" value={{id}} required>
+							<input type="submit" class="btn btn-danger" value="Eliminar">
+							</div>
+							</form>
+							</td>
+							</tr>
+							 {{/each}}
+                    </tr>
+                    
+                </tbody>
+            </table>
+      
+        </div>
+    </div>
+  <!-- Edit Modal HTML -->
+ 
+
+        {{> reglaAlta.hbs}}
+
+
+
+ {{/partial}}
+ {{> layout.hbs}}

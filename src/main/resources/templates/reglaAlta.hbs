@@ -1,0 +1,52 @@
+{{#block "FormAltaRegla"}}
+
+ <form id="agregarRegla" class="modal fade" method="post">
+    <div class="modal-dialog">
+      <div class="modal-content">
+		<form>
+          <div class="modal-header">            
+            <h4 class="modal-title">Agregar Regla</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          </div>
+          <div class="modal-body">         
+<!--            <div class="form-group">
+            <label for="sensor">Seleccionar Sensor</label>
+    		<select class="form-control" name="sensor" id="sensor">
+      		<option value="SENSOR">Estandar</option>
+      		</select> 
+            </div>-->
+            
+            <div class="form-group">
+            <label for="actuador">Seleccionar Actuador</label>
+    		<select class="form-control" name="actuador" id="actuador">
+      		<option value="APAGAR">Apagar</option>
+      		<option value="ENCENDER">Encender</option>
+      		</select>
+            </div>
+
+            <div class="form-group">
+              <label>Nombre</label>
+              <input id=reglaNombre type="text" name=reglaNombre class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Flag</label>
+              <input id=reglaFlag type="text" name=reglaFlag class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="reglaCondicion">Condicion</label>
+              <select id=reglaCondicion  name=reglaCondicion class="form-control">
+              <option value="mayor">Mayor</option>
+      		<option value="menor">Menor</option>
+              	</select>
+            </div>
+                     
+          </div>
+          <div class="modal-footer">
+            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+            <input type="submit" class="btn btn-success" value="Agregar Regla">
+          </div>
+        </form>
+       </div>
+    </div>
+  </form>
+{{/block}}

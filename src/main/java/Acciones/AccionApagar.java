@@ -18,7 +18,10 @@ public class AccionApagar extends Actuador {
 	@Override
 	public void actuar(Inteligente dispositivo) throws IOException {
 		
-		dispositivo.apagar();
+		if(dispositivo.getEstado() == "apagado"){}
+		else{
+			dispositivo.setEstado("apagado");
+			}
 	
 	}
 }

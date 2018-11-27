@@ -90,4 +90,30 @@ public class RequestHelper {
 		return request.queryParams("borrarDispositivo");
 	}
 
+//Request Reglas, sensores y actuadores	
+	
+	public static String getQueryRegla(Request request) {
+		return request.queryParams("reglaNombre");
+	}
+	
+	public static String getQueryCondicion(Request request) {
+		return request.queryParams("reglaCondicion");
+	}
+	
+	public static String getQueryFlag(Request request) {
+		return request.queryParams("reglaFlag");
+	}
+	
+	public static String getQueryActuador(Request request) {
+		return request.queryParams("actuador");
+	}
+	
+	public static String getQueryEliminarRegla(Request request) {
+		return request.queryParams("eliminarRegla");
+	}
+	
+	public static String getQueryEditarRegla(Request request) {
+		return request.queryParams("editarRegla");
+	}
+	
 }

@@ -1,6 +1,7 @@
 package Dispositivo;
 
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -13,6 +14,8 @@ import TipoDato.Log;
 
 import javax.persistence.*;
 
+import Observer.Sensor;
+
 @Entity
 @DiscriminatorValue(value = "INT")
 public class Inteligente extends Dispositivo {
@@ -20,19 +23,37 @@ public class Inteligente extends Dispositivo {
 	@Column(name="ESTADO")
 	private String estado;
 	
+	@ManyToOne(cascade = {CascadeType.ALL}, fetch=FetchType.LAZY)
+	private Sensor sensor;
+	
 	//constructor	
 	public Inteligente(String nombre, double consumoFijo, double minimoHoras, double maximoHoras, String estado) {
 		super(nombre, consumoFijo, minimoHoras, maximoHoras);
 		this.estado = estado;
 	}
 	
+	
 	public Inteligente() {}
 		
 	//setters and getters
+	
+	
+	
+	
 	public String getEstado() {
 		return estado;
 	}
 	
+	public Sensor getSensor() {
+		return sensor;
+	}
+
+
+	public void setSensor(Sensor sensor) {
+		this.sensor = sensor;
+	}
+
+
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
@@ -83,20 +104,22 @@ public class Inteligente extends Dispositivo {
 		return ahorro;		
 	}
 
-	public void encender() {
+	public void encender() throws IOException {
 		
-		if(this.getEstado() == "encendido"){}
+		if(this.getEstado() == "encendido") {}
 			else{
 			this.setEstado("encendido");
 		}
+		this.getSensor().realizarMedicion();
 	}
 
-	public void apagar() {
+	public void apagar() throws IOException {
 		
 		if(this.getEstado() == "apagado"){}
 			else{
 			this.setEstado("apagado");
 		}
+		this.getSensor().realizarMedicion();
 	}
 
 	public void ahorro() {

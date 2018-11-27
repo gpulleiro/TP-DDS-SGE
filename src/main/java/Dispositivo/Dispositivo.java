@@ -31,6 +31,10 @@ public abstract class Dispositivo {
 	@Transient
 	protected double consumoIdeal;
 	
+	
+	@Transient
+	protected double consumoActual;
+	
 	//constructor>
 	public Dispositivo(String nombre, double consumoFijo, double minimoHoras, double maximoHoras) {
 		super();
@@ -51,6 +55,14 @@ public abstract class Dispositivo {
 		return id;
 	}
 
+
+	public double getConsumoActual() {
+		return consumoActual;
+	}
+
+	public void setConsumoActual(double consumoActual) {
+		this.consumoActual = consumoActual;
+	}
 
 	public double getConsumoIdeal() {
 		return consumoIdeal;

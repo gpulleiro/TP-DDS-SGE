@@ -39,9 +39,15 @@ public abstract class Sensor implements Subject{
 
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	protected List <Medicion> mediciones = new ArrayList<Medicion>();
+
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	protected List <Inteligente> dispositivos = new ArrayList<Inteligente>();
+
 	
 	@Column(name = "MAGNITUD")
 	protected double magnitud;
+	
+	
 	
 	//metodos del patron Observer
 	public void agregarObservador(Observer obs) {observadores.add(obs);};
@@ -53,6 +59,19 @@ public abstract class Sensor implements Subject{
 	
 
 
+	
+	public List<Inteligente> getDispositivos() {
+		return dispositivos;
+	}
+
+	public void setDispositivos(List<Inteligente> dispositivos) {
+		this.dispositivos = dispositivos;
+	}
+	
+	public void agregarDispositivo(Inteligente dispositivo) {
+		this.getDispositivos().add(dispositivo);
+		dispositivo.setSensor(this);
+	}
 	
 	public long getId() {
 		return id;

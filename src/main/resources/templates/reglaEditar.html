@@ -1,0 +1,61 @@
+{{#partial "navbar"}}
+{{> navbarCliente.hbs}}
+{{/partial}}
+
+{{#partial "content"}}
+<div id="editarRegla">
+      <div class="dialog">
+      <div class="content">
+		<form method="post" action="/editarRegla/confirm">
+          <div class="header">            
+            <h2 class="title">Editar Regla</h2>
+          </div>
+          <div class="body">         
+			
+<!-- 		<div class="form-group">
+            <label for="sensor">Seleccionar Sensor</label>
+    		<select class="form-control" name="sensor" id="sensor">
+      		<option value="SENSOR">Estandar</option>
+      		</select> 
+            </div> -->
+            
+            <div class="form-group">
+            <label for="actuador">Seleccionar Actuador</label>
+    		<select class="form-control" name="actuador" id="actuador">
+      		<option value="APAGAR">Apagar</option>
+      		<option value="ENCENDER">Encender</option>
+      		</select>
+            </div>
+
+            <div class="form-group">
+              <label>Nombre</label>
+              <input id=reglaNombre type="text" name=reglaNombre class="form-control" value={{regla.nombre}} required>
+            </div>
+            <div class="form-group">
+              <label>Flag</label>
+              <input id=reglaFlag type="number" min=0 step="0.01" name=reglaFlag class="form-control" value={{regla.flag}} required>
+            </div>
+            <div class="form-group">
+              <label for="reglaCondicion">Condicion</label>
+              <select id=reglaCondicion  name=reglaCondicion class="form-control">
+              <option value="mayor">Mayor</option>
+      		<option value="menor">Menor</option>
+              	</select>
+            </div>
+            </div>
+            <input id=editarRegla type="hidden" name=editarRegla class="form-control" value={{regla.id}} required>   
+          </div>
+    		
+          </div>
+          <div class="footer">
+            
+            <input type="submit" class="btn btn-success" value="Editar Regla">
+          </div>
+        </form>
+       </div>
+    </div>
+   </div>
+
+{{/partial}}
+
+{{> layout.hbs}}

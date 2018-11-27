@@ -10,7 +10,6 @@ import Dispositivo.Inteligente;
 import Observer.Observer;
 import Observer.Sensor;
 
-
 @Entity
 @DiscriminatorValue(value = "TEMPERATURA")
 public class SensorDeTemperatura extends Sensor {
@@ -20,6 +19,7 @@ public class SensorDeTemperatura extends Sensor {
 	public SensorDeTemperatura() {
 		observadores = new ArrayList<Observer>();
 		mediciones = new ArrayList<Medicion>();
+		dispositivos = new ArrayList<Inteligente>();
 	}
 		
 	@Override

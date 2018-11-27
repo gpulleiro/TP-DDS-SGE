@@ -17,9 +17,10 @@ public class AccionEncender extends Actuador{
 	
 	@Override
 	public void actuar(Inteligente dispositivo) throws IOException {
-		
-		dispositivo.encender();
-		
-	}
-
+				
+		if(dispositivo.getEstado() == "encendido"){}
+		else{
+			dispositivo.setEstado("encendido");
+			}
+		}
 }

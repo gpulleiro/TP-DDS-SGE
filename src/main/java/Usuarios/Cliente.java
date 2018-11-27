@@ -180,6 +180,9 @@ public class Cliente extends Usuario {
 		this.puntos = puntos;
 	}
 	
+	public void aniadirRegla(Regla unaRegla) {
+		this.reglas.add(unaRegla);
+	}
 	//metodos
 	
 	public boolean algunDispositivoEncendido(){
@@ -340,6 +343,12 @@ public class Cliente extends Usuario {
 	public void eliminarDispositivo(Dispositivo dispositivo) {
 		
 		this.dispositivos.remove(dispositivo);     }
+
+	public void eliminarRegla(Regla reglaEliminada) {
+		
+		this.reglas.remove(reglaEliminada);
+		
+	}
 	
 	
 }
