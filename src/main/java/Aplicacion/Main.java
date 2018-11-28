@@ -32,10 +32,10 @@ import Dispositivo.Estandar;
 import Dispositivo.Inteligente;
 import Observer.Regla;
 
-//import com.google.maps.GeoApiContext;
-//import com.google.maps.GeocodingApi;
-//import com.google.maps.errors.ApiException;
-//import com.google.maps.model.GeocodingResult;
+import com.google.maps.GeoApiContext;
+import com.google.maps.GeocodingApi;
+import com.google.maps.errors.ApiException;
+import com.google.maps.model.GeocodingResult;
 
 
 
