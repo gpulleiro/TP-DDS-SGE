@@ -1,6 +1,7 @@
 package Usuarios;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
+import Dao.ConsumoDAO;
 import Dispositivo.Dispositivo;
 import Dispositivo.Inteligente;
 import Observer.Regla;
@@ -327,15 +329,18 @@ public class Cliente extends Usuario {
 		return false;
 	};
 	
-	public double consumoGenerico() {
+	public double consumoGenerico() throws ParseException {
 		
 		double consumoTotal = 0;
 		dispositivos = this.getDispositivos();
 		
 		for (Dispositivo dispositivo:dispositivos) {
 		
-			consumoTotal = dispositivo.getConsumoFijo() + consumoTotal;
-		
+			//consumoTotal = dispositivo.getConsumoFijo() + consumoTotal;
+			
+			consumoTotal = dispositivo.consumo() + consumoTotal;
+			
+			
 	}
 		return consumoTotal;
 	}
@@ -348,6 +353,21 @@ public class Cliente extends Usuario {
 		
 		this.reglas.remove(reglaEliminada);
 		
+	}
+	
+	public Boolean esEficiente(int mes) throws SQLException{
+		
+		ConsumoDAO consumoDAO = new ConsumoDAO();
+		
+		double consumo = consumoDAO.ObtenerConsumo(mes, this.numeroDocumento);
+		
+		if(consumo < 612.42){
+			
+			return true;
+		}else{
+			
+			return false;
+		}
 	}
 	
 	

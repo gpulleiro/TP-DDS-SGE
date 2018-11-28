@@ -23,4 +23,5 @@ public class LogDAO extends AbstractDAO {
 		return (Log) entityManager.createQuery("from TipoDato.Log where id = :id").setParameter("id", id).getSingleResult();
 
 	}
+	
 }

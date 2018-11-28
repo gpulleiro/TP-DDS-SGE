@@ -1,6 +1,8 @@
 package Dispositivo;
 
 
+import java.text.ParseException;
+
 import javax.persistence.*;
 
 
@@ -188,7 +190,7 @@ public abstract class Dispositivo {
 	public abstract double consumoPeriodo(String fecha1, String fecha2);
 
 
-	public abstract double consumo();
+	public abstract double consumo() throws ParseException;
 	
 }
 
