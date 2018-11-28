@@ -79,7 +79,9 @@ public class Main {
 //		DispositivoDAO dao = new DispositivoDAO();
 //		dao.cargaInicial();
 
-
+		//Descomentar para asignarle el puerto de heroku y hacer el deploy
+		//port(getHerokuAssignedPort());
+		
 		port(8080);
         staticFiles.location("/templates");
         staticFiles.expireTime(600L);
@@ -145,4 +147,13 @@ public class Main {
         
 	
 	}
+	
+	//Metodo que asigna puerto heroku
+	static int getHerokuAssignedPort() {
+        ProcessBuilder processBuilder = new ProcessBuilder();
+        if (processBuilder.environment().get("PORT") != null) {
+            return Integer.parseInt(processBuilder.environment().get("PORT"));
+        }
+        return 4567; //return default port if heroku-port isn't set (i.e. on localhost)
+    }
 }
