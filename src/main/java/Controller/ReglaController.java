@@ -153,5 +153,29 @@ public class ReglaController {
 	        
 	        
 		};
+		
+		public static Route sensoresMenu = (Request request, Response response) -> {
+			LoginController.ensureUserIsLoggedIn(request, response);
+			Map<String, Object> model = new HashMap<>();
+			
+			String myUser = request.session().attribute("currentUser");
+			
+			ClienteDAO dao = new ClienteDAO();
+			Cliente cliente = dao.obtenerCliente(myUser);
+			
+			List<Regla> reglas = cliente.getReglas();
+			model.put("reglas", cliente.getReglas());
+			model.put("dispositivos", cliente.getDispositivos());
+			
+			for (Regla regla:reglas) {
+				
+				System.out.println(regla.getSensor());
+			}
+			
+			return ViewHelper.render(request, model, "sensores.html");
+			
+		};
+		
+		
 
 }

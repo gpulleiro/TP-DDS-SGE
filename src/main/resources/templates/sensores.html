@@ -1,0 +1,97 @@
+{{#partial "navbar"}}
+{{> navbarCliente.hbs}}
+{{/partial}}
+
+{{#partial "content"}}
+
+<body>
+    <div class="container">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6">
+            <h2><b>Reglas</b></h2>
+          </div>
+          
+                </div>
+            </div>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Flag</th>
+            			<th>Condicion</th>
+            			<th>Sensor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+					{{#each reglas}}
+							<tr>
+							<td>{{nombre}}</td>
+							<td>{{flag}}</td>
+							<td>{{condicion}}</td>
+							<td>{{sensor.id}}</td>
+							
+							</tr>
+					{{/each}}
+                    </tr>
+                    
+                </tbody>
+            </table>
+      
+        </div>
+    </div>
+    <div class="container">
+      <div class="table-wrapper">
+         <div class="table-title">
+            <div class="row">
+               <div class="col-sm-6">
+                  <h2><b>Dispositivos</b></h2>
+               </div>
+
+            </div>
+         </div>
+         <table class="table table-striped table-hover">
+            <thead>
+               <tr>
+                  <th>ID</th>
+                  <th>Nombre</th>
+                  <th>Consumo Fijo</th>
+                  <th>Tipo</th>
+                  <th>Actions</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  {{#each dispositivos}}
+               <tr>
+                  <td>{{id}}</td>
+                  <td>{{nombre}}</td>
+                  <td>{{consumoFijo}}</td>
+                  {{#unless estado}}
+                  <td>Estandar</td>
+                  {{/unless}}
+                  {{#if estado}}
+                  <td>Inteligente</td>
+                  {{/if}}
+                  <td>
+					<form method="post">
+					<div class="form-group">
+              		<input id="agregarDispositivo" type="hidden" name="agregarDispositivo" class="form-control" value={{id}} required>
+					<input type="submit" class="btn btn-success" value="+ Add">
+					</form>                     
+
+                  </td>
+               </tr>
+               {{/each}}
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </div>
+
+
+{{/partial}}
+
+{{> layout.hbs}}

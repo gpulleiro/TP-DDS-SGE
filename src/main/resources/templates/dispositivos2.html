@@ -9,7 +9,29 @@
     	<strong>Fallo al eliminar dispositivo</strong>, verifique antes si los clientes tienen el dispositivo en su lista
   	</div>
 	</div>
-	{{/if}}
+	{{/if}}	 
+	   	<div class ="container">
+	   	<div class="row">
+	   	<div class="col-sm-6">
+            <h2><b>Importar Archivo</b></h2>
+          </div>
+	   	</div>
+    	 <form method="post" action="/dispositivos/importar">
+          <div class="form-group">
+          <input type="file" id="selectFiles" name=json value="Import" /><br />
+			<button class="btn btn-success" id="import" type="submit">Import</button>
+
+            </div>
+            </form>
+         	{{#if archivoInvalido}}
+         	<div class="alert alert-danger">
+    		<strong>Tipo de archivo invalido</strong>, verifique que el archivo tenga un formato correcto
+  			</div>
+         	
+         	{{/if}}
+            </div>
+
+
     <div class="container">
         <div class="table-wrapper">
             <div class="table-title">
@@ -18,7 +40,7 @@
             <h2><b>Dispositivos</b></h2>
           </div>
           <div class="col-sm-6">
-            <a href="#agregarDispositivo" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Agregar Dispositivo</span></a>         
+          <a href="#agregarDispositivo" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Agregar Dispositivo</span></a>         
           </div>
                 </div>
             </div>
@@ -73,11 +95,9 @@
       
         </div>
     </div>
-  <!-- Edit Modal HTML -->
  
 
         {{> altaDispositivo.hbs}}
-
 
 
  {{/partial}}

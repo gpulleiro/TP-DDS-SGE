@@ -7,8 +7,14 @@ import spark.template.handlebars.HandlebarsTemplateEngine;
 import static Helpers.RequestHelper.*;
 import static spark.Spark.get;
 
+import java.io.FileReader;
 import java.util.*;
 import java.util.stream.*;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import Dao.ClienteDAO;
 import Dao.DispositivoDAO;
@@ -132,6 +138,53 @@ public class DispositivosController {
 	        response.redirect("/dispositivos");
 	        
 	        return null;
+	        
+	        
+		};
+		
+		public static Route importarDispositivos = (Request request, Response response) -> {
+			LoginController.ensureUserIsLoggedIn(request, response);
+			Map<String, Object> model = new HashMap<>();
+			
+			
+			ArrayList<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
+			
+			String json = getQueryJson(request);
+			DispositivoDAO daoDispositivo = new DispositivoDAO();
+			
+			JsonParser parser = new JsonParser();
+			try {
+			JsonArray gsonArr = parser.parse(new FileReader(json)).getAsJsonArray();
+			for (JsonElement obj: gsonArr){
+				JsonObject unDispo = obj.getAsJsonObject();
+				String nombre = unDispo.get("nombre").getAsString();
+				double consumoFijo = unDispo.get("consumoFijo").getAsFloat();
+				int minimoHoras = unDispo.get("minimoHoras").getAsInt();
+				int maximoHoras = unDispo.get("maximoHoras").getAsInt();
+				String flag = unDispo.get("flag").getAsString();
+				Dispositivo unDispositivo = null;
+				if (flag.equals("I")){
+					 unDispositivo = new Inteligente(nombre, consumoFijo, minimoHoras, maximoHoras,unDispo.get("estado").getAsString());
+				}else if(flag.equals("E")){
+					unDispositivo = new Estandar(nombre, consumoFijo, minimoHoras, maximoHoras,unDispo.get("cantHoras").getAsInt()); 				
+				}
+				dispositivos.add(unDispositivo);
+				
+			}
+			}catch (Exception e) {
+				
+//				e.printStackTrace();
+				model.put("archivoInvalido", true);
+				
+			}
+			
+			for(Dispositivo dispositivo:dispositivos) {
+				
+				daoDispositivo.agregar(dispositivo);
+			}
+			
+			response.redirect("/dispositivos");
+			return null;
 	        
 	        
 		};

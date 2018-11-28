@@ -130,7 +130,11 @@ public class Main {
         post("/editarRegla", 			ReglaController.editarReglaMenu);
         post("/editarRegla/confirm", 	ReglaController.editarRegla);
         
+        get("/sensores",				ReglaController.sensoresMenu);
+        
         get("/reportes",				ReportesController.reportes);
+        
+        post("/dispositivos/importar", 	DispositivosController.importarDispositivos);
         
         
         

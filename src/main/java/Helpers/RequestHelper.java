@@ -116,4 +116,7 @@ public class RequestHelper {
 		return request.queryParams("editarRegla");
 	}
 	
+	public static String getQueryJson(Request request) {
+		return request.queryParams("json");
+	}
 }
