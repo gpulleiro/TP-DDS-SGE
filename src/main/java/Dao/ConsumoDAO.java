@@ -21,7 +21,7 @@ public class ConsumoDAO {
 		PreparedStatement pst = null;
 		ResultSet rs = null;		
 
-		String strQuery = "select SUM(D.CONS_FIJO * C.cant_horas) AS consumo from usuario U join usuario_dispositivo UD on U.ID_USU = UD.USUARIO_ID_USU join dispositivo D  on UD.dispositivos_ID_DISP = D.ID_DISP join consumos C on UD.dispositivos_ID_DISP = C.id_dispositivo where month(C.fecha) = " + mes + " and U.NUM_DOC = " + dni + " group by U.NUM_DOC;";
+		String strQuery = "select SUM(D.CONS_FIJO * C.cant_horas) AS consumo from usuario U join usuario_dispositivo UD on U.ID_USU = UD.USUARIO_ID_USU join dispositivo D  on UD.dispositivos_ID_DISP = D.ID_DISP join consumos C on UD.dispositivos_ID_DISP = C.id_dispositivo where month(STR_TO_DATE(C.fecha, '%d/%m/%Y')) = " + mes + " and U.NUM_DOC = " + dni + " group by U.NUM_DOC;";
 		
 		try {
 			con = objConexion.getConnectionMySQL();
