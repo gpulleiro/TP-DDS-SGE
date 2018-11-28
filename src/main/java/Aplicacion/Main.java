@@ -153,6 +153,8 @@ public class Main {
         
         post("/dispositivos/importar", 	DispositivosController.importarDispositivos);
         
+        get("/eficiencia",				HomeController.clienteMenuEficiencia);
+        post("/eficiencia",				HomeController.clienteConsultaEficiencia);
         
         
         

@@ -119,4 +119,8 @@ public class RequestHelper {
 	public static String getQueryJson(Request request) {
 		return request.queryParams("json");
 	}
+	
+	public static String getQueryMes(Request request) {
+		return request.queryParams("mes");
+	}
 }
