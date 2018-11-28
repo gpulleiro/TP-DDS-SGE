@@ -169,96 +169,9 @@ public class Inteligente extends Dispositivo {
 	}
 	
 	@Override
-	public double consumo() throws ParseException{
+	public double consumo(){
 		
-		double consumoTotal = 0;
-		
-		//filtro la lista con el dispositivo deseado
-		
-		ArrayList<Log> listaLog = new ArrayList<Log>();
-		
-		Log log;
-		
-		Iterator iLog = Repositorio.getInstance().getLog().iterator();
-		
-		while(iLog.hasNext()){
-		
-			log = (Log)iLog.next();
-		
-			if(this.getNombre().equals(log.getNombre())){
-				
-				listaLog.add(log);
-			}
-		}
-		
-		//creo la fecha de inicio para el calculo del consumo ACLARACION: la fechaFin es la actual
-		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:ii:ss");
-		String stringFechaConHora = "2018-10-01 00:00:00";
-		Date fecha = sdf.parse(stringFechaConHora);
-		
-		Calendar fechaInicio = Calendar.getInstance();
-		
-		fechaInicio.setTime(fecha);
-		
-		//se crea la fecha de comparacion la cual es la obtenida de cada registro del log
-		Calendar fechaComparacion = Calendar.getInstance();
-		
-		for(int i=0; i<=listaLog.size()-1; i++){
-			
-			log = listaLog.get(i);
-			
-			fechaComparacion.setTime(log.getFecha());
-
-			if((fechaInicio.getTimeInMillis() <= fechaComparacion.getTimeInMillis())){
-				
-				//obtengo la fecha siguiente para asi saber con la resta de las fechas la cantidad de horas que estuvo
-				//en cada estado.
-				Calendar fechaSiguiente = Calendar.getInstance();
-								
-				if(i+1 < listaLog.size()){
-
-					Log logSiguiente = listaLog.get(i+1);
-					
-					fechaSiguiente.setTime(logSiguiente.getFecha());
-					
-					long dif = fechaSiguiente.getTimeInMillis() - fechaComparacion.getTimeInMillis();
-					
-					//paso de milisegundos a horas
-					dif = dif/(1000*60*60);
-					
-					consumoTotal = consumoTotal + this.consumoInteligente(this.getConsumoFijo(), log.getEstado(), dif);
-				}
-				
-				//sino se resta con la fecha actual ya que estamos en el ultimo registro del log, y no hay un siguiente
-				//para comparar
-				Calendar fechaActual = Calendar.getInstance();
-				
-				fechaActual.setTime(new Date());
-				
-				long dif = fechaActual.getTimeInMillis() - fechaInicio.getTimeInMillis();
-				
-				dif = dif/(1000*60*60);
-				
-				consumoTotal = consumoTotal + this.consumoInteligente(this.getConsumoFijo(),log.getEstado(), dif);
-				
-			}
-			else{if(i == listaLog.size()-1){
-				
-				Calendar fechaActual = Calendar.getInstance();
-				
-				fechaActual.setTime(new Date());
-				
-				long dif = fechaActual.getTimeInMillis() - fechaInicio.getTimeInMillis();
-				
-				dif = dif/(1000*60*60);
-				
-				consumoTotal = consumoTotal + this.consumoInteligente(this.getConsumoFijo(),log.getEstado(), dif);
-				
-				}
-			}
-		}	
-		return consumoTotal;
+		return 0;
 	}
 	
 	

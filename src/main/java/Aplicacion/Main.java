@@ -74,18 +74,18 @@ public class Main {
 		
 		
 		
-		
-		ClienteDAO cliDAO = new ClienteDAO();
-		Cliente cli = cliDAO.obtenerClientePorId(2);
-		
-		System.out.println(cli.esEficiente(1));
+//		
+//		ClienteDAO cliDAO = new ClienteDAO();
+//		Cliente cli = cliDAO.obtenerClientePorId(2);
+//		
+//		System.out.println(cli.esEficiente(1));
 //		
 //		//System.out.println(cli.getDispositivos());
 //		System.out.println(cli.consumoGenerico());
 //	
 		
-//		Repositorio repositorio = Repositorio.getInstance();
-//		repositorio.importarLog();
+		Repositorio repositorio = Repositorio.getInstance();
+		repositorio.importarLog();
 //		repositorio.importarDispositivos();
 //		repositorio.importarZona();
 //		repositorio.importarTransformadores();
@@ -97,72 +97,72 @@ public class Main {
 //		//Descomentar para asignarle el puerto de heroku y hacer el deploy
 //		//port(getHerokuAssignedPort());
 //		
-//		port(8080);
-//        staticFiles.location("/templates");
-//        staticFiles.expireTime(600L);
-//        enableDebugScreen();
-//        
-////		ReportesDAO reportes = new ReportesDAO();
-////		System.out.println(reportes.generarReporte1().get(1).getFecha());
-////		System.out.println(reportes.generarReporte2().get(1).getTipo());
-//
-//    
-//        get("/login",			LoginController.serveLoginPage);
-//        post("/login",			LoginController.handleLoginPost);
-//        post("/logout",			LoginController.handleLogoutPost);
-//        get("/index",			LoginController.index);
-//        get("/home",			HomeController.homeClientePage);
-//        get("/dispositivos",	DispositivosController.traerDispositivos);
-//        post("/dispositivos",	DispositivosController.crearDispositivo);
-//        post("/dispositivos/borrar",	DispositivosController.borrarDispositivo);
-//        get("/editarDispositivo",		DispositivosController.editarDispositivoMenu);
-//        post("/editarDispositivo",		DispositivosController.editarDispositivoMenu);
-//        post("/editarDispositivo/confirm",		DispositivosController.editarDispositivo);
-//        get("/hogares",			UsuarioController.traerClientes);
-//
-//        //menu del cliente
-//        get("/simplex",			SimplexController.simplexPage);
-//        post("/simplex",		SimplexController.simplexEjecutado);
-//        
-////        get("/estadoHogar", 	UsuarioController.clienteEstadoHogar);
-//        get("/estadoHogar", 	UsuarioController.clienteConsumoPeriodo);
-//        get("/consumo", 		UsuarioController.clienteMenuConsumo);
-//        post("/consumo", 		UsuarioController.clienteConsultaConsumo);
-//        
-//        //ABM
-//        get("/dispositivosAlta",	UsuarioController.traerDispositivos);
-//        
-//        get("/mapa",				TransformadorController.mapa);
-//        get("/dispositivosByM",		UsuarioController.clienteBajaYModificacion);
-//        post("/dispositivosAlta", 	UsuarioController.clienteAgregarDispositivo);
-//        post("/dispositivosByM", 	UsuarioController.clienteEliminarDispositivo);
-//        
-//        //Reglas
-//        
-//        get("/reglas",					ReglaController.reglasCliente);
-//        post("/reglas", 				ReglaController.agregarRegla);
-//        post("/reglas/eliminar", 		ReglaController.eliminarRegla);
-//       
-//        get("/editarRegla",				ReglaController.editarReglaMenu);
-//        post("/editarRegla", 			ReglaController.editarReglaMenu);
-//        post("/editarRegla/confirm", 	ReglaController.editarRegla);
-//        
-//        get("/sensores",				ReglaController.sensoresMenu);
-//        
-//        get("/reportes",				ReportesController.reportes);
-//        
-//        post("/dispositivos/importar", 	DispositivosController.importarDispositivos);
-//        
-//        
-//        
-//        
-//        
-//        
-//        
-//        
-//	
-//	}
-//	
+		port(8080);
+        staticFiles.location("/templates");
+        staticFiles.expireTime(600L);
+        enableDebugScreen();
+        
+//		ReportesDAO reportes = new ReportesDAO();
+//		System.out.println(reportes.generarReporte1().get(1).getFecha());
+//		System.out.println(reportes.generarReporte2().get(1).getTipo());
+
+    
+        get("/login",			LoginController.serveLoginPage);
+        post("/login",			LoginController.handleLoginPost);
+        post("/logout",			LoginController.handleLogoutPost);
+        get("/index",			LoginController.index);
+        get("/home",			HomeController.homeClientePage);
+        get("/dispositivos",	DispositivosController.traerDispositivos);
+        post("/dispositivos",	DispositivosController.crearDispositivo);
+        post("/dispositivos/borrar",	DispositivosController.borrarDispositivo);
+        get("/editarDispositivo",		DispositivosController.editarDispositivoMenu);
+        post("/editarDispositivo",		DispositivosController.editarDispositivoMenu);
+        post("/editarDispositivo/confirm",		DispositivosController.editarDispositivo);
+        get("/hogares",			UsuarioController.traerClientes);
+
+        //menu del cliente
+        get("/simplex",			SimplexController.simplexPage);
+        post("/simplex",		SimplexController.simplexEjecutado);
+        
+//        get("/estadoHogar", 	UsuarioController.clienteEstadoHogar);
+        get("/estadoHogar", 	UsuarioController.clienteConsumoPeriodo);
+        get("/consumo", 		UsuarioController.clienteMenuConsumo);
+        post("/consumo", 		UsuarioController.clienteConsultaConsumo);
+        
+        //ABM
+        get("/dispositivosAlta",	UsuarioController.traerDispositivos);
+        
+        get("/mapa",				TransformadorController.mapa);
+        get("/dispositivosByM",		UsuarioController.clienteBajaYModificacion);
+        post("/dispositivosAlta", 	UsuarioController.clienteAgregarDispositivo);
+        post("/dispositivosByM", 	UsuarioController.clienteEliminarDispositivo);
+        
+        //Reglas
+        
+        get("/reglas",					ReglaController.reglasCliente);
+        post("/reglas", 				ReglaController.agregarRegla);
+        post("/reglas/eliminar", 		ReglaController.eliminarRegla);
+       
+        get("/editarRegla",				ReglaController.editarReglaMenu);
+        post("/editarRegla", 			ReglaController.editarReglaMenu);
+        post("/editarRegla/confirm", 	ReglaController.editarRegla);
+        
+        get("/sensores",				ReglaController.sensoresMenu);
+        
+        get("/reportes",				ReportesController.reportes);
+        
+        post("/dispositivos/importar", 	DispositivosController.importarDispositivos);
+        
+        
+        
+        
+        
+        
+        
+        
+	
+	}
+	
 //	//Metodo que asigna puerto heroku
 //	static int getHerokuAssignedPort() {
 //        ProcessBuilder processBuilder = new ProcessBuilder();
@@ -170,5 +170,5 @@ public class Main {
 //            return Integer.parseInt(processBuilder.environment().get("PORT"));
 //        }
 //        return 4567; //return default port if heroku-port isn't set (i.e. on localhost)
-    }
+//    }
 }
