@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import TipoDato.Log;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
@@ -86,6 +88,12 @@ public class Main {
 		
 		Repositorio repositorio = Repositorio.getInstance();
 		repositorio.importarLog();
+//		
+//		LogDAO dao = new LogDAO();
+//		for (int i = 0; i < repositorio.getLog().size(); i++) {
+//			dao.agregar(repositorio.getLog().get(i));
+//			
+//		}
 //		repositorio.importarDispositivos();
 //		repositorio.importarZona();
 //		repositorio.importarTransformadores();
@@ -136,6 +144,9 @@ public class Main {
         get("/dispositivosByM",		UsuarioController.clienteBajaYModificacion);
         post("/dispositivosAlta", 	UsuarioController.clienteAgregarDispositivo);
         post("/dispositivosByM", 	UsuarioController.clienteEliminarDispositivo);
+        
+        post("/apagarDispositivo",	UsuarioController.apagarDispositivo);
+        post("/encenderDispositivo",	UsuarioController.encenderDispositivo);
         
         //Reglas
         

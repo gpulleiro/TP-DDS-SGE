@@ -102,6 +102,11 @@ public abstract class Usuario {
 	public boolean esAdmin() {
 		return false;
 	}
+
+	public long getId() {
+		return id;
+	}
+	
 	//metodos
 	
 }

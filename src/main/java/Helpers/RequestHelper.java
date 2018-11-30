@@ -123,4 +123,12 @@ public class RequestHelper {
 	public static String getQueryMes(Request request) {
 		return request.queryParams("mes");
 	}
+	
+	public static String getQueryEncendido(Request request) {
+		return request.queryParams("encenderDispositivo");
+	}
+	
+	public static String getQueryApagado(Request request) {
+		return request.queryParams("apagarDispositivo");
+	}
 }

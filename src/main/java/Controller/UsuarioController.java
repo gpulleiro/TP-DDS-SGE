@@ -4,9 +4,14 @@ import static spark.Spark.*;
 
 import java.util.*;
 
+
+import TipoDato.Log;
+
 import Dao.ClienteDAO;
 import Dao.DispositivoDAO;
+import Dao.LogDAO;
 import Dispositivo.Dispositivo;
+import Dispositivo.Inteligente;
 import Helpers.ViewHelper;
 import Usuarios.Cliente;
 import Usuarios.Usuario;
@@ -186,6 +191,69 @@ public class UsuarioController {
 		return null;
 		
 		};
+		
+	public static Route apagarDispositivo = (Request request, Response response) -> {
+		LoginController.ensureUserIsLoggedIn(request, response);
+		Map<String, Object> model = new HashMap<>();
+		
+		String myUser = request.session().attribute("currentUser");
+		
+		ClienteDAO dao = new ClienteDAO();
+		Cliente cliente = dao.obtenerCliente(myUser);
+		
+		DispositivoDAO disDao = new DispositivoDAO();
+		Inteligente dispo = (Inteligente) disDao.obtenerDispositivoPorId(Long.parseLong(getQueryApagado(request)));
+		
+		LogDAO daoLog = new LogDAO();
+		Log log = new Log();
+		
+		log.setEstado("apagado");
+		log.setFecha(new Date());
+		log.setNombre(dispo.getNombre());
+		log.setId_dispositivo(Long.parseLong(getQueryApagado(request)));
+		log.setId_cliente(cliente.getId());
+		
+		daoLog.agregar(log);
+		
+		dispo.setEstado("apagado");
+		disDao.actualizar(dispo);
+		
+		response.redirect("/home");
+		return null;
+		
+	};
+	
+	public static Route encenderDispositivo = (Request request, Response response) -> {
+		LoginController.ensureUserIsLoggedIn(request, response);
+		Map<String, Object> model = new HashMap<>();
+		
+		String myUser = request.session().attribute("currentUser");
+		
+		ClienteDAO dao = new ClienteDAO();
+		Cliente cliente = dao.obtenerCliente(myUser);
+		
+		DispositivoDAO disDao = new DispositivoDAO();
+		Inteligente dispo = (Inteligente) disDao.obtenerDispositivoPorId(Long.parseLong(getQueryEncendido(request)));
+		
+		LogDAO daoLog = new LogDAO();
+		Log log = new Log();
+		
+		log.setEstado("encendido");
+		log.setFecha(new Date());
+		log.setNombre(dispo.getNombre());
+		log.setId_dispositivo(Long.parseLong(getQueryEncendido(request)));
+		log.setId_cliente(cliente.getId());
+		
+		daoLog.agregar(log);
+		
+		dispo.setEstado("encendido");
+		disDao.actualizar(dispo);
+		
+		
+		response.redirect("/home");
+		return null;
+		
+	};
 			
 			
 

@@ -17,6 +17,8 @@
                         <th>Consumo Fijo (kWh)</th>
             			<th>Tipo</th>
             			<th>Estado</th>
+            			<th><center>Encender</center></th>
+            			<th><center>Apagar</center></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,8 +37,30 @@
 								<td>Inteligente</td>
 							{{/if}}
 							<td>{{estado}}</td>
+							</td>
+							<td>
+							{{#if estado}}
+							<form method="post" action="/encenderDispositivo">
+							<div class="form-group">
+              				<input id="encenderDispositivo" type="hidden" name="encenderDispositivo" class="form-control" value={{id}} required>
+							<input type="submit" class="btn btn-primary" value="Encender">
+							</div>
+							</form>
+							{{/if}}
+							</td>
+							<td>
+							{{#if estado}}
+							<form method="post" action="/apagarDispositivo">
+							<div class="form-group">
+              				<input id="apagarDispositivo" type="hidden" name="apagarDispositivo" class="form-control" value={{id}} required>
+							<input type="submit" class="btn btn-danger" value="Apagar">
+							</div>
+							</form>
+							{{/if}}
+							</td>
 							</tr>
-							 {{/each}}
+							
+					{{/each}}
                     </tr>
                     
                 </tbody>
