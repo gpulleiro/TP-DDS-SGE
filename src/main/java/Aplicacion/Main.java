@@ -3,6 +3,7 @@ package Aplicacion;
 import java.io.IOException;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -31,6 +32,8 @@ import Dao.AbstractDAO;
 import Dao.ClienteDAO;
 import Dao.ConsumoDAO;
 import Dao.DispositivoDAO;
+import Dao.LogDAO;
+import Dao.ReglaDAO;
 import Dao.ReportesDAO;
 import Dispositivo.Dispositivo;
 import Dispositivo.Estandar;
@@ -39,7 +42,7 @@ import Observer.Regla;
 
 import com.google.maps.GeoApiContext;
 import com.google.maps.GeocodingApi;
-import com.google.maps.errors.ApiException;
+import com.google.maps.errors.ApiException;	
 import com.google.maps.model.GeocodingResult;
 
 
@@ -72,6 +75,7 @@ import static spark.debug.DebugScreen.*;
 
 public class Main {
 	
+	@SuppressWarnings("deprecation")
 	public static void main( String[] args ) throws Exception{
 		
 		
@@ -88,6 +92,36 @@ public class Main {
 		
 		Repositorio repositorio = Repositorio.getInstance();
 		repositorio.importarLog();
+
+//		
+//		
+//		LogDAO daolog= new LogDAO();
+//		List<Log> lista = new ArrayList<Log>();
+//		
+//		List<Log> listaLog = daolog.obtenerLogsPorMes(new Date().getMonth() + 1, 9, 1);
+//		
+//		Date fecha1 = null;
+//		Date fecha2 = null;
+//		int cantidadHoras = 0;
+//				
+//		for (int i = 0; i < listaLog.size(); i++) {
+//			
+//			if(listaLog.get(i).getEstado() == "encendido" ) {
+//				fecha1 = listaLog.get(i).getFecha();
+//				
+//				for (int j = i+1; j < listaLog.size(); j++) {
+//					if(listaLog.get(i).getEstado() == "apagado" ) {
+//						fecha2 = listaLog.get(i).getFecha();
+//						
+//						cantidadHoras = 
+//					}
+//				}
+//			}
+//			
+//		}
+//		
+//		System.out.println(listaLog);
+//		
 //		
 //		LogDAO dao = new LogDAO();
 //		for (int i = 0; i < repositorio.getLog().size(); i++) {
@@ -101,6 +135,31 @@ public class Main {
 //		
 ////		DispositivoDAO dao = new DispositivoDAO();
 ////		dao.cargaInicial();
+				
+		DispositivoDAO dao = new DispositivoDAO();
+		Inteligente dis1 = (Inteligente) dao.obtenerDispositivoPorId(1);
+		Inteligente dis2 = (Inteligente) dao.obtenerDispositivoPorId(2);
+		
+		ReglaDAO reglaDao = new ReglaDAO();
+		Regla regla = reglaDao.obtenerReglaPorId(1);
+		
+
+		regla.aniadirDispositivo(dis1);
+		regla.aniadirDispositivo(dis2);
+		
+		reglaDao.actualizar(regla);
+
+		dis1.setCantidadHorasEncendido(400);
+		dis2.setCantidadHorasEncendido(300);
+		
+		dis1.encender();
+		dis2.encender();
+		
+		
+
+		System.out.println(dis1.getEstado());
+		System.out.println(dis2.getEstado());
+		
 //
 //		//Descomentar para asignarle el puerto de heroku y hacer el deploy
 //		//port(getHerokuAssignedPort());

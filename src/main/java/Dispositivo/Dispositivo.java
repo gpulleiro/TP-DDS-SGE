@@ -37,6 +37,9 @@ public abstract class Dispositivo {
 	@Transient
 	protected double consumoActual;
 	
+	@Transient
+	protected long cantidadHorasEncendido;
+	
 	//constructor>
 	public Dispositivo(String nombre, double consumoFijo, double minimoHoras, double maximoHoras) {
 		super();
@@ -122,6 +125,8 @@ public abstract class Dispositivo {
 		
 		return "NO";
 	}
+	
+	
 
 	//metodos 
 //	public void estasEncendido(){
@@ -181,6 +186,14 @@ public abstract class Dispositivo {
 //		
 //	}
 
+	public long getCantidadHorasEncendido() {
+		return cantidadHorasEncendido;
+	}
+
+	public void setCantidadHorasEncendido(long cantidadHorasEncendido) {
+		this.cantidadHorasEncendido = cantidadHorasEncendido;
+	}
+
 	public abstract String getEstado();
 	
 	public abstract int getCantHoras();
@@ -191,6 +204,8 @@ public abstract class Dispositivo {
 
 
 	public abstract double consumo() throws ParseException;
+	
+	
 	
 }
 

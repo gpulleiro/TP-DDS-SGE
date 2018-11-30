@@ -24,4 +24,10 @@ public class LogDAO extends AbstractDAO {
 
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Log> obtenerLogsPorMes(int mes, long id_dispositivo, long id_cliente) throws Exception {
+		
+		return entityManager.createQuery("from TipoDato.Log where month(fecha) = :mes and id_dispositivo = :id_dispositivo and id_cliente = :id_cliente" ).setParameter("mes", mes).setParameter("id_dispositivo", id_dispositivo).setParameter("id_cliente", id_cliente).getResultList();
+	} 
+	
 }

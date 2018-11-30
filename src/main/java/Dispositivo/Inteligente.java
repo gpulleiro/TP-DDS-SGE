@@ -8,12 +8,15 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 
 import Repositorio.Repositorio;
 import TipoDato.Log;
 
 import javax.persistence.*;
 
+import Observer.Observer;
+import Observer.Regla;
 import Observer.Sensor;
 
 @Entity
@@ -23,14 +26,19 @@ public class Inteligente extends Dispositivo {
 	@Column(name="ESTADO")
 	private String estado;
 	
-	@ManyToOne(cascade = {CascadeType.ALL}, fetch=FetchType.LAZY)
-	private Sensor sensor;
+//	@ManyToOne(cascade = {CascadeType.ALL}, fetch=FetchType.LAZY)
+//	private Sensor sensor;
+	
+	@ManyToMany(cascade = {CascadeType.ALL}, fetch=FetchType.LAZY)
+	private List<Regla> reglas = new ArrayList<Regla>();
 	
 	//constructor	
 	public Inteligente(String nombre, double consumoFijo, double minimoHoras, double maximoHoras, String estado) {
 		super(nombre, consumoFijo, minimoHoras, maximoHoras);
 		this.estado = estado;
 	}
+	
+	
 	
 	
 	public Inteligente() {}
@@ -44,14 +52,14 @@ public class Inteligente extends Dispositivo {
 		return estado;
 	}
 	
-	public Sensor getSensor() {
-		return sensor;
-	}
-
-
-	public void setSensor(Sensor sensor) {
-		this.sensor = sensor;
-	}
+//	public Sensor getSensor() {
+//		return sensor;
+//	}
+//
+//
+//	public void setSensor(Sensor sensor) {
+//		this.sensor = sensor;
+//	}
 
 
 	public void setEstado(String estado) {
@@ -103,6 +111,10 @@ public class Inteligente extends Dispositivo {
 		
 		return ahorro;		
 	}
+	
+	public void notificar() throws IOException {
+		for(Regla regla:reglas) {regla.update();}
+	}
 
 	public void encender() throws IOException {
 		
@@ -110,7 +122,8 @@ public class Inteligente extends Dispositivo {
 			else{
 			this.setEstado("encendido");
 		}
-		this.getSensor().realizarMedicion();
+		this.notificar();
+//		this.getSensor().realizarMedicion();
 	}
 
 	public void apagar() throws IOException {
@@ -119,7 +132,8 @@ public class Inteligente extends Dispositivo {
 			else{
 			this.setEstado("apagado");
 		}
-		this.getSensor().realizarMedicion();
+		this.notificar();
+//		this.getSensor().realizarMedicion();
 	}
 
 	public void ahorro() {
@@ -170,6 +184,8 @@ public class Inteligente extends Dispositivo {
 	
 	@Override
 	public double consumo(){
+		
+		System.out.println("este dispositivo es inteligente, debe especificar el consumo en un determinado rango horario o una cantidad de horas hacia atras");
 		
 		return 0;
 	}
@@ -354,6 +370,10 @@ public class Inteligente extends Dispositivo {
 			
 	return consumoTotal;
 	}
+ 	
+
+ 	
+ 	public void agregarObservador(Regla obs) {reglas.add(obs);};
 
 	public String obtenerFlag() {
 		return "I";
@@ -363,4 +383,24 @@ public class Inteligente extends Dispositivo {
 		
 		return "SI";
 	}
+	
+	public boolean esInteligente2() {
+		
+		return true;
+	}
+
+
+
+
+	public List<Regla> getReglas() {
+		return reglas;
+	}
+
+
+
+
+	public void setReglas(List<Regla> reglas) {
+		this.reglas = reglas;
+	}
+	
 }

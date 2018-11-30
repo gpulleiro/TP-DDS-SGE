@@ -68,10 +68,10 @@ public abstract class Sensor implements Subject{
 		this.dispositivos = dispositivos;
 	}
 	
-	public void agregarDispositivo(Inteligente dispositivo) {
-		this.getDispositivos().add(dispositivo);
-		dispositivo.setSensor(this);
-	}
+//	public void agregarDispositivo(Inteligente dispositivo) {
+//		this.getDispositivos().add(dispositivo);
+//		dispositivo.setSensor(this);
+//	}
 	
 	public long getId() {
 		return id;

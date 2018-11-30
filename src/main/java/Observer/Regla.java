@@ -30,18 +30,6 @@ import Usuarios.Cliente;
 @Table(name="REGLA")
 public class Regla implements Observer {
 	
-	public Regla() {
-	}
-	
-	public Regla(String nombre, String condicion, double flag, Actuador actuador, Sensor sensor){
-		this.nombre = nombre;
-		this.flag = flag;
-		this.actuador = actuador;
-		this.condicion = condicion;
-		this.sensor = sensor;
-		sensor.agregarObservador(this);
-	}
-	
 	@Id
 	@GeneratedValue
 	@Column(name = "ID_REGLA")
@@ -59,22 +47,46 @@ public class Regla implements Observer {
 	@Column(name="CONDICION")
 	private String condicion;
 	
+	@ManyToMany(cascade = {CascadeType.ALL}, fetch=FetchType.LAZY)
+	private List<Inteligente> inteligentes = new ArrayList<Inteligente>();
+	
 //	@ManyToOne(cascade = {CascadeType.ALL}, fetch=FetchType.LAZY)
 //	private Cliente cliente;
 		
 	//agrego un sensor a la lista de sensores y agrego a la regla como observador del sensor.
 	
 	
-	
-	public Sensor getSensor() {
-		return sensor;
+	public Regla() {
 	}
+	
+	public Regla(String nombre, String condicion, double flag, Actuador actuador, Sensor sensor){
+		this.nombre = nombre;
+		this.flag = flag;
+		this.actuador = actuador;
+		this.condicion = condicion;
+		this.sensor = sensor;
+		sensor.agregarObservador(this);
+	}
+	
+	public Regla(String nombre, String condicion, double flag, Actuador actuador){
+		this.nombre = nombre;
+		this.flag = flag;
+		this.actuador = actuador;
+		this.condicion = condicion;
+	}
+	
+	
 
 	public Regla(String nombre, double flag, String condicion) {
 		super();
 		this.nombre = nombre;
 		this.flag = flag;
 		this.condicion = condicion;
+	}
+	
+	
+	public Sensor getSensor() {
+		return sensor;
 	}
 
 	public void setSensor(Sensor sensor) {
@@ -105,8 +117,18 @@ public class Regla implements Observer {
 //		this.cliente = cliente;
 //	}
 
+	
+	
 	public long getId() {
 		return id;
+	}
+
+	public List<Inteligente> getInteligentes() {
+		return inteligentes;
+	}
+
+	public void setInteligentes(List<Inteligente> inteligentes) {
+		this.inteligentes = inteligentes;
 	}
 
 	public void setId(long id) {
@@ -138,26 +160,37 @@ public class Regla implements Observer {
 	public void setCondicion(String condicion) {
 		this.condicion = condicion;
 	}
-
+	
+	public void aniadirDispositivo(Inteligente inteligente) {
+		this.inteligentes.add(inteligente);
+		inteligente.agregarObservador(this);
+	}
 	
 	//metodo que implementa la condicion del IF. Se podría hacer con un switch creo
-	public boolean condicionD(Sensor sen){
+	public boolean condicionD(Inteligente dis){
 	if (this.getCondicion() == "menor"){
-	return sen.getMagnitud() < this.getFlag();
+	return dis.getCantidadHorasEncendido() < this.getFlag();
 	}
 	else if (this.getCondicion() == "igual"){
-	return sen.getMagnitud() == this.getFlag();
+	return dis.getCantidadHorasEncendido() == this.getFlag();
 	}
 	else if (this.getCondicion() == "mayor") {}
-	return sen.getMagnitud() > this.getFlag();
+	return dis.getCantidadHorasEncendido() > this.getFlag();
 	}
 	
 	
 	//metodo update
 	public void update() throws IOException {
-	if(condicionD(this.getSensor()))
-	{for(Inteligente dis: this.getSensor().getDispositivos())
-	{this.getActuador().actuar(dis);}}
+	
+		for(Inteligente dis:this.getInteligentes()) {
+			
+			if(condicionD(dis)) {
+				
+				for(Inteligente dis2:this.getInteligentes()) {
+				this.getActuador().actuar(dis2);
+				}
+			}
+		}
 }
 	
 }
