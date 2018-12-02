@@ -131,4 +131,13 @@ public class RequestHelper {
 	public static String getQueryApagado(Request request) {
 		return request.queryParams("apagarDispositivo");
 	}
+	
+	public static String getQueryReglaDispositivos(Request request) {
+		return request.queryParams("reglaDispositivos");
+	}
+	
+	public static String getQueryReglaID(Request request) {
+		return request.queryParams("regla_id");
+	}
+	
 }

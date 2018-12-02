@@ -109,4 +109,10 @@ public class Estandar extends Dispositivo {
 		return null;
 	}
 
+	@Override
+	public boolean esInteligente2() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

@@ -204,6 +204,8 @@ public abstract class Dispositivo {
 
 
 	public abstract double consumo() throws ParseException;
+
+	public abstract boolean esInteligente2();
 	
 	
 	

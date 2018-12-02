@@ -1,12 +1,14 @@
 package Controller;
 import spark.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import Acciones.Actuador;
 import Dao.ClienteDAO;
 import Dao.DispositivoDAO;
 import Dao.ReglaDAO;
 import Dispositivo.Dispositivo;
+import Dispositivo.Inteligente;
 import Helpers.*;
 import Helpers.ViewHelper;
 import Observer.Regla;
@@ -113,8 +115,7 @@ public class ReglaController {
 			
 			model.put("regla", reglaRecuperada);
 
-			System.out.println("--------------------------------------------------------------");
-			System.out.println(getQueryEditarRegla(request));
+
 			return ViewHelper.render(request, model, "reglaEditar.html");
 	   
 	        
@@ -154,7 +155,7 @@ public class ReglaController {
 	        
 		};
 		
-		public static Route sensoresMenu = (Request request, Response response) -> {
+		public static Route reglaDispositivosMenu = (Request request, Response response) -> {
 			LoginController.ensureUserIsLoggedIn(request, response);
 			Map<String, Object> model = new HashMap<>();
 			
@@ -163,19 +164,42 @@ public class ReglaController {
 			ClienteDAO dao = new ClienteDAO();
 			Cliente cliente = dao.obtenerCliente(myUser);
 			
-			List<Regla> reglas = cliente.getReglas();
-			model.put("reglas", cliente.getReglas());
-			model.put("dispositivos", cliente.getDispositivos());
+			ReglaDAO daoRegla = new ReglaDAO();
+			Regla regla = daoRegla.obtenerReglaPorId(Long.parseLong(getQueryReglaDispositivos(request)));
 			
-			for (Regla regla:reglas) {
-				
-				System.out.println(regla.getSensor());
-			}
+			List<Dispositivo> dispositivos = cliente.getDispositivos().stream().filter(dispositivo->dispositivo.esInteligente2()).collect(Collectors.toList()) ;
+			//model.put("reglas", cliente.getReglas());
+			model.put("dispositivos", dispositivos);
+			model.put("regla", regla);
 			
-			return ViewHelper.render(request, model, "sensores.html");
+
+			
+			return ViewHelper.render(request, model, "reglaDispositivos.html");
 			
 		};
 		
-		
+		public static Route reglaDispositivoAgregar = (Request request, Response response) -> {
+			LoginController.ensureUserIsLoggedIn(request, response);
+			Map<String, Object> model = new HashMap<>();
+			
+			String myUser = request.session().attribute("currentUser");
+			
+			
+			ReglaDAO daoRegla = new ReglaDAO();
+			Regla regla = daoRegla.obtenerReglaPorId(Long.parseLong(getQueryReglaID(request)));
+			
+			DispositivoDAO daoDis = new DispositivoDAO();
+			Inteligente dispositivo = (Inteligente) daoDis.obtenerDispositivoPorId(Long.parseLong(getQueryAgregarDispositivo(request)));
+			
+			regla.aniadirDispositivo(dispositivo);
+			
+			daoRegla.actualizar(regla);
+	
+			
+			response.redirect("/reglas");
+			
+			return null;
+			
+		};
 
 }

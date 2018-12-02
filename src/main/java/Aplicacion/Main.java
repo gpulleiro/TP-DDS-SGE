@@ -136,29 +136,29 @@ public class Main {
 ////		DispositivoDAO dao = new DispositivoDAO();
 ////		dao.cargaInicial();
 				
-		DispositivoDAO dao = new DispositivoDAO();
-		Inteligente dis1 = (Inteligente) dao.obtenerDispositivoPorId(1);
-		Inteligente dis2 = (Inteligente) dao.obtenerDispositivoPorId(2);
-		
-		ReglaDAO reglaDao = new ReglaDAO();
-		Regla regla = reglaDao.obtenerReglaPorId(1);
-		
-
-		regla.aniadirDispositivo(dis1);
-		regla.aniadirDispositivo(dis2);
-		
-		reglaDao.actualizar(regla);
-
-		dis1.setCantidadHorasEncendido(400);
-		dis2.setCantidadHorasEncendido(300);
-		
-		dis1.encender();
-		dis2.encender();
-		
-		
-
-		System.out.println(dis1.getEstado());
-		System.out.println(dis2.getEstado());
+//		DispositivoDAO dao = new DispositivoDAO();
+//		Inteligente dis1 = (Inteligente) dao.obtenerDispositivoPorId(1);
+//		Inteligente dis2 = (Inteligente) dao.obtenerDispositivoPorId(2);
+//		
+//		ReglaDAO reglaDao = new ReglaDAO();
+//		Regla regla = reglaDao.obtenerReglaPorId(1);
+//		
+//
+//		regla.aniadirDispositivo(dis1);
+//		regla.aniadirDispositivo(dis2);
+//		
+//		reglaDao.actualizar(regla);
+//
+//		dis1.setCantidadHorasEncendido(400);
+//		dis2.setCantidadHorasEncendido(300);
+//		
+//		dis1.encender();
+//		dis2.encender();
+//		
+//		
+//
+//		System.out.println(dis1.getEstado());
+//		System.out.println(dis2.getEstado());
 		
 //
 //		//Descomentar para asignarle el puerto de heroku y hacer el deploy
@@ -217,7 +217,9 @@ public class Main {
         post("/editarRegla", 			ReglaController.editarReglaMenu);
         post("/editarRegla/confirm", 	ReglaController.editarRegla);
         
-        get("/sensores",				ReglaController.sensoresMenu);
+        get("/reglas/dispositivos",	ReglaController.reglaDispositivosMenu);
+        post("/reglas/dispositivos",	ReglaController.reglaDispositivosMenu);
+        post("/reglas/dispositivo/agregar",	ReglaController.reglaDispositivoAgregar);
         
         get("/reportes",				ReportesController.reportes);
         

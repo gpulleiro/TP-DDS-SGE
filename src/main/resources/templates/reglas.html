@@ -24,6 +24,7 @@
                         <th>Condicion</th>
             			<th>Editar</th>
             			<th>Eliminar</th>
+            			<th>Agregar Dispositivos</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,6 +48,14 @@
 							<div class="form-group">
               				<input id="eliminarRegla" type="hidden" name="eliminarRegla" class="form-control" value={{id}} required>
 							<input type="submit" class="btn btn-danger" value="Eliminar">
+							</div>
+							</form>
+							</td>
+							<td>
+							<form method="post" action="/reglas/dispositivos">
+							<div class="form-group">
+              				<input id="reglaDispositivos" type="hidden" name="reglaDispositivos" class="form-control" value={{id}} required>
+							<input type="submit" class="btn btn-success" value="Agregar Dispositivos">
 							</div>
 							</form>
 							</td>
