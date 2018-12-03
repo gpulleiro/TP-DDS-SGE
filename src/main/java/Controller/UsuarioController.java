@@ -10,9 +10,13 @@ import TipoDato.Log;
 import Dao.ClienteDAO;
 import Dao.DispositivoDAO;
 import Dao.LogDAO;
+import Dao.ReglaDAO;
 import Dispositivo.Dispositivo;
+import Dispositivo.Estandar;
 import Dispositivo.Inteligente;
 import Helpers.ViewHelper;
+import Observer.Regla;
+import Repositorio.Repositorio;
 import Usuarios.Cliente;
 import Usuarios.Usuario;
 import spark.*;
@@ -104,6 +108,32 @@ public class UsuarioController {
 	public static Route clienteMenuConsumo = (Request request, Response response) -> {
 		LoginController.ensureUserIsLoggedIn(request, response);
 		Map<String, Object> model = new HashMap<>();
+		
+		String myUser = request.session().attribute("currentUser");
+
+		ClienteDAO dao = new ClienteDAO();
+		Cliente cliente = dao.obtenerCliente(myUser);
+		
+		LogDAO daoLog = new LogDAO();
+		
+		for (int i = 0; i < cliente.getDispositivos().size(); i++) {
+			if(cliente.getDispositivos().get(i).esInteligente2()) {
+				
+				List<Log> listaLog = daoLog.obtenerLogsPorMes(new Date().getMonth(), cliente.getDispositivos().get(i).getId(), cliente.getId());
+				Inteligente dispoInteligente = (Inteligente) cliente.getDispositivos().get(i);
+				dispoInteligente.obtenerCantidadDeHorasUltimoMes(listaLog);
+				
+				dispoInteligente.consumoUltimoMesPorHoras(dispoInteligente.getCantidadHorasEncendido());
+				
+			}
+			else {
+				Estandar dispoEstandar = (Estandar) cliente.getDispositivos().get(i);
+				dispoEstandar.consumoUltimoMesPorHoras(30);
+				
+				}
+			
+		}
+		model.put("dispositivosCliente", cliente.getDispositivos());
 
 		return ViewHelper.render(request, model, "consumo.html");
 	};
@@ -199,59 +229,96 @@ public class UsuarioController {
 		String myUser = request.session().attribute("currentUser");
 		
 		ClienteDAO dao = new ClienteDAO();
-		Cliente cliente = dao.obtenerCliente(myUser);
-		
 		DispositivoDAO disDao = new DispositivoDAO();
-		Inteligente dispo = (Inteligente) disDao.obtenerDispositivoPorId(Long.parseLong(getQueryApagado(request)));
-		
 		LogDAO daoLog = new LogDAO();
-		Log log = new Log();
 		
-		log.setEstado("apagado");
-		log.setFecha(new Date());
-		log.setNombre(dispo.getNombre());
-		log.setId_dispositivo(Long.parseLong(getQueryApagado(request)));
-		log.setId_cliente(cliente.getId());
+		try {
+			Cliente cliente = dao.obtenerCliente(myUser);
+			Inteligente dispo = (Inteligente) disDao.obtenerDispositivoPorId(Long.parseLong(getQueryApagado(request)));
+			
+			// SI ESTA APAGADO, NO HACE NADA
+			if("apagado".equals(dispo.getEstado())) {
+				response.redirect("/estadoHogar");
+				return null;
+			}
+			
+			@SuppressWarnings("deprecation")
+			List<Log> listaLog = daoLog.obtenerLogsPorMes((new Date().getMonth() +1), dispo.getId(), cliente.getId());
+			dispo.obtenerCantidadDeHorasEnUnMes(listaLog);
+			
+			dispo.apagar();
+			Log logApagado = new Log(Long.parseLong(getQueryApagado(request)), new Date(), dispo.getNombre(), "apagado", cliente.getId());
+			daoLog.agregar(logApagado);
+			
+			if(dispo.estasEncendido()) {
+				Log logEncendido = new Log(Long.parseLong(getQueryApagado(request)), new Date(), dispo.getNombre(), "encendido", cliente.getId());
+				daoLog.agregar(logEncendido);
+				response.redirect("/estadoHogar");
+				return null;
+			}
+			
+			dispo.setEstado("apagado");
+			disDao.actualizar(dispo);
+			response.redirect("/home");
+			return null;
 		
-		daoLog.agregar(log);
-		
-		dispo.setEstado("apagado");
-		disDao.actualizar(dispo);
-		
-		response.redirect("/home");
-		return null;
+		}	
+		catch(Exception e) {
+			response.redirect("/home");
+			e.printStackTrace();
+			return null;
+		}
 		
 	};
 	
 	public static Route encenderDispositivo = (Request request, Response response) -> {
 		LoginController.ensureUserIsLoggedIn(request, response);
 		Map<String, Object> model = new HashMap<>();
-		
+		Repositorio repo = Repositorio.getInstance();
 		String myUser = request.session().attribute("currentUser");
 		
 		ClienteDAO dao = new ClienteDAO();
-		Cliente cliente = dao.obtenerCliente(myUser);
-		
 		DispositivoDAO disDao = new DispositivoDAO();
-		Inteligente dispo = (Inteligente) disDao.obtenerDispositivoPorId(Long.parseLong(getQueryEncendido(request)));
-		
 		LogDAO daoLog = new LogDAO();
-		Log log = new Log();
-		
-		log.setEstado("encendido");
-		log.setFecha(new Date());
-		log.setNombre(dispo.getNombre());
-		log.setId_dispositivo(Long.parseLong(getQueryEncendido(request)));
-		log.setId_cliente(cliente.getId());
-		
-		daoLog.agregar(log);
-		
-		dispo.setEstado("encendido");
-		disDao.actualizar(dispo);
+		Date fechaActual = new Date();
 		
 		
-		response.redirect("/home");
-		return null;
+		try {
+			Cliente cliente = dao.obtenerCliente(myUser);
+			Inteligente dispo = (Inteligente) disDao.obtenerDispositivoPorId(Long.parseLong(getQueryEncendido(request)));
+			if(dispo.estasEncendido()) {
+				response.redirect("/estadoHogar");
+				return null;
+			}
+			
+			@SuppressWarnings("deprecation")
+			List<Log> listaLog = daoLog.obtenerLogsPorMes((new Date().getMonth() -1), dispo.getId(), cliente.getId());
+			dispo.obtenerCantidadDeHorasEnUnMes(listaLog);
+			
+			// SE ENCIENDE EL DISPOSITIVO Y SE AGREGA AL LOG
+			dispo.encender();
+			Log logEncendido = new Log(Long.parseLong(getQueryEncendido(request)), new Date(), dispo.getNombre(), "encendido", cliente.getId());
+			daoLog.agregar(logEncendido);
+			
+			//SE EVALUA SI SE APAGA EL DISPOSITIVO POR LA REGLA Y SE LA AGREGA AL LOG
+			if(!dispo.estasEncendido()) {
+				Log logApagado = new Log(Long.parseLong(getQueryEncendido(request)), new Date(), dispo.getNombre(), "apagado", cliente.getId());
+				daoLog.agregar(logApagado);
+				response.redirect("/estadoHogar");
+				return null;
+			}
+			
+			dispo.setEstado("encendido");
+			disDao.actualizar(dispo);				
+			response.redirect("/home");
+			return null;
+		}
+		catch(Exception e) {
+			response.redirect("/home");
+			return null;
+		}
+		
+		
 		
 	};
 			

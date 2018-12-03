@@ -168,14 +168,16 @@ public class Regla implements Observer {
 	
 	//metodo que implementa la condicion del IF. Se podría hacer con un switch creo
 	public boolean condicionD(Inteligente dis){
-	if (this.getCondicion() == "menor"){
+	if ("menor".equals(this.getCondicion())){
 	return dis.getCantidadHorasEncendido() < this.getFlag();
 	}
-	else if (this.getCondicion() == "igual"){
+	else if ("igual".equals(this.getCondicion())){
 	return dis.getCantidadHorasEncendido() == this.getFlag();
 	}
-	else if (this.getCondicion() == "mayor") {}
-	return dis.getCantidadHorasEncendido() > this.getFlag();
+	else if ("mayor".equals(this.getCondicion())) {
+		return dis.getCantidadHorasEncendido() > this.getFlag();		
+	}
+	return false;
 	}
 	
 	
@@ -186,9 +188,7 @@ public class Regla implements Observer {
 			
 			if(condicionD(dis)) {
 				
-				for(Inteligente dis2:this.getInteligentes()) {
-				this.getActuador().actuar(dis2);
-				}
+				this.getActuador().actuar(dis);
 			}
 		}
 }

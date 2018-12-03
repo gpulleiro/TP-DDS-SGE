@@ -26,6 +26,9 @@ public class Inteligente extends Dispositivo {
 	@Column(name="ESTADO")
 	private String estado;
 	
+	@Transient
+	private double consumoUltimoMes = 0;
+	
 //	@ManyToOne(cascade = {CascadeType.ALL}, fetch=FetchType.LAZY)
 //	private Sensor sensor;
 	
@@ -45,7 +48,13 @@ public class Inteligente extends Dispositivo {
 		
 	//setters and getters
 	
+	public double getConsumoUltimoMes() {
+		return consumoUltimoMes;
+	}
 	
+	public void setConsumoUltimoMes(long consumoUltimoMes) {
+		this.consumoUltimoMes =  consumoUltimoMes;
+	}
 	
 	
 	public String getEstado() {
@@ -403,4 +412,98 @@ public class Inteligente extends Dispositivo {
 		this.reglas = reglas;
 	}
 	
+	public void obtenerCantidadDeHorasEnUnMes(List<Log> listaLog) {
+
+		Date fecha1 = null;
+		long cantidadHoras = 0;
+				
+		for (int i = 0; i < listaLog.size(); i = i+2) {
+			
+			if(("encendido").equals(listaLog.get(i).getEstado()) ) {
+				fecha1 = listaLog.get(i).getFecha();
+				
+				if(listaLog.size() - 1 > listaLog.indexOf(listaLog.get(i))) {					
+						
+					cantidadHoras += DiferenciaDeHorasEntreFechas(fecha1, listaLog.get(i+1).getFecha());
+					
+				}
+				else {
+					cantidadHoras += DiferenciaDeHorasEntreFechas(fecha1,new Date());
+				}
+				
+			}
+		}
+		this.setCantidadHorasEncendido(cantidadHoras);
+	}
+	
+	public void obtenerCantidadDeHorasUltimoMes(List<Log> listaLog) throws ParseException {
+
+		SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		long cantidadHoras = 0;
+		
+		if(listaLog.size() == 0) {
+			this.setCantidadHorasEncendido(cantidadHoras);
+		}
+		if(listaLog.size() > 0) {
+			String strFecha = (listaLog.get(0).getFecha().getYear() + 1900) + "-" + (listaLog.get(0).getFecha().getMonth() + 1) + "-30 23:59:59";			
+			Date fecha1 = null;
+			Date fecha2 = null;
+			
+			for (int i = 0; i < listaLog.size(); i = i+2) {
+				
+				if(("encendido").equals(listaLog.get(i).getEstado()) ) {
+					fecha1 = listaLog.get(i).getFecha();
+					
+					if(listaLog.size() - 1 > listaLog.indexOf(listaLog.get(i))) {					
+						
+						cantidadHoras += DiferenciaDeHorasEntreFechas(fecha1, listaLog.get(i+1).getFecha());
+						
+					}
+					else {
+						fecha2 = formatoDelTexto.parse(strFecha);
+						cantidadHoras += DiferenciaDeHorasEntreFechas(fecha1,fecha2);
+					}
+					
+				}
+			}
+			this.setCantidadHorasEncendido(cantidadHoras);
+		}
+	}
+	
+	public static long DiferenciaDeHorasEntreFechas(Date dinicio, Date dfinal){
+		 
+        long milis1, milis2, diff;
+     
+        //INSTANCIA DEL CALENDARIO GREGORIANO
+        Calendar cinicio = Calendar.getInstance();
+        Calendar cfinal = Calendar.getInstance();
+
+        //ESTABLECEMOS LA FECHA DEL CALENDARIO CON EL DATE GENERADO ANTERIORMENTE
+         cinicio.setTime(dinicio);
+         cfinal.setTime(dfinal);
+
+
+         milis1 = cinicio.getTimeInMillis();
+
+         milis2 = cfinal.getTimeInMillis();
+
+
+         diff = milis2-milis1;
+
+
+
+ // 	calcular la diferencia en horas
+
+         long diffHoras =   (diff / (60 * 60 * 1000)); 
+ 
+         return diffHoras;
+	}
+	
+	
+	public void consumoUltimoMesPorHoras(long horasEncendido) {
+		
+		
+		consumoUltimoMes = horasEncendido * consumoFijo;
+		
+	}
 }

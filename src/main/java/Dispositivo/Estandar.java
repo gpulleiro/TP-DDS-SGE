@@ -9,6 +9,9 @@ public class Estandar extends Dispositivo {
 	@Column(name="CANT_HORAS")
 	private int cantHoras;
 	
+	@Transient
+    private double consumoUltimoMes = 0;
+	
 	//constructor
 	public Estandar(String nombre, double consumoFijo, double minimoHoras, double maximoHoras, int cantHoras) {
 		super(nombre, consumoFijo, minimoHoras, maximoHoras);
@@ -19,6 +22,21 @@ public class Estandar extends Dispositivo {
 	
 	//getters and setters
 
+	public double getConsumoUltimoMes() {
+        return consumoUltimoMes;
+    }
+    
+    public void setConsumoUltimoMes(long consumoUltimoMes) {
+        this.consumoUltimoMes =  consumoUltimoMes;
+    }
+
+    public void consumoUltimoMesPorHoras(long diasDeLMes) {
+        
+        
+        consumoUltimoMes = this.consumoFijo * this.getCantHoras() * diasDeLMes;
+        
+    }
+    
 	public int getCantHoras() {
 		return cantHoras;
 	}
