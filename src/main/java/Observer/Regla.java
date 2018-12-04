@@ -166,6 +166,10 @@ public class Regla implements Observer {
 		inteligente.agregarObservador(this);
 	}
 	
+	public void eliminarDispositivo(Inteligente dispositivo) {
+		
+		this.inteligentes.remove(dispositivo);     }
+	
 	//metodo que implementa la condicion del IF. Se podría hacer con un switch creo
 	public boolean condicionD(Inteligente dis){
 	if ("menor".equals(this.getCondicion())){

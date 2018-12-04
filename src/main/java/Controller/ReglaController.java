@@ -201,5 +201,58 @@ public class ReglaController {
 			return null;
 			
 		};
+		
+		public static Route reglaDispositivosAsignados = (Request request, Response response) -> {
+			LoginController.ensureUserIsLoggedIn(request, response);
+			Map<String, Object> model = new HashMap<>();
+			
+			String myUser = request.session().attribute("currentUser");
+			
+			ClienteDAO dao = new ClienteDAO();
+			Cliente cliente = dao.obtenerCliente(myUser);
+			
+			ReglaDAO daoRegla = new ReglaDAO();
+			
+			try {
+			Regla regla = daoRegla.obtenerReglaPorId(Long.parseLong(getQueryReglaDispositivos(request)));
+			
+			List<Inteligente> dispositivos = regla.getInteligentes();
+			model.put("dispositivos", dispositivos);
+			model.put("regla", regla);
+			
+
+			
+			
+			}
+			catch( Exception e) {
+			response.redirect("/reglas");	
+			}
+			
+			return ViewHelper.render(request, model, "reglaConSusDispositivos.html");
+			
+		};
+		
+		public static Route reglaDispositivosRemove = (Request request, Response response) -> {
+			LoginController.ensureUserIsLoggedIn(request, response);
+			Map<String, Object> model = new HashMap<>();
+			
+			String myUser = request.session().attribute("currentUser");
+			
+			ClienteDAO dao = new ClienteDAO();
+			Cliente cliente = dao.obtenerCliente(myUser);
+			
+			ReglaDAO daoRegla = new ReglaDAO();
+			Regla regla = daoRegla.obtenerReglaPorId(Long.parseLong(getQueryReglaID(request)));
+			
+			DispositivoDAO dispositivoDao = new DispositivoDAO();
+			Dispositivo dispositivoNuevo = dispositivoDao.obtenerDispositivoPorId(Long.parseLong(getQueryEliminarDispositivo(request)));
+			
+			regla.eliminarDispositivo((Inteligente) dispositivoNuevo);
+			daoRegla.actualizar(regla);
+			
+			response.redirect("/home");
+			return null;
+			
+		};
 
 }

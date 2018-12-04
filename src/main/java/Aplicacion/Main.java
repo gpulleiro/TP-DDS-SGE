@@ -221,6 +221,11 @@ public class Main {
         post("/reglas/dispositivos",	ReglaController.reglaDispositivosMenu);
         post("/reglas/dispositivo/agregar",	ReglaController.reglaDispositivoAgregar);
         
+        get("/reglas/dispositivosAsignados", ReglaController.reglaDispositivosAsignados);
+        post("/reglas/dispositivosAsignados", ReglaController.reglaDispositivosAsignados);
+        post("/reglas/dispositivosAsignados/eliminar", ReglaController.reglaDispositivosRemove);
+        
+        
         get("/reportes",				ReportesController.reportes);
         
         post("/dispositivos/importar", 	DispositivosController.importarDispositivos);
